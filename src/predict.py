@@ -3,18 +3,21 @@ import joblib
 import pandas as pd
 import numpy as np
 
-def load_inference_artifacts(model_name='Random Forest'):
+from src.data_processing import engineer_features
+
+def load_inference_artifacts(model_name='Gradient Boosting'):
     """
     Tải mô hình và bộ tiền xử lý đã lưu từ thư mục models/
     """
     model_file_map = {
-        'Random Forest': 'models/random_forest_model.joblib',
-        'Decision Tree': 'models/decision_tree_model.joblib',
-        'Logistic Regression': 'models/logistic_regression_model.joblib'
+        'Random Forest'      : 'models/random_forest_model.joblib',
+        'Decision Tree'      : 'models/decision_tree_model.joblib',
+        'Logistic Regression': 'models/logistic_regression_model.joblib',
+        'Gradient Boosting'  : 'models/gradient_boosting_model.joblib'
     }
-    
+
     if model_name not in model_file_map:
-        model_name = 'Random Forest'
+        model_name = 'Gradient Boosting'
         
     model_path = model_file_map[model_name]
     preprocessor_path = 'models/preprocessor.joblib'
@@ -77,13 +80,14 @@ def generate_synthesis_analysis(c):
         
     return " ".join(parts)
 
-def predict_single_customer(customer_data, threshold=0.50, model_name='Random Forest'):
+def predict_single_customer(customer_data, threshold=0.50, model_name='Gradient Boosting'):
     """
     Dự đoán khả năng quay lại cho 1 khách hàng cụ thể.
     """
     model, preprocessor = load_inference_artifacts(model_name)
-    
+
     df_single = pd.DataFrame([customer_data])
+    df_single = engineer_features(df_single)   # ← Áp dụng FE như khi training
     X_trans = preprocessor.transform(df_single)
     
     prob_return = float(model.predict_proba(X_trans)[0, 1])
@@ -128,22 +132,23 @@ def predict_single_customer(customer_data, threshold=0.50, model_name='Random Fo
         'model_used': model_name
     }
 
-def predict_batch_df(df_input, threshold=0.50, model_name='Random Forest'):
+def predict_batch_df(df_input, threshold=0.50, model_name='Gradient Boosting'):
     """
     Dự đoán hàng loạt từ tập dữ liệu DataFrame
     """
     model, preprocessor = load_inference_artifacts(model_name)
-    
+
     required_cols = [
         'age', 'gender', 'total_purchases', 'avg_order_value',
         'days_since_last_purchase', 'membership_level', 'used_voucher', 'satisfaction_score'
     ]
-    
+
     missing = [c for c in required_cols if c not in df_input.columns]
     if missing:
         raise ValueError(f"File CSV thiếu các cột bắt buộc: {missing}")
-        
+
     df_proc = df_input[required_cols].copy()
+    df_proc = engineer_features(df_proc)       # ← Áp dụng FE như khi training
     X_trans = preprocessor.transform(df_proc)
     
     probs = model.predict_proba(X_trans)[:, 1]

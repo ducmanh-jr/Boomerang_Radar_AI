@@ -507,8 +507,8 @@
             <div class="brand-subtitle">Hệ Thống Dự Đoán Khách Hàng Quay Lại Mua Sắm — Binary Classification</div>
         </div>
         <div class="badge-list">
-            <span class="badge badge-primary">Random Forest 88.1% Accuracy</span>
-            <span class="badge">Supervised Binary ML</span>
+            <span class="badge badge-primary" id="header-best-model">Gradient Boosting 94.23% Accuracy</span>
+            <span class="badge">Supervised Binary ML · Fine-tuned 5 Rounds</span>
         </div>
     </header>
 
@@ -517,9 +517,10 @@
 
         <!-- Tab Navigation -->
         <nav class="tab-menu">
-            <button class="tab-btn active" onclick="switchTab('predictor')">Dự Đoán Khách Hàng Real-Time</button>
-            <button class="tab-btn" onclick="switchTab('benchmark')">Đánh Giá 3 Mô Hình ML</button>
-            <button class="tab-btn" onclick="switchTab('batch')">Dự Đoán Hàng Loạt (CSV)</button>
+            <button class="tab-btn active" onclick="switchTab(event,'predictor')">Dự Đoán Khách Hàng Real-Time</button>
+            <button class="tab-btn" onclick="switchTab(event,'benchmark')">Đánh Giá 4 Mô Hình ML</button>
+            <button class="tab-btn" onclick="switchTab(event,'batch')">Dự Đoán Hàng Loạt (CSV)</button>
+            <button class="tab-btn" onclick="switchTab(event,'overview')">Tổng Quan Dữ Liệu</button>
         </nav>
 
         <!-- TAB 1: DỰ ĐOÁN KHÁCH HÀNG REAL-TIME (DEFAULT TAB) -->
@@ -543,9 +544,10 @@
                         <div class="form-group">
                             <div class="form-label">Thuật toán mô hình:</div>
                             <select id="sim-model" class="form-select">
-                                <option value="Random Forest" selected>Random Forest (Chính - 88.1%)</option>
-                                <option value="Decision Tree">Decision Tree (87.3%)</option>
-                                <option value="Logistic Regression">Logistic Regression (67.5%)</option>
+                                <option value="Gradient Boosting" selected>Gradient Boosting ★ Champion (Acc 94.23%)</option>
+                                <option value="Random Forest">Random Forest (Acc 91.56%)</option>
+                                <option value="Decision Tree">Decision Tree (Acc 74.96%)</option>
+                                <option value="Logistic Regression">Logistic Regression (Acc 68.47%)</option>
                             </select>
                         </div>
                         <div class="form-group">
@@ -744,7 +746,7 @@
         <!-- TAB 3: ĐÁNH GIÁ 3 MÔ HÌNH ML -->
         <div id="tab-benchmark" class="tab-pane">
             <div class="card" style="margin-bottom: 2rem;">
-                <h2 class="section-title">Bảng So Sánh Chỉ Số Đánh Giá Thực Tế (Test Set: 1,126 Khách Hàng)</h2>
+                <h2 class="section-title">Bảng So Sánh 4 Mô Hình ML — Test Set: 1,126 Khách Hàng (Sau Fine-tune 5 Vòng)</h2>
                 <div class="table-responsive">
                     <table id="table-models">
                         <thead>
@@ -767,11 +769,11 @@
 
             <div class="grid-2">
                 <div class="card">
-                    <h2 class="section-title">Feature Importance (Mô Hình Random Forest)</h2>
+                    <h2 class="section-title">Feature Importance (<span id="fi-model-label">Gradient Boosting</span>)</h2>
                     <canvas id="chartFeatureImportance" height="240"></canvas>
                 </div>
                 <div class="card">
-                    <h2 class="section-title">Ma Trận Nhầm Lẫn (Confusion Matrix)</h2>
+                    <h2 class="section-title">Confusion Matrix — <span id="cm-model-label">Gradient Boosting</span></h2>
                     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1rem;">
                         <div style="background: #F1F5F9; border-radius: 12px; padding: 1.2rem; text-align: center;">
                             <div style="font-size: 0.75rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase;">True Positives (TP)</div>
@@ -844,11 +846,11 @@
         let currentVoucher = 1;
         let batchResultsCache = [];
 
-        function switchTab(tabId) {
+        function switchTab(evt, tabId) {
             document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
             document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
 
-            event.currentTarget.classList.add('active');
+            evt.currentTarget.classList.add('active');
             document.getElementById('tab-' + tabId).classList.add('active');
         }
 
@@ -1057,14 +1059,18 @@
                 const res = await fetch('/api/models');
                 const evalData = await res.json();
 
+                const bestModelName = evalData['_best_model'] || 'Gradient Boosting';
+                const modelOrder = ['Gradient Boosting', 'Random Forest', 'Decision Tree', 'Logistic Regression'];
+                const sortedNames = modelOrder.filter(n => evalData[n]);
+
                 const tbody = document.querySelector('#table-models tbody');
-                tbody.innerHTML = Object.keys(evalData).map(name => {
+                tbody.innerHTML = sortedNames.map(name => {
                     const m = evalData[name];
-                    const isBest = name === 'Random Forest';
+                    const isBest = name === bestModelName;
                     return `
-                        <tr>
+                        <tr style="${isBest ? 'background: var(--primary-light);' : ''}">
                             <td style="font-weight: 800; color: ${isBest ? 'var(--primary)' : 'var(--text-heading)'};">
-                                ${name} ${isBest ? '(Champion)' : ''}
+                                ${name} ${isBest ? '★ Champion' : ''}
                             </td>
                             <td style="font-weight: 800;">${(m.accuracy * 100).toFixed(2)}%</td>
                             <td>${m.precision.toFixed(4)}</td>
@@ -1072,45 +1078,67 @@
                             <td style="font-weight: 800; color: var(--emerald);">${m.f1.toFixed(4)}</td>
                             <td>${m.roc_auc.toFixed(4)}</td>
                             <td>
-                                ${isBest 
-                                    ? '<span class="tag tag-return">Chính thức</span>' 
+                                ${isBest
+                                    ? '<span class="tag tag-return">Chính thức</span>'
                                     : '<span style="color: var(--text-muted);">Baseline</span>'}
                             </td>
                         </tr>
                     `;
                 }).join('');
 
-                const rf = evalData['Random Forest'];
-                if (rf && rf.confusion_matrix) {
-                    document.getElementById('cm-tn').innerText = rf.confusion_matrix[0][0];
-                    document.getElementById('cm-fp').innerText = rf.confusion_matrix[0][1];
-                    document.getElementById('cm-fn').innerText = rf.confusion_matrix[1][0];
-                    document.getElementById('cm-tp').innerText = rf.confusion_matrix[1][1];
+                // Confusion matrix & feature importance: dùng best model
+                const best = evalData[bestModelName];
+                if (best && best.confusion_matrix) {
+                    document.getElementById('cm-tn').innerText = best.confusion_matrix[0][0];
+                    document.getElementById('cm-fp').innerText = best.confusion_matrix[0][1];
+                    document.getElementById('cm-fn').innerText = best.confusion_matrix[1][0];
+                    document.getElementById('cm-tp').innerText = best.confusion_matrix[1][1];
+                    // Label confusion matrix header
+                    const cmTitle = document.getElementById('cm-model-label');
+                    if (cmTitle) cmTitle.innerText = bestModelName;
                 }
 
-                if (rf && rf.feature_importances) {
+                if (best && best.feature_importances) {
                     const ctx = document.getElementById('chartFeatureImportance').getContext('2d');
+                    const labels = best.feature_importances.map(i => i[0]).slice(0, 10);
+                    const values = best.feature_importances.map(i => parseFloat(i[1].toFixed(4))).slice(0, 10);
                     new Chart(ctx, {
                         type: 'bar',
                         data: {
-                            labels: rf.feature_importances.map(i => i[0]).slice(0, 8),
+                            labels: labels,
                             datasets: [{
                                 label: 'Feature Importance',
-                                data: rf.feature_importances.map(i => i[1]).slice(0, 8),
-                                backgroundColor: '#4338CA',
+                                data: values,
+                                backgroundColor: labels.map((_, i) => i < 3 ? '#4338CA' : '#818CF8'),
                                 borderRadius: 6
                             }]
                         },
                         options: {
                             indexAxis: 'y',
                             responsive: true,
-                            plugins: { legend: { display: false } },
+                            plugins: {
+                                legend: { display: false },
+                                tooltip: {
+                                    callbacks: {
+                                        label: ctx => ' ' + (ctx.raw * 100).toFixed(2) + '%'
+                                    }
+                                }
+                            },
                             scales: {
-                                x: { grid: { color: '#E2E8F0' }, ticks: { color: '#64748B' } },
-                                y: { grid: { display: false }, ticks: { color: '#0F172A' } }
+                                x: { grid: { color: '#E2E8F0' }, ticks: { color: '#64748B', callback: v => (v*100).toFixed(1)+'%' } },
+                                y: { grid: { display: false }, ticks: { color: '#0F172A', font: { weight: '600' } } }
                             }
                         }
                     });
+                    // Label feature importance title
+                    const fiTitle = document.getElementById('fi-model-label');
+                    if (fiTitle) fiTitle.innerText = bestModelName;
+                }
+
+                // Update navbar badge dynamically with real best model + accuracy
+                const headerBadge = document.getElementById('header-best-model');
+                if (headerBadge && best) {
+                    headerBadge.innerText = `${bestModelName} ${(best.accuracy * 100).toFixed(2)}% Accuracy`;
                 }
             } catch (err) {
                 console.error("Lỗi benchmark:", err);

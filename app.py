@@ -51,13 +51,14 @@ def get_models_eval():
         
     with open(eval_path, 'r', encoding='utf-8') as f:
         data = json.load(f)
+    # Giữ nguyên _best_model để frontend dùng
     return jsonify(data)
 
 @app.route('/api/predict', methods=['POST'])
 def handle_predict_single():
     req_data = request.get_json()
     threshold = float(req_data.get('threshold', 0.50))
-    model_name = req_data.get('model_name', 'Random Forest')
+    model_name = req_data.get('model_name', 'Gradient Boosting')
     
     cust_dict = {
         'age': int(req_data.get('age', 32)),
@@ -88,7 +89,7 @@ def handle_predict_batch():
             else:
                 df = pd.read_csv(data_path).head(30)
                 
-        df_res = predict_batch_df(df, threshold=0.50, model_name='Random Forest')
+        df_res = predict_batch_df(df, threshold=0.50, model_name='Gradient Boosting')
         df_res = df_res.fillna('')
         return jsonify(df_res.to_dict(orient='records'))
     except Exception as e:
