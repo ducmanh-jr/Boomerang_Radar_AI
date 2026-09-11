@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hệ Thống AI Dự Đoán Khách Hàng Quay Lại Mua Sắm - Báo Cáo Quy Trình Pipeline</title>
+    <!-- Google Fonts for Perfect Vietnamese Unicode Rendering -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-body: #0F172A;
+            --bg-slide: #FFFFFF;
+            --text-main: #0F172A;
+            --text-body: #334155;
+            --text-muted: #64748B;
+            --primary: #1E293B;
+            --accent: #4338CA;
+            --emerald: #059669;
+            --crimson: #DC2626;
+            --amber: #D97706;
+            --border-color: #CBD5E1;
+            --block-bg: #F8FAFC;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px 0;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Interactive Controls Bar */
+        .controls-bar {
+            position: fixed;
+            bottom: 20px;
+            background: rgba(15, 23, 42, 0.95);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 8px 24px;
+            border-radius: 30px;
+            display: flex;
+            gap: 16px;
+            align-items: center;
+            z-index: 1000;
+            color: white;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+        }
+
+        .controls-bar button {
+            background: #4338CA;
+            color: white;
+            border: none;
+            padding: 7px 16px;
+            border-radius: 20px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .controls-bar button:hover {
+            background: #3730A3;
+        }
+
+        .slide-container {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            width: 1333px;
+        }
+
+        /* 16:9 Landscape Academic Slide Frame (1333px x 750px) */
+        .slide {
+            width: 1333px;
+            height: 750px;
+            background: var(--bg-slide);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+            page-break-after: always;
+            page-break-inside: avoid;
+            overflow: hidden;
+        }
+
+        /* Header Bar */
+        .beamer-header {
+            background: #0F172A;
+            color: #FFFFFF;
+            padding: 16px 45px;
+            font-size: 1.45rem;
+            font-weight: 800;
+            letter-spacing: -0.3px;
+            border-bottom: 4px solid #4338CA;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .beamer-header .section-num {
+            background: #4338CA;
+            color: #FFFFFF;
+            font-size: 0.85rem;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-weight: 700;
+        }
+
+        /* Slide Content Container */
+        .beamer-body {
+            padding: 30px 50px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            font-size: 1.02rem;
+            line-height: 1.6;
+            color: #1E293B;
+        }
+
+        /* Slide Footer Bar */
+        .beamer-footer {
+            background: #F1F5F9;
+            border-top: 1px solid #E2E8F0;
+            padding: 10px 45px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            color: #64748B;
+            font-weight: 600;
+        }
+
+        /* Academic Block Elements */
+        .beamer-block {
+            background: #F8FAFC;
+            border: 1px solid #CBD5E1;
+            border-left: 5px solid #0F172A;
+            border-radius: 4px;
+            padding: 14px 20px;
+            margin-bottom: 14px;
+        }
+
+        .beamer-block-title {
+            font-weight: 800;
+            font-size: 1.05rem;
+            color: #0F172A;
+            margin-bottom: 6px;
+            border-bottom: 1px solid #E2E8F0;
+            padding-bottom: 4px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .beamer-alertblock {
+            background: #FEF2F2;
+            border: 1px solid #FECACA;
+            border-left: 5px solid #DC2626;
+            border-radius: 4px;
+            padding: 14px 20px;
+            margin-top: 12px;
+        }
+
+        .beamer-alertblock-title {
+            font-weight: 800;
+            font-size: 1.05rem;
+            color: #991B1B;
+            margin-bottom: 6px;
+        }
+
+        /* Code Pills for Features & Variables */
+        code {
+            font-family: 'JetBrains Mono', monospace;
+            background: #F1F5F9;
+            color: #0F172A;
+            padding: 3px 8px;
+            border-radius: 4px;
+            border: 1px solid #E2E8F0;
+            font-size: 0.88rem;
+            font-weight: 700;
+        }
+
+        /* Math Typography Formatting */
+        .math {
+            font-family: 'Times New Roman', Times, serif;
+            font-style: italic;
+            font-size: 1.1em;
+        }
+
+        /* Standard Booktabs Table Styling */
+        table.booktabs {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+            font-size: 0.92rem;
+        }
+
+        table.booktabs th {
+            border-top: 2.5px solid #0F172A;
+            border-bottom: 1.5px solid #0F172A;
+            padding: 9px 12px;
+            text-align: left;
+            font-weight: 800;
+            color: #0F172A;
+            background: #F8FAFC;
+        }
+
+        table.booktabs td {
+            padding: 8px 12px;
+            border-bottom: 1px solid #E2E8F0;
+            color: #334155;
+            font-weight: 500;
+        }
+
+        table.booktabs tr:last-child td {
+            border-bottom: 2.5px solid #0F172A;
+        }
+
+        table.booktabs tr.highlight td {
+            font-weight: 800;
+            background: #EEF2FF;
+            color: #4338CA;
+        }
+
+        /* Layout Grids */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            align-items: center;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 18px;
+        }
+
+        .grid-4 {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+        }
+
+        /* DETAILED ARCHITECTURE & DIAGRAM NODES */
+        .diagram-container {
+            background: #F8FAFC;
+            border: 1px solid #CBD5E1;
+            border-radius: 8px;
+            padding: 16px 20px;
+            margin: 10px 0;
+        }
+
+        .diagram-flow {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        .diagram-node {
+            background: #FFFFFF;
+            border: 2px solid #0F172A;
+            border-radius: 8px;
+            padding: 12px 14px;
+            text-align: center;
+            flex: 1;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.04);
+        }
+
+        .diagram-node-title {
+            font-weight: 800;
+            font-size: 0.88rem;
+            color: #0F172A;
+            margin-bottom: 4px;
+        }
+
+        .diagram-node-desc {
+            font-size: 0.76rem;
+            color: #64748B;
+            line-height: 1.35;
+        }
+
+        .diagram-arrow {
+            font-size: 1.3rem;
+            font-weight: 900;
+            color: #4338CA;
+        }
+
+        /* Print Settings for PDF export */
+        @media print {
+            @page {
+                size: 16in 9in;
+                margin: 0;
+            }
+            body {
+                background: white;
+                padding: 0;
+                margin: 0;
+            }
+            .controls-bar {
+                display: none !important;
+            }
+            .slide-container {
+                gap: 0;
+                width: 100vw;
+            }
+            .slide {
+                width: 100vw;
+                height: 100vh;
+                box-shadow: none;
+                page-break-after: always;
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Interactive Navigation Controls Bar -->
+    <div class="controls-bar">
+        <button onclick="prevSlide()">❮ Trước</button>
+        <span id="slide-counter">Slide 1 / 9</span>
+        <button onclick="nextSlide()">Sau ❯</button>
+        <button style="background: #059669; margin-left: 10px;" onclick="window.print()">Xuất File PDF</button>
+    </div>
+
+    <div class="slide-container">
+
+        <!-- ================= SLIDE 1: TRANG BÌA SẠCH SẼ CHUẨN QUỐC TẾ ================= -->
+        <div class="slide" id="slide-1">
+            <div style="padding: 35px 50px 0 50px; display: flex; justify-content: space-between; align-items: center;">
+                <span style="font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 0.9rem; color: #4338CA; background: #EEF2FF; padding: 6px 18px; border-radius: 20px; letter-spacing: 0.5px;">
+                    DMC AI LABORATORY
+                </span>
+                <span style="font-weight: 700; font-size: 0.85rem; color: #64748B; letter-spacing: 0.5px;">MACHINE LEARNING SYSTEM</span>
+            </div>
+
+            <div class="beamer-body" style="text-align: center; padding: 40px 80px;">
+                <h1 style="font-size: 2.8rem; font-weight: 800; color: #0F172A; margin-bottom: 24px; line-height: 1.25; letter-spacing: -0.8px;">
+                    HỆ THỐNG AI DỰ ĐOÁN KHÁCH HÀNG QUAY LẠI MUA SẮM
+                </h1>
+                
+                <div style="width: 120px; height: 4px; background: #4338CA; margin: 0 auto 30px auto; border-radius: 2px;"></div>
+
+                <p style="font-size: 1.15rem; color: #475569; max-width: 780px; margin: 0 auto; line-height: 1.7; font-weight: 500;">
+                    Báo cáo phân tích chuyên sâu mô hình phân loại học máy nhị phân kết hợp bộ đặc trưng RFM+ mở rộng ứng dụng trên nền tảng Thương mại Điện tử.
+                </p>
+            </div>
+
+            <div class="beamer-footer">
+                <div>DMC Customer Repurchase Prediction System</div>
+                <div>Tháng 9, 2026</div>
+                <div>Trang 1 / 9</div>
+            </div>
+        </div>
+
+        <!-- ================= SLIDE 2: BÀI TOÁN & GIÁ TRỊ KINH DOANH ================= -->
+        <div class="slide" id="slide-2">
+            <div class="beamer-header">
+                <span>1. Tổng Quan Bài Toán & Phát Biểu Toán Học</span>
+                <span class="section-num">Phần 01</span>
+            </div>
+
+            <div class="beamer-body">
+                <div class="beamer-block">
+                    <div class="beamer-block-title">Bối Cảnh Nghiệp Vụ E-Commerce</div>
+                    <p>
+                        Trong Thương mại Điện tử, chi phí thu hút một khách hàng mới (<span class="math">CAC</span>) đắt gấp <b>5 đến 7 lần</b> chi phí giữ chân khách hàng hiện hữu (<span class="math">Retention</span>). Việc nhận diện sớm rủi ro rời bỏ (<span class="math">Churn Risk</span>) giúp doanh nghiệp phân bổ chính xác ngân sách khuyến mãi.
+                    </p>
+                </div>
+
+                <div class="beamer-block" style="margin-top: 18px;">
+                    <div class="beamer-block-title">Phát Biểu Toán Học Bài Toán Học Máy</div>
+                    <p style="margin-bottom: 8px;">
+                        Cho tập dữ liệu huấn luyện <span class="math">D = {(x_i, y_i)}_{i=1}^N</span> với <span class="math">N = 5,630</span> mẫu quan sát:
+                    </p>
+                    <ul style="margin-left: 24px;">
+                        <li style="margin-bottom: 6px;">
+                            <span class="math">x_i ∈ R^8</span>: Vector 8 thuộc tính RFM+ đại diện cho lịch sử hành vi của khách hàng thứ <span class="math">i</span>.
+                        </li>
+                        <li>
+                            <span class="math">y_i ∈ {0, 1}</span>: Nhãn mục tiêu nhị phân (<code>y_i = 1</code> nếu khách phát sinh đơn hàng mới trong 30 ngày; <code>y_i = 0</code> nếu rời bỏ Churn).
+                        </li>
+                    </ul>
+                    <p style="margin-top: 10px;">
+                        <b>Mục tiêu:</b> Huấn luyện hàm phân loại <span class="math">f(x): R^8 → [0, 1]</span> ước lượng xác suất hậu phương <span class="math">P(y = 1 | x)</span>.
+                    </p>
+                </div>
+            </div>
+
+            <div class="beamer-footer">
+                <div>DMC Customer Repurchase Prediction System</div>
+                <div>Supervised Binary Classification Formulation</div>
+                <div>Trang 2 / 9</div>
+            </div>
+        </div>
+
+        <!-- ================= SLIDE 3: BỘ DỮ LIỆU & BỘ ĐẶC TRƯNG RFM+ ================= -->
+        <div class="slide" id="slide-3">
+            <div class="beamer-header">
+                <span>2. Bộ Dữ Liệu Kaggle & Bảng Đặc Trưng RFM+</span>
+                <span class="section-num">Phần 02</span>
+            </div>
+
+            <div class="beamer-body">
+                <div class="grid-2">
+                    <div>
+                        <div class="beamer-block">
+                            <div class="beamer-block-title">Thống Kê Tập Dữ Liệu Kaggle</div>
+                            <ul style="margin-left: 20px; line-height: 1.8;">
+                                <li><b>Tổng số mẫu quan sát:</b> <span class="math">N = 5,630</span> khách hàng.</li>
+                                <li><b>Phân bố Nhãn Mục Tiêu (will_return):</b>
+                                    <ul style="margin-left: 20px; margin-top: 6px;">
+                                        <li>Nhãn <code>1</code> (Quay lại): <b>4,684 mẫu (83.2%)</b></li>
+                                        <li>Nhãn <code>0</code> (Churn): <b>946 mẫu (16.8%)</b></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div>
+                        <p style="font-weight: 800; margin-bottom: 8px; color: #0F172A;">Danh Sách 8 Thuộc Tính Vector x:</p>
+                        <table class="booktabs">
+                            <thead>
+                                <tr>
+                                    <th>Thuộc Tính (Feature)</th>
+                                    <th>Kiểu Dữ Liệu</th>
+                                    <th>Ý Nghĩa Nghiệp Vụ</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><code>age</code></td>
+                                    <td>Số nguyên</td>
+                                    <td>Độ tuổi khách hàng (18–70)</td>
+                                </tr>
+                                <tr>
+                                    <td><code>gender</code></td>
+                                    <td>Định danh</td>
+                                    <td>Giới tính (Nam / Nữ)</td>
+                                </tr>
+                                <tr>
+                                    <td><code>total_purchases</code></td>
+                                    <td>Số nguyên</td>
+                                    <td>Frequency: Tổng số đơn đã mua</td>
+                                </tr>
+                                <tr>
+                                    <td><code>avg_order_value</code></td>
+                                    <td>Số thực (VND)</td>
+                                    <td>Monetary/AOV: Chi tiêu TB/đơn</td>
+                                </tr>
+                                <tr>
+                                    <td><code>days_since_last_purchase</code></td>
+                                    <td>Số nguyên</td>
+                                    <td>Recency: Số ngày chưa mua lại</td>
+                                </tr>
+                                <tr>
+                                    <td><code>membership_level</code></td>
+                                    <td>Thứ tự</td>
+                                    <td>Hạng (Đồng, Bạc, Vàng, Kim Cương)</td>
+                                </tr>
+                                <tr>
+                                    <td><code>used_voucher</code></td>
+                                    <td>Nhị phân</td>
+                                    <td>Lịch sử sử dụng voucher (0/1)</td>
+                                </tr>
+                                <tr>
+                                    <td><code>satisfaction_score</code></td>
+                                    <td>Số nguyên</td>
+                                    <td>Điểm đánh giá hài lòng (1–5)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="beamer-footer">
+                <div>DMC Customer Repurchase Prediction System</div>
+                <div>Kaggle Dataset & RFM+ Feature Definitions</div>
+                <div>Trang 3 / 9</div>
+            </div>
+        </div>
+
+        <!-- ================= SLIDE 4: QUY TRÌNH 1 - DATA PROCESSING & PREPROCESSING PIPELINE ================= -->
+        <div class="slide" id="slide-4">
+            <div class="beamer-header">
+                <span>3. Quy Trình Pipeline 1: Tiền Xử Lý Dữ Liệu & Anti-Data Leakage</span>
+                <span class="section-num">Phần 03</span>
+            </div>
+
+            <div class="beamer-body">
+                <p style="font-weight: 800; margin-bottom: 8px; color: #0F172A;">Chi Tiết Các Bước Tiền Xử Lý Dữ Liệu (src/data_processing.py):</p>
+
+                <div class="grid-4" style="margin-bottom: 12px;">
+                    <div style="background: #F8FAFC; border: 1px solid #CBD5E1; border-top: 4px solid #0F172A; border-radius: 6px; padding: 14px;">
+                        <div style="font-weight: 800; font-size: 0.88rem; color: #0F172A; margin-bottom: 4px;">Bước 1.1: Data Ingestion</div>
+                        <div style="font-size: 0.78rem; color: #475569; line-height: 1.4;">
+                            Nạp 5,630 bản ghi từ Excel Kaggle. Điền khuyết Median cho các biến số (`Tenure`, `CashbackAmount`, `SatisfactionScore`).
+                        </div>
+                    </div>
+
+                    <div style="background: #F8FAFC; border: 1px solid #CBD5E1; border-top: 4px solid #4338CA; border-radius: 6px; padding: 14px;">
+                        <div style="font-weight: 800; font-size: 0.88rem; color: #4338CA; margin-bottom: 4px;">Bước 1.2: Feature Mapping</div>
+                        <div style="font-size: 0.78rem; color: #475569; line-height: 1.4;">
+                            Trích xuất 8 đặc trưng RFM+ (`age`, `gender`, `purchases`, `AOV`, `recency`, `membership`, `voucher`, `satisfaction`).
+                        </div>
+                    </div>
+
+                    <div style="background: #F8FAFC; border: 1px solid #CBD5E1; border-top: 4px solid #059669; border-radius: 6px; padding: 14px;">
+                        <div style="font-weight: 800; font-size: 0.88rem; color: #059669; margin-bottom: 4px;">Bước 1.3: Train/Test Split</div>
+                        <div style="font-size: 0.78rem; color: #475569; line-height: 1.4;">
+                            Chia 80/20 Stratified (`train_test_split`). Tập Train: 4,504 mẫu, Tập Test: 1,126 mẫu giữ nguyên tỷ lệ nhãn.
+                        </div>
+                    </div>
+
+                    <div style="background: #F8FAFC; border: 1px solid #CBD5E1; border-top: 4px solid #D97706; border-radius: 6px; padding: 14px;">
+                        <div style="font-weight: 800; font-size: 0.88rem; color: #D97706; margin-bottom: 4px;">Bước 1.4: Encoding & Scaling</div>
+                        <div style="font-size: 0.78rem; color: #475569; line-height: 1.4;">
+                            `ColumnTransformer`: One-Hot Encoder cho `gender`, `membership_level`; `StandardScaler` cho biến liên tục.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="beamer-alertblock">
+                    <div class="beamer-alertblock-title">Nguyên Tắc Phòng Chống Rò Rỉ Dữ Liệu (Anti-Data Leakage Protocol)</div>
+                    <p style="font-size: 0.92rem; line-height: 1.5;">
+                        Phép biến đổi `fit_transform()` được áp dụng <b>duy nhất trên tập Train</b>. Tập Test độc lập chỉ gọi phép biến đổi `transform()` bằng các đại lượng thống kê <span class="math">μ, σ</span> đã học từ Train, đảm bảo tính khách quan tuyệt đối.
+                    </p>
+                </div>
+            </div>
+
+            <div class="beamer-footer">
+                <div>DMC Customer Repurchase Prediction System</div>
+                <div>Data Preprocessing & Encoding Pipeline</div>
+                <div>Trang 4 / 9</div>
+            </div>
+        </div>
+
+        <!-- ================= SLIDE 5: QUY TRÌNH 2 - MODEL TRAINING & GRIDSEARCHCV PIPELINE ================= -->
+        <div class="slide" id="slide-5">
+            <div class="beamer-header">
+                <span>4. Quy Trình Pipeline 2: Huấn Luyện Mô Hình & GridSearchCV 5-Fold</span>
+                <span class="section-num">Phần 04</span>
+            </div>
+
+            <div class="beamer-body">
+                <p style="font-weight: 800; margin-bottom: 8px; color: #0F172A;">Chi Tiết Tiến Trình Huấn Luyện ML (src/train.py):</p>
+
+                <div class="diagram-container">
+                    <div class="diagram-flow">
+                        <div class="diagram-node">
+                            <div class="diagram-node-title">2.1 Setup Models</div>
+                            <div class="diagram-node-desc">Logistic Regression<br>Decision Tree<br>Random Forest</div>
+                        </div>
+                        <div class="diagram-arrow">➔</div>
+                        <div class="diagram-node">
+                            <div class="diagram-node-title">2.2 Class Balance</div>
+                            <div class="diagram-node-desc">Cấu hình tham số<br>`class_weight='balanced'`</div>
+                        </div>
+                        <div class="diagram-arrow">➔</div>
+                        <div class="diagram-node">
+                            <div class="diagram-node-title">2.3 GridSearchCV 5-Fold</div>
+                            <div class="diagram-node-desc">Tối ưu Siêu tham số<br>Scoring = F1-score</div>
+                        </div>
+                        <div class="diagram-arrow">➔</div>
+                        <div class="diagram-node">
+                            <div class="diagram-node-title">2.4 Model Export</div>
+                            <div class="diagram-node-desc">Xuất file `.joblib`<br>Lưu `evaluation_results.json`</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid-3" style="margin-top: 10px;">
+                    <div class="beamer-block" style="margin-bottom: 0;">
+                        <div class="beamer-block-title">Logistic Regression Grid</div>
+                        <div style="font-size: 0.82rem; color: #334155;">
+                            • `C`: [0.01, 0.1, 1.0, 10.0]<br>
+                            • `solver`: ['lbfgs', 'liblinear']<br>
+                            • `max_iter`: 1000
+                        </div>
+                    </div>
+
+                    <div class="beamer-block" style="margin-bottom: 0;">
+                        <div class="beamer-block-title">Decision Tree Grid</div>
+                        <div style="font-size: 0.82rem; color: #334155;">
+                            • `max_depth`: [3, 5, 8, 12, None]<br>
+                            • `min_samples_split`: [2, 5, 10]<br>
+                            • `criterion`: ['gini', 'entropy']
+                        </div>
+                    </div>
+
+                    <div class="beamer-block" style="margin-bottom: 0;">
+                        <div class="beamer-block-title">Random Forest (Champion) Grid</div>
+                        <div style="font-size: 0.82rem; color: #334155;">
+                            • `n_estimators`: [50, 100, 200]<br>
+                            • `max_depth`: [5, 8, 12, 16, None]<br>
+                            • `max_features`: ['sqrt', 'log2']
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="beamer-footer">
+                <div>DMC Customer Repurchase Prediction System</div>
+                <div>Model Training & Cross-Validation Pipeline</div>
+                <div>Trang 5 / 9</div>
+            </div>
+        </div>
+
+        <!-- ================= SLIDE 6: ĐÁNH GIÁ SO SÁNH 3 MÔ HÌNH ================= -->
+        <div class="slide" id="slide-6">
+            <div class="beamer-header">
+                <span>5. Kết Quả Đánh Giá & So Sánh 3 Thuật Toán Học Máy</span>
+                <span class="section-num">Phần 05</span>
+            </div>
+
+            <div class="beamer-body">
+                <p style="font-weight: 800; margin-bottom: 12px; color: #0F172A;">
+                    Kết Quả Đánh Giá Thực Nghiệm Trên Tập Kiểm Thử Độc Lập (<span class="math">N_{test} = 1,126</span> mẫu):
+                </p>
+
+                <table class="booktabs">
+                    <thead>
+                        <tr>
+                            <th>Mô Hình (Algorithm)</th>
+                            <th>Accuracy (%)</th>
+                            <th>Precision</th>
+                            <th>Recall</th>
+                            <th>F1-Score</th>
+                            <th>ROC-AUC Score</th>
+                            <th>Trạng Thái Phê Duyệt</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="highlight">
+                            <td>Random Forest Classifier</td>
+                            <td>88.10%</td>
+                            <td>0.9051</td>
+                            <td>0.9573</td>
+                            <td>0.9304</td>
+                            <td>0.9241</td>
+                            <td><span style="background: #059669; color: white; padding: 3px 10px; border-radius: 10px; font-weight: 700; font-size: 0.78rem;">CHAMPION MODEL</span></td>
+                        </tr>
+                        <tr>
+                            <td>Decision Tree Classifier</td>
+                            <td>87.30%</td>
+                            <td>0.9324</td>
+                            <td>0.9135</td>
+                            <td>0.9228</td>
+                            <td>0.7936</td>
+                            <td><span style="background: #E2E8F0; color: #475569; padding: 3px 10px; border-radius: 10px; font-weight: 700; font-size: 0.78rem;">Baseline 1</span></td>
+                        </tr>
+                        <tr>
+                            <td>Logistic Regression (Baseline)</td>
+                            <td>67.50%</td>
+                            <td>0.9398</td>
+                            <td>0.6506</td>
+                            <td>0.7689</td>
+                            <td>0.7845</td>
+                            <td><span style="background: #E2E8F0; color: #475569; padding: 3px 10px; border-radius: 10px; font-weight: 700; font-size: 0.78rem;">Baseline 2</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="grid-2" style="margin-top: 18px; align-items: stretch;">
+                    <div class="beamer-block" style="margin-bottom: 0;">
+                        <div class="beamer-block-title">Phân Tích Chỉ Số Recall 95.73%</div>
+                        <p style="font-size: 0.92rem; line-height: 1.5;">
+                            Chỉ số Recall cao vượt trội giúp hệ thống <b>hạn chế tối đa việc bỏ sót khách hàng tiềm năng quay lại</b>, đảm bảo bao phủ trọn vẹn tập khách hàng mang lại doanh số.
+                        </p>
+                    </div>
+
+                    <div class="beamer-block" style="margin-bottom: 0;">
+                        <div class="beamer-block-title">Chỉ Số ROC-AUC 0.9241</div>
+                        <p style="font-size: 0.92rem; line-height: 1.5;">
+                            Đường cong ROC-AUC phản ánh năng lực phân tách cực tốt giữa 2 nhóm nhãn (Quay lại vs Churn) tại các ngưỡng xác suất decision threshold khác nhau.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="beamer-footer">
+                <div>DMC Customer Repurchase Prediction System</div>
+                <div>Model Performance Evaluation Metrics</div>
+                <div>Trang 6 / 9</div>
+            </div>
+        </div>
+
+        <!-- ================= SLIDE 7: MA TRẬN NHẦM LẪN & FEATURE IMPORTANCE ================= -->
+        <div class="slide" id="slide-7">
+            <div class="beamer-header">
+                <span>6. Sơ Đồ Ma Trận Nhầm Lẫn & Trọng Số 8 Đặc Trưng RFM+</span>
+                <span class="section-num">Phần 06</span>
+            </div>
+
+            <div class="beamer-body">
+                <div class="grid-2">
+                    <!-- SƠ ĐỒ MA TRẬN NHẦM LẪN CHI TIẾT -->
+                    <div>
+                        <p style="font-weight: 800; margin-bottom: 10px; color: #0F172A;">Sơ Đồ Ma Trận Nhầm Lẫn (Confusion Matrix):</p>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+                            <div style="background: #ECFDF5; border: 2px solid #10B981; border-radius: 8px; padding: 16px; text-align: center;">
+                                <div style="font-size: 2rem; font-weight: 800; color: #059669;">896</div>
+                                <div style="font-weight: 800; font-size: 0.85rem; color: #047857;">True Positive (TP)</div>
+                                <div style="font-size: 0.75rem; color: #64748B;">Dự đoán đúng khách quay lại</div>
+                            </div>
+
+                            <div style="background: #FEF2F2; border: 2px solid #EF4444; border-radius: 8px; padding: 16px; text-align: center;">
+                                <div style="font-size: 2rem; font-weight: 800; color: #DC2626;">94</div>
+                                <div style="font-weight: 800; font-size: 0.85rem; color: #B91C1C;">False Positive (FP)</div>
+                                <div style="font-size: 0.75rem; color: #64748B;">Dự đoán nhầm Churn -> Quay lại</div>
+                            </div>
+
+                            <div style="background: #FFFBEB; border: 2px solid #F59E0B; border-radius: 8px; padding: 16px; text-align: center;">
+                                <div style="font-size: 2rem; font-weight: 800; color: #D97706;">40</div>
+                                <div style="font-weight: 800; font-size: 0.85rem; color: #B45309;">False Negative (FN)</div>
+                                <div style="font-size: 0.75rem; color: #64748B;">Tỷ lệ bỏ sót chỉ 4.27%</div>
+                            </div>
+
+                            <div style="background: #EEF2FF; border: 2px solid #6366F1; border-radius: 8px; padding: 16px; text-align: center;">
+                                <div style="font-size: 2rem; font-weight: 800; color: #4338CA;">96</div>
+                                <div style="font-weight: 800; font-size: 0.85rem; color: #3730A3;">True Negative (TN)</div>
+                                <div style="font-size: 0.75rem; color: #64748B;">Dự đoán đúng khách Churn</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SƠ ĐỒ TRỌNG SỐ ĐẶC TRƯNG -->
+                    <div>
+                        <p style="font-weight: 800; margin-bottom: 10px; color: #0F172A;">Sơ Đồ Xếp Hạng Trọng Số Đặc Trưng (Gini Importance):</p>
+                        <div style="display: flex; flex-direction: column; gap: 10px;">
+                            <div>
+                                <div style="display: flex; justify-content: space-between; font-size: 0.85rem; font-weight: 700; margin-bottom: 4px;">
+                                    <span>1. Tuổi khách hàng (<code>age</code>)</span>
+                                    <span style="color: #4338CA; font-weight: 800;">32.68%</span>
+                                </div>
+                                <div style="background: #E2E8F0; height: 10px; border-radius: 5px; overflow: hidden;">
+                                    <div style="background: #4338CA; width: 32.68%; height: 100%;"></div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <div style="display: flex; justify-content: space-between; font-size: 0.85rem; font-weight: 700; margin-bottom: 4px;">
+                                    <span>2. Chi tiêu AOV (<code>avg_order_value</code>)</span>
+                                    <span style="color: #4338CA; font-weight: 800;">28.57%</span>
+                                </div>
+                                <div style="background: #E2E8F0; height: 10px; border-radius: 5px; overflow: hidden;">
+                                    <div style="background: #4338CA; width: 28.57%; height: 100%;"></div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <div style="display: flex; justify-content: space-between; font-size: 0.85rem; font-weight: 700; margin-bottom: 4px;">
+                                    <span>3. Recency (<code>days_since_last_purchase</code>)</span>
+                                    <span style="color: #4338CA; font-weight: 800;">12.62%</span>
+                                </div>
+                                <div style="background: #E2E8F0; height: 10px; border-radius: 5px; overflow: hidden;">
+                                    <div style="background: #4338CA; width: 12.62%; height: 100%;"></div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <div style="display: flex; justify-content: space-between; font-size: 0.85rem; font-weight: 700; margin-bottom: 4px;">
+                                    <span>4. Điểm hài lòng (<code>satisfaction_score</code>)</span>
+                                    <span style="color: #4338CA; font-weight: 800;">8.53%</span>
+                                </div>
+                                <div style="background: #E2E8F0; height: 10px; border-radius: 5px; overflow: hidden;">
+                                    <div style="background: #4338CA; width: 8.53%; height: 100%;"></div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <div style="display: flex; justify-content: space-between; font-size: 0.85rem; font-weight: 700; margin-bottom: 4px;">
+                                    <span>5. Tổng số đơn (<code>total_purchases</code>)</span>
+                                    <span style="color: #4338CA; font-weight: 800;">7.93%</span>
+                                </div>
+                                <div style="background: #E2E8F0; height: 10px; border-radius: 5px; overflow: hidden;">
+                                    <div style="background: #4338CA; width: 7.93%; height: 100%;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="beamer-footer">
+                <div>DMC Customer Repurchase Prediction System</div>
+                <div>Confusion Matrix & Feature Importance Diagrams</div>
+                <div>Trang 7 / 9</div>
+            </div>
+        </div>
+
+        <!-- ================= SLIDE 8: SƠ ĐỒ KIẾN TRÚC HỆ THỐNG WEB APP ================= -->
+        <div class="slide" id="slide-8">
+            <div class="beamer-header">
+                <span>7. Sơ Đồ Kiến Trúc Hệ Thống Nền Tảng Web App</span>
+                <span class="section-num">Phần 07</span>
+            </div>
+
+            <div class="beamer-body">
+                <!-- SƠ ĐỒ KIẾN TRÚC TỔNG THỂ -->
+                <p style="font-weight: 800; margin-bottom: 10px; color: #0F172A;">Sơ Đồ Kiến Trúc Tổng Thể Nền Tảng (End-to-End System Architecture):</p>
+
+                <div class="diagram-container" style="background: #FFFFFF;">
+                    <div style="display: grid; grid-template-columns: 1fr 1.2fr 1fr; gap: 16px; align-items: center;">
+                        <div style="background: #F8FAFC; border: 2px solid #0F172A; border-radius: 8px; padding: 14px; text-align: center;">
+                            <div style="font-weight: 800; font-size: 0.95rem; color: #0F172A; margin-bottom: 6px;">FRONTEND DASHBOARD</div>
+                            <div style="font-size: 0.8rem; color: #475569; line-height: 1.4;">
+                                • Tab 1: Predictor Real-Time<br>
+                                • Tab 2: Benchmark Evaluation<br>
+                                • Tab 3: Batch CSV Prediction
+                            </div>
+                        </div>
+
+                        <div style="background: #EEF2FF; border: 2px solid #4338CA; border-radius: 8px; padding: 14px; text-align: center;">
+                            <div style="font-weight: 800; font-size: 0.95rem; color: #4338CA; margin-bottom: 6px;">FLASK RESTFUL API</div>
+                            <div style="font-size: 0.8rem; color: #3730A3; line-height: 1.4;">
+                                • <code>/api/predict</code> (Real-time)<br>
+                                • <code>/api/predict-batch</code> (CSV File)<br>
+                                • <code>/api/models</code> & <code>/api/stats</code>
+                            </div>
+                        </div>
+
+                        <div style="background: #ECFDF5; border: 2px solid #059669; border-radius: 8px; padding: 14px; text-align: center;">
+                            <div style="font-weight: 800; font-size: 0.95rem; color: #059669; margin-bottom: 6px;">ML INFERENCE ENGINE</div>
+                            <div style="font-size: 0.8rem; color: #047857; line-height: 1.4;">
+                                • Random Forest Model (<code>.joblib</code>)<br>
+                                • Preprocessor Transformer<br>
+                                • Kaggle Dataset (5,630 rows)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="beamer-block" style="margin-top: 14px; margin-bottom: 0;">
+                    <div class="beamer-block-title">Thiết Kế Giao Diện Minimal White Luxury</div>
+                    <p style="font-size: 0.9rem; line-height: 1.5;">
+                        Giao diện Web Admin được xây dựng theo phong cách tối giản cao cấp, <b>loại bỏ hoàn toàn icon thừa</b>, ưu tiên làm nổi bật trực quan <b>Con Số Xác Suất Phần Trăm % Tái Mua</b> giúp nhà quản trị dễ dàng đưa ra quyết định kinh doanh.
+                    </p>
+                </div>
+            </div>
+
+            <div class="beamer-footer">
+                <div>DMC Customer Repurchase Prediction System</div>
+                <div>Full-Stack System Architecture Diagram</div>
+                <div>Trang 8 / 9</div>
+            </div>
+        </div>
+
+        <!-- ================= SLIDE 9: KẾT LUẬN & ĐỊNH HƯỚNG TƯƠNG LAI ================= -->
+        <div class="slide" id="slide-9">
+            <div class="beamer-header">
+                <span>8. Kết Luận Báo Cáo & Định Hướng Phát Triển</span>
+                <span class="section-num">Phần 08</span>
+            </div>
+
+            <div class="beamer-body">
+                <div class="beamer-block">
+                    <div class="beamer-block-title">Kết Luận Giá Trị Kinh Doanh</div>
+                    <ul style="margin-left: 20px; line-height: 1.7;">
+                        <li>Mô hình Random Forest đạt độ tin cậy vượt trội (<span class="math">ROC-AUC = 0.9241</span>), tự động hóa phân loại chính xác nhóm khách hàng.</li>
+                        <li>Gia tăng <b>15–20% Tỷ lệ Giữ chân Khách hàng</b> (Retention Rate) và tiết kiệm <b>30% Chi phí Voucher Marketing</b>.</li>
+                    </ul>
+                </div>
+
+                <div class="beamer-block" style="margin-top: 16px;">
+                    <div class="beamer-block-title">Định Hướng Nâng Cấp Kỹ Thuật Tương Lai</div>
+                    <ul style="margin-left: 20px; line-height: 1.7;">
+                        <li><b>Survival Analysis (Phân Tích Sinh Tồn):</b> Áp dụng mô hình Cox Proportional Hazards dự đoán chính xác <i>khoảng thời gian cụ thể (số ngày)</i> trước khi khách phát sinh đơn tiếp theo.</li>
+                        <li><b>MLOps & Automated Retraining:</b> Xây dựng pipeline tự động huấn luyện lại mô hình hàng tuần và giám sát hiện tượng Data Drift.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="beamer-footer">
+                <div>DMC Customer Repurchase Prediction System</div>
+                <div>Project Conclusion & Future Enhancement Roadmap</div>
+                <div>Trang 9 / 9</div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Interactive Slide Navigation Script -->
+    <script>
+        let currentSlideIndex = 1;
+        const totalSlides = 9;
+
+        function updateCounter() {
+            document.getElementById('slide-counter').innerText = `Slide ${currentSlideIndex} / ${totalSlides}`;
+        }
+
+        function scrollToSlide(index) {
+            const slide = document.getElementById(`slide-${index}`);
+            if (slide) {
+                slide.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                currentSlideIndex = index;
+                updateCounter();
+            }
+        }
+
+        function nextSlide() {
+            if (currentSlideIndex < totalSlides) {
+                scrollToSlide(currentSlideIndex + 1);
+            }
+        }
+
+        function prevSlide() {
+            if (currentSlideIndex > 1) {
+                scrollToSlide(currentSlideIndex - 1);
+            }
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' ') {
+                e.preventDefault();
+                nextSlide();
+            } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+                e.preventDefault();
+                prevSlide();
+            }
+        });
+    </script>
+
+</body>
+</html>

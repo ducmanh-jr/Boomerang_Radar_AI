@@ -1,0 +1,110 @@
+{
+  "Logistic Regression": {
+    "best_params": {
+      "C": 10.0,
+      "solver": "lbfgs"
+    },
+    "accuracy": 0.6749555950266429,
+    "precision": 0.9398148148148148,
+    "recall": 0.6506410256410257,
+    "f1": 0.7689393939393939,
+    "roc_auc": 0.784536662168241,
+    "confusion_matrix": [
+      [
+        151,
+        39
+      ],
+      [
+        327,
+        609
+      ]
+    ]
+  },
+  "Decision Tree": {
+    "best_params": {
+      "criterion": "entropy",
+      "max_depth": null,
+      "min_samples_split": 2
+    },
+    "accuracy": 0.8730017761989343,
+    "precision": 0.9323882224645583,
+    "recall": 0.9134615384615384,
+    "f1": 0.9228278467350243,
+    "roc_auc": 0.7935728744939271,
+    "confusion_matrix": [
+      [
+        128,
+        62
+      ],
+      [
+        81,
+        855
+      ]
+    ]
+  },
+  "Random Forest": {
+    "best_params": {
+      "max_depth": null,
+      "max_features": "sqrt",
+      "min_samples_split": 2,
+      "n_estimators": 100
+    },
+    "accuracy": 0.8809946714031972,
+    "precision": 0.9050505050505051,
+    "recall": 0.9572649572649573,
+    "f1": 0.9304257528556594,
+    "roc_auc": 0.924075011246064,
+    "confusion_matrix": [
+      [
+        96,
+        94
+      ],
+      [
+        40,
+        896
+      ]
+    ],
+    "feature_importances": [
+      [
+        "age",
+        0.32680408313423776
+      ],
+      [
+        "avg_order_value",
+        0.2857209225021987
+      ],
+      [
+        "days_since_last_purchase",
+        0.12621872773663267
+      ],
+      [
+        "satisfaction_score",
+        0.08534983198432944
+      ],
+      [
+        "total_purchases",
+        0.07934328202347209
+      ],
+      [
+        "gender_Nữ",
+        0.029799326837522
+      ],
+      [
+        "membership_level_Đồng",
+        0.028224899753055633
+      ],
+      [
+        "used_voucher",
+        0.017582942026503786
+      ],
+      [
+        "membership_level_Vàng",
+        0.013604190447433362
+      ],
+      [
+        "membership_level_Kim Cương",
+        0.007351793554614612
+      ]
+    ]
+  }
+}
