@@ -8,7 +8,7 @@
         Hệ thống <strong>Boomerang Radar AI</strong> được thiết kế theo tiêu chuẩn phần mềm công nghiệp phục vụ môi trường bán lẻ đa kênh, hướng tới hai nhóm người dùng chính: Đội ngũ Marketing/CSKH thao tác trực tiếp trên Dashboard và Hệ thống máy chủ bán hàng (ERP/CRM) tích hợp thông qua REST API.
     </p>
 
-    <h3 style="color: #0f172a; font-size: 13pt; margin-top: 14px;">a. Yêu cầu chức năng (Functional Requirements - FR)</h3>
+    <h3 style="color: #000000; font-size: 12pt; margin-top: 14px;">a. Yêu cầu chức năng (Functional Requirements - FR)</h3>
     <ul>
         <li><strong>FR-01: Dự đoán thời gian thực cho một khách hàng (Single-Customer Inference):</strong> Tiếp nhận 8 chỉ số qua form web, tự động sinh 4 đặc trưng tương tác phi tuyến, tính toán xác suất quay lại và phân tầng rủi ro trong thời gian dưới 50ms.</li>
         <li><strong>FR-02: Xử lý theo lô từ tệp tin CSV (Batch CSV Processing):</strong> Hỗ trợ tải lên tệp tin CSV chứa hàng nghìn hồ sơ khách hàng, tự động suy luận hàng loạt và cung cấp tính năng xuất file kết quả (Export CSV) có gắn nhãn và xác suất dự đoán.</li>
@@ -18,7 +18,7 @@
         <li><strong>FR-06: Sinh phân tích hành vi và khuyến nghị nghiệp vụ (Natural Language Synthesis):</strong> Tự động ghép nối các thuộc tính hành vi thành câu văn giải thích dễ hiểu và đề xuất hành động Marketing cụ thể cho nhân viên kinh doanh.</li>
     </ul>
 
-    <h3 style="color: #0f172a; font-size: 13pt; margin-top: 14px;">b. Tiêu chuẩn phi chức năng (Non-Functional Requirements - NFR)</h3>
+    <h3 style="color: #000000; font-size: 12pt; margin-top: 14px;">b. Tiêu chuẩn phi chức năng (Non-Functional Requirements - NFR)</h3>
     <ul>
         <li><strong>NFR-01: Độ chính xác và khả năng cân bằng (High Metric Target):</strong> Đạt $F_1\text{-score} \ge 92\%$, $\text{Accuracy} \ge 90\%$, $\text{ROC-AUC} \ge 0.90$ trên tập kiểm thử độc lập (Held-out Test Set).</li>
         <li><strong>NFR-02: Độ trễ phản hồi thấp (Low Latency):</strong> Phản hồi yêu cầu đơn lẻ qua REST API $\le 50\text{ms}$; xử lý tệp 10.000 dòng $\le 3\text{ giây}$.</li>
@@ -107,7 +107,7 @@
         Khi hoàn tất suy luận, hệ thống xuất kết quả dạng JSON chuẩn hóa tích hợp đầy đủ các trường số học định lượng và ngữ nghĩa định tính:
     </p>
 
-    <div class="formula-box" style="font-size: 10.5pt; line-height: 1.45;">
+    <div class="formula-box" style="font-size: 10pt; line-height: 1.45;">
 {<br>
 &nbsp;&nbsp;"probability_return": 0.9423,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Xác suất quay lại mua sắm (0.0000 -> 1.0000)<br>
 &nbsp;&nbsp;"probability_return_pct": 94.2,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Tỷ lệ phần trăm quay lại<br>
@@ -120,7 +120,7 @@
 }
     </div>
 
-    <h3 style="color: #0f172a; font-size: 13pt; margin-top: 14px;">Ma trận phân tầng rủi ro và Kịch bản hành động nghiệp vụ</h3>
+    <h3 style="color: #000000; font-size: 12pt; margin-top: 14px;">Ma trận phân tầng rủi ro và Kịch bản hành động nghiệp vụ</h3>
     <table>
         <thead>
             <tr>
@@ -132,28 +132,28 @@
             </tr>
         </thead>
         <tbody>
-            <tr style="background-color: #ecfdf5;">
+            <tr>
                 <td><strong>1. Rất Thấp (Safe)</strong></td>
                 <td>$P > 80\%$</td>
                 <td>$P_{\text{churn}} < 20\%$</td>
                 <td>Khách hàng trung thành, AOV cao, mới mua gần đây, CSAT 4-5 sao.</td>
                 <td>Không phát voucher giảm sâu (tránh lãng phí). Gửi thiệp cảm ơn, tích điểm VIP 15%, mời tham gia chương trình khách hàng thân thiết ưu tiên.</td>
             </tr>
-            <tr style="background-color: #f0fdf4;">
+            <tr>
                 <td><strong>2. Trung Bình (Attention)</strong></td>
                 <td>$50\% \le P \le 80\%$</td>
                 <td>$20\% \le P_{\text{churn}} \le 50\%$</td>
                 <td>Khách vẫn có ý định mua nhưng khoảng cách ngày mua đang dài ra; có tâm lý chờ giảm giá.</td>
                 <td>Gửi thông báo đẩy (Push notification) nhắc nhở giỏ hàng, tặng voucher trợ giá 10% có thời hạn kích hoạt trong vòng 48 giờ.</td>
             </tr>
-            <tr style="background-color: #fffbeb;">
+            <tr>
                 <td><strong>3. Cao (Warning)</strong></td>
                 <td>$20\% \le P < 50\%$</td>
                 <td>$50\% < P_{\text{churn}} \le 80\%$</td>
                 <td>Bắt đầu phai nhạt tương tác (> 60 ngày chưa mua), điểm hài lòng 3 sao hoặc mua ít đơn.</td>
                 <td>Kích hoạt chiến dịch "We Miss You" qua Zalo ZNS/Email: tặng voucher giảm 20% kèm miễn phí giao hàng cho đơn kế tiếp.</td>
             </tr>
-            <tr style="background-color: #fef2f2;">
+            <tr>
                 <td><strong>4. Rất Cao (Critical)</strong></td>
                 <td>$P < 20\%$</td>
                 <td>$P_{\text{churn}} > 80\%$</td>

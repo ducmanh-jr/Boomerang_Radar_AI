@@ -4,7 +4,7 @@
     <div class="institution">BỘ GIÁO DỤC VÀ ĐÀO TẠO &bull; HỆ THỐNG ĐÀO TẠO CÔNG NGHỆ THÔNG TIN</div>
     <div class="faculty">KHOA CÔNG NGHỆ THÔNG TIN & KHOA HỌC DỮ LIỆU ỨNG DỤNG</div>
     
-    <div style="margin: 30px 0 15px 0;">
+    <div style="margin: 35px 0 20px 0;">
         <div class="cover-badge">BÁO CÁO NGHIÊN CỨU & PHÁT TRIỂN HỆ THỐNG AI DOANH NGHIỆP</div>
         <h1 class="main-title">BOOMERANG RADAR AI</h1>
         <div class="sub-title-cover">
@@ -14,11 +14,11 @@
     </div>
 
     <!-- HỘP ĐỐI TƯỢNG VÀ CÂU HỎI TRUNG TÂM -->
-    <div style="width: 100%; background: #f8fafc; border: 1.5px solid #0284c7; border-radius: 6px; padding: 12px 18px; text-align: left; margin: 15px 0; font-family: 'Segoe UI', sans-serif;">
-        <div style="font-size: 11pt; font-weight: bold; color: #0f172a; margin-bottom: 4px; text-transform: uppercase;">
+    <div style="width: 100%; background: #ffffff; border: 1.5px solid #000000; border-radius: 4px; padding: 12px 18px; text-align: left; margin: 15px 0; font-family: 'Times New Roman', serif;">
+        <div style="font-size: 11pt; font-weight: bold; color: #000000; margin-bottom: 4px; text-transform: uppercase;">
             &bull; ĐỐI TƯỢNG BÁO CÁO & CÂU HỎI TRUNG TÂM (EXECUTIVE SCOPE)
         </div>
-        <div style="font-size: 10pt; color: #334155; line-height: 1.5;">
+        <div style="font-size: 10.5pt; color: #111111; line-height: 1.5;">
             <strong>Đối tượng phục vụ chính:</strong> Ban Giám Đốc (CEO, CMO, CTO), Trưởng bộ phận Tăng trưởng (Head of Growth) và Trưởng phòng Chăm sóc khách hàng (Head of Customer Service).<br>
             <strong>Câu hỏi chiến lược giải quyết:</strong> <em>"Làm thế nào để doanh nghiệp bán lẻ/E-Commerce phát hiện chính xác khách hàng sắp rời bỏ trước 30–60 ngày, tối ưu hóa ngân sách tiếp thị giữ chân (Retention Marketing) và tối đa hóa Giá trị Trọn đời của Khách hàng (LTV) với độ chính xác đạt trên 94%?"</em>
         </div>
@@ -75,7 +75,7 @@
 <div class="academic-section">
     <h1 class="chapter-title">TÓM TẮT ĐIỀU HÀNH (EXECUTIVE SUMMARY)</h1>
     
-    <div class="callout callout-success" style="font-size: 11pt; line-height: 1.6;">
+    <div class="callout" style="font-size: 11pt; line-height: 1.6;">
         <strong>THÔNG ĐIỆP CỐT LÕI DÀNH CHO BAN LÃNH ĐẠO (C-LEVEL TAKEAWAYS):</strong>
         <ol style="margin: 6px 0 0 0; padding-left: 20px;">
             <li><strong>Thực trạng:</strong> Chi phí thu hút khách hàng mới (CAC) ngày càng đắt đỏ (gấp 5 – 7 lần chi phí giữ chân). Việc phát khuyến mãi đại trà vừa làm suy giảm biên lợi nhuận ròng, vừa tạo ra nhóm khách hàng "săn voucher" không có lòng trung thành.</li>

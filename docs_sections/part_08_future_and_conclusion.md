@@ -8,7 +8,7 @@
         Để đưa hệ thống <strong>Boomerang Radar AI</strong> từ môi trường nghiên cứu vào vận hành thực tế tạo ra giá trị doanh thu thặng dư, chúng tôi xây dựng kế hoạch triển khai chi tiết gồm: Ma trận phân công trách nhiệm (RACI Matrix), Lộ trình triển khai 12 tuần (Gantt Roadmap) và Dự toán ngân sách kèm phân tích hoàn vốn đầu tư (ROI).
     </p>
 
-    <h3 style="color: #0f172a; font-size: 13pt; margin-top: 14px;">a. Ma trận phân công trách nhiệm nghiệp vụ (RACI Matrix)</h3>
+    <h3 style="color: #000000; font-size: 12pt; margin-top: 14px;">a. Ma trận phân công trách nhiệm nghiệp vụ (RACI Matrix)</h3>
     <p>
         Quy định rõ ràng vai trò của từng bộ phận: <strong>R</strong> (Responsible - Người thực hiện), <strong>A</strong> (Accountable - Người chịu trách nhiệm phê duyệt), <strong>C</strong> (Consulted - Người được tham vấn), <strong>I</strong> (Informed - Người được thông báo kết quả).
     </p>
@@ -27,7 +27,7 @@
         <tbody>
             <tr>
                 <td>1. Phê duyệt ngân sách & KPI mục tiêu</td>
-                <td style="text-align: center; font-weight: bold; color: #0284c7;">A</td>
+                <td style="text-align: center; font-weight: bold;">A</td>
                 <td style="text-align: center;">C</td>
                 <td style="text-align: center;">I</td>
                 <td style="text-align: center;">C</td>
@@ -36,8 +36,8 @@
             <tr>
                 <td>2. Đóng gói & Triển khai Docker, REST API</td>
                 <td style="text-align: center;">I</td>
-                <td style="text-align: center; font-weight: bold; color: #0284c7;">R</td>
-                <td style="text-align: center; font-weight: bold; color: #0f172a;">A / R</td>
+                <td style="text-align: center; font-weight: bold;">R</td>
+                <td style="text-align: center; font-weight: bold;">A / R</td>
                 <td style="text-align: center;">I</td>
                 <td style="text-align: center;">I</td>
             </tr>
@@ -45,8 +45,8 @@
                 <td>3. Tích hợp Webhook CRM & Cổng Zalo/SMS</td>
                 <td style="text-align: center;">I</td>
                 <td style="text-align: center;">C</td>
-                <td style="text-align: center; font-weight: bold; color: #0284c7;">R</td>
-                <td style="text-align: center; font-weight: bold; color: #0f172a;">A</td>
+                <td style="text-align: center; font-weight: bold;">R</td>
+                <td style="text-align: center; font-weight: bold;">A</td>
                 <td style="text-align: center;">C</td>
             </tr>
             <tr>
@@ -54,7 +54,7 @@
                 <td style="text-align: center;">C</td>
                 <td style="text-align: center;">I</td>
                 <td style="text-align: center;">I</td>
-                <td style="text-align: center; font-weight: bold; color: #0284c7;">A / R</td>
+                <td style="text-align: center; font-weight: bold;">A / R</td>
                 <td style="text-align: center;">C</td>
             </tr>
             <tr>
@@ -63,12 +63,12 @@
                 <td style="text-align: center;">I</td>
                 <td style="text-align: center;">I</td>
                 <td style="text-align: center;">C</td>
-                <td style="text-align: center; font-weight: bold; color: #0284c7;">A / R</td>
+                <td style="text-align: center; font-weight: bold;">A / R</td>
             </tr>
             <tr>
                 <td>6. Đánh giá kiểm định A/B Testing & Tái huấn luyện</td>
                 <td style="text-align: center;">I</td>
-                <td style="text-align: center; font-weight: bold; color: #0284c7;">A / R</td>
+                <td style="text-align: center; font-weight: bold;">A / R</td>
                 <td style="text-align: center;">C</td>
                 <td style="text-align: center;">R</td>
                 <td style="text-align: center;">I</td>
@@ -76,7 +76,7 @@
         </tbody>
     </table>
 
-    <h3 style="color: #0f172a; font-size: 13pt; margin-top: 14px;">b. Lộ trình triển khai thực tế 12 tuần (Gantt Timeline)</h3>
+    <h3 style="color: #000000; font-size: 12pt; margin-top: 14px;">b. Lộ trình triển khai thực tế 12 tuần (Gantt Timeline)</h3>
     <table>
         <thead>
             <tr>
@@ -114,7 +114,7 @@
         </tbody>
     </table>
 
-    <h3 style="color: #0f172a; font-size: 13pt; margin-top: 14px;">c. Dự toán ngân sách và Phân tích hiệu quả kinh tế (ROI Forecast)</h3>
+    <h3 style="color: #000000; font-size: 12pt; margin-top: 14px;">c. Dự toán ngân sách và Phân tích hiệu quả kinh tế (ROI Forecast)</h3>
     <p>
         Giả định áp dụng trên quy mô doanh nghiệp bán lẻ có <strong>50.000 khách hàng hoạt động</strong> với doanh thu trung bình 1.500.000 đ/khách/năm:
     </p>
@@ -148,17 +148,17 @@
                 <td><strong>260.000.000 VNĐ</strong></td>
                 <td>Toàn bộ ngân sách cần phê duyệt để đưa hệ thống vào vận hành 1 năm.</td>
             </tr>
-            <tr class="highlight-row">
+            <tr>
                 <td><strong>DOANH THU CỨU VÃN KỲ VỌNG (SAVED REVENUE)</strong></td>
                 <td><strong>1.050.000.000 VNĐ</strong></td>
                 <td>Giữ chân thành công 700 khách hàng tiềm năng &times; LTV tối thiểu 1.500.000 đ/năm.</td>
             </tr>
-            <tr class="highlight-row">
+            <tr>
                 <td><strong>LỢI NHUẬN RÒNG GIA TĂNG (NET PROFIT)</strong></td>
                 <td><strong>790.000.000 VNĐ</strong></td>
                 <td>Doanh thu cứu vãn trừ đi toàn bộ chi phí vận hành và chiết khấu.</td>
             </tr>
-            <tr class="highlight-row">
+            <tr>
                 <td><strong>TỶ SUẤT HOÀN VỐN (ROI)</strong></td>
                 <td><strong>303.8%</strong></td>
                 <td>$\text{ROI} = \frac{790.000.000}{260.000.000} \approx 303.8\%$ (Thu hồi vốn hoàn toàn sau 4 tháng).</td>
@@ -213,7 +213,7 @@
 
     <!-- TÀI LIỆU THAM KHẢO CHUẨN APA -->
     <h1 class="chapter-title">TÀI LIỆU THAM KHẢO (REFERENCES - CHUẨN APA)</h1>
-    <ol class="ref-list" style="font-size: 11.5pt; line-height: 1.65;">
+    <ol class="ref-list" style="font-size: 11pt; line-height: 1.6;">
         <li>Arik, S. Ö., & Pfister, T. (2021). <em>TabNet: Attentive interpretable tabular learning</em>. Proceedings of the AAAI Conference on Artificial Intelligence, 35(8), 6679-6687.</li>
         <li>Breiman, L. (2001). <em>Random forests</em>. Machine Learning, 45(1), 5-32. https://doi.org/10.1023/A:1010933404324</li>
         <li>Chen, T., & Guestrin, C. (2016). <em>XGBoost: A scalable tree boosting system</em>. Proceedings of the 22nd ACM SIGKDD International Conference on Knowledge Discovery and Data Mining, 785-794.</li>

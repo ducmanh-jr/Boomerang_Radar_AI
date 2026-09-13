@@ -8,13 +8,13 @@
         Để đánh giá khách quan và toàn diện năng lực của các mô hình học máy trên tập kiểm thử độc lập (Held-out Test Set gồm 1.126 khách hàng), hệ thống sử dụng một khung chỉ số đo lường chuẩn mực theo tiêu chuẩn quốc tế:
     </p>
 
-    <h3 style="color: #0f172a; font-size: 14px;">1. Độ chính xác tổng thể (Accuracy)</h3>
+    <h3 style="color: #000000; font-size: 12pt; margin-top: 14px;">1. Độ chính xác tổng thể (Accuracy)</h3>
     <div class="formula-box">
         \text{Accuracy} = \frac{TP + TN}{TP + TN + FP + FN}
     </div>
     <p>Đo lường tỷ lệ các dự đoán đúng (cả khách quay lại và khách rời bỏ) trên tổng số mẫu kiểm thử.</p>
 
-    <h3 style="color: #0f172a; font-size: 14px;">2. Độ chuẩn xác (Precision)</h3>
+    <h3 style="color: #000000; font-size: 12pt; margin-top: 14px;">2. Độ chuẩn xác (Precision)</h3>
     <div class="formula-box">
         \text{Precision} = \frac{TP}{TP + FP}
     </div>
@@ -22,7 +22,7 @@
         Trong số các khách hàng mà mô hình dự đoán là <em>"Sẽ quay lại"</em>, có bao nhiêu phần trăm thực sự quay lại mua sắm. Precision cao đồng nghĩa với việc hạn chế việc đưa ra dự báo lạc quan sai lầm.
     </p>
 
-    <h3 style="color: #0f172a; font-size: 14px;">3. Độ nhạy / Thu hồi (Recall / Sensitivity)</h3>
+    <h3 style="color: #000000; font-size: 12pt; margin-top: 14px;">3. Độ nhạy / Thu hồi (Recall / Sensitivity)</h3>
     <div class="formula-box">
         \text{Recall} = \frac{TP}{TP + FN}
     </div>
@@ -30,7 +30,7 @@
         Trong toàn bộ số khách hàng thực tế quay lại, mô hình đã "bắt trúng" được bao nhiêu phần trăm. Recall càng cao nghĩa là số lượng khách hàng trung thành bị bỏ sót (FN) càng nhỏ.
     </p>
 
-    <h3 style="color: #0f172a; font-size: 14px;">4. Điểm F1 (F1-Score - Trung bình điều hòa)</h3>
+    <h3 style="color: #000000; font-size: 12pt; margin-top: 14px;">4. Điểm F1 (F1-Score - Trung bình điều hòa)</h3>
     <div class="formula-box">
         F_1 = 2 \times \frac{\text{Precision} \times \text{Recall}}{\text{Precision} + \text{Recall}} = \frac{2TP}{2TP + FP + FN}
     </div>
@@ -38,7 +38,7 @@
         Là thước đo quan trọng nhất đối với bài toán mất cân bằng nhãn, đảm bảo mô hình không thể "gian lận" bằng cách hy sinh Precision để đổi lấy Recall hoặc ngược lại.
     </p>
 
-    <h3 style="color: #0f172a; font-size: 14px;">5. Diện tích dưới đường cong ROC (Area Under the ROC Curve - ROC-AUC)</h3>
+    <h3 style="color: #000000; font-size: 12pt; margin-top: 14px;">5. Diện tích dưới đường cong ROC (Area Under the ROC Curve - ROC-AUC)</h3>
     <div class="formula-box">
         \text{ROC-AUC} = \int_{0}^{1} \text{TPR}(\text{FPR}^{-1}(t)) \, dt
     </div>
@@ -95,20 +95,20 @@
                 <td>0.9575</td>
                 <td>Đạt chỉ tiêu</td>
             </tr>
-            <tr class="highlight-row">
+            <tr>
                 <td>4</td>
-                <td><strong>Gradient Boosting</strong></td>
+                <td><strong>Gradient Boosting (Champion)</strong></td>
                 <td><strong>94.23%</strong></td>
                 <td><strong>0.9570</strong></td>
                 <td><strong>0.9744</strong></td>
                 <td><strong>0.9656</strong></td>
                 <td><strong>0.9695</strong></td>
-                <td><strong>&starf; VÔ ĐỊCH (Champion)</strong></td>
+                <td><strong>Mô hình tối ưu nhất</strong></td>
             </tr>
         </tbody>
     </table>
 
-    <div class="callout callout-success">
+    <div class="callout">
         <strong>Phân tích khoa học lý giải sự vượt trội của Gradient Boosting:</strong><br>
         1. <strong>So với Logistic Regression (+25.76% Accuracy):</strong> Không gian ranh giới quyết định giữa khách quay lại và rời bỏ có tính phi tuyến cao. Mô hình tuyến tính hoàn toàn bất lực trong việc nắm bắt các quy tắc điều kiện lồng nhau.<br>
         2. <strong>So với Decision Tree (+19.27% Accuracy):</strong> Cây quyết định đơn lẻ có phương sai rất lớn và dễ bị mắc kẹt tại các cực tiểu cục bộ.<br>
@@ -127,25 +127,25 @@
                 <th colspan="2" style="text-align: center;">Dự đoán của mô hình AI (Predicted)</th>
             </tr>
             <tr>
-                <th style="text-align: center; background: #334155;">Dự đoán Churn ($y=0$)</th>
-                <th style="text-align: center; background: #334155;">Dự đoán Quay lại ($y=1$)</th>
+                <th style="text-align: center;">Dự đoán Churn ($y=0$)</th>
+                <th style="text-align: center;">Dự đoán Quay lại ($y=1$)</th>
             </tr>
         </thead>
         <tbody>
             <tr>
-                <td style="font-weight: bold; background: #f8fafc;">Khách Churn thực tế ($y=0$)</td>
-                <td style="text-align: center; font-weight: bold; color: #0284c7;">TN = 149</td>
-                <td style="text-align: center; font-weight: bold; color: #ef4444;">FP = 41</td>
+                <td style="font-weight: bold;">Khách Churn thực tế ($y=0$)</td>
+                <td style="text-align: center; font-weight: bold;">TN = 149</td>
+                <td style="text-align: center;">FP = 41</td>
             </tr>
             <tr>
-                <td style="font-weight: bold; background: #f8fafc;">Khách Quay lại thực tế ($y=1$)</td>
-                <td style="text-align: center; font-weight: bold; color: #ef4444;">FN = 24</td>
-                <td style="text-align: center; font-weight: bold; color: #10b981;">TP = 912</td>
+                <td style="font-weight: bold;">Khách Quay lại thực tế ($y=1$)</td>
+                <td style="text-align: center;">FN = 24</td>
+                <td style="text-align: center; font-weight: bold;">TP = 912</td>
             </tr>
         </tbody>
     </table>
 
-    <h3 style="color: #0f172a; font-size: 14px;">Phân tích tác động kinh tế học của hai loại sai lầm</h3>
+    <h3 style="color: #000000; font-size: 12pt; margin-top: 14px;">Phân tích tác động kinh tế học của hai loại sai lầm</h3>
     <ul>
         <li>
             <strong>Sai lầm loại 2 - Âm tính giả (False Negative - FN = 24):</strong><br>
@@ -189,21 +189,21 @@
                 <td>Đặc trưng gốc</td>
                 <td>Độ tuổi tương quan chặt chẽ với thói quen mua sắm và độ trung thành nhãn hàng.</td>
             </tr>
-            <tr class="highlight-row">
+            <tr>
                 <td>3</td>
                 <td><code>ltv_score</code></td>
                 <td><strong>20.61%</strong></td>
                 <td><strong>Kỹ thuật đặc trưng (FE)</strong></td>
                 <td>Tổng đóng góp doanh thu tích lũy khẳng định nhóm khách hàng VIP luôn có xác suất quay lại cao nhất.</td>
             </tr>
-            <tr class="highlight-row">
+            <tr>
                 <td>4</td>
                 <td><code>satisfaction_recency</code></td>
                 <td><strong>9.90%</strong></td>
                 <td><strong>Kỹ thuật đặc trưng (FE)</strong></td>
                 <td>Sự suy giảm điểm hài lòng theo thời gian cảnh báo chính xác thời điểm khách hàng chuẩn bị chuyển đổi.</td>
             </tr>
-            <tr class="highlight-row">
+            <tr>
                 <td>5</td>
                 <td><code>purchase_intensity</code></td>
                 <td><strong>6.57%</strong></td>
@@ -255,7 +255,7 @@
         </tbody>
     </table>
 
-    <div class="callout callout-success">
+    <div class="callout">
         <strong>Tổng kết then chốt:</strong> Tổng tỷ trọng đóng góp của 4 biến sinh ra từ Feature Engineering (<code>ltv_score</code>, <code>satisfaction_recency</code>, <code>purchase_intensity</code>, <code>voucher_low_value</code>) chiếm tới <strong>37.08%</strong> tổng năng lực phân loại của mô hình. Điều này chứng minh luận điểm khoa học: <em>Kỹ thuật đặc trưng tương tác kết hợp tri thức kinh doanh sâu sắc chính là nhân tố cốt lõi giúp hệ thống AI bứt phá từ mức khá (91%) lên mức xuất sắc (94.23%)</em>.
     </div>
 </div>

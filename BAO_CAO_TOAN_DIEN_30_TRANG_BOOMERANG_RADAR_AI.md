@@ -4,7 +4,7 @@
     <div class="institution">BỘ GIÁO DỤC VÀ ĐÀO TẠO &bull; HỆ THỐNG ĐÀO TẠO CÔNG NGHỆ THÔNG TIN</div>
     <div class="faculty">KHOA CÔNG NGHỆ THÔNG TIN & KHOA HỌC DỮ LIỆU ỨNG DỤNG</div>
     
-    <div style="margin: 30px 0 15px 0;">
+    <div style="margin: 35px 0 20px 0;">
         <div class="cover-badge">BÁO CÁO NGHIÊN CỨU & PHÁT TRIỂN HỆ THỐNG AI DOANH NGHIỆP</div>
         <h1 class="main-title">BOOMERANG RADAR AI</h1>
         <div class="sub-title-cover">
@@ -14,11 +14,11 @@
     </div>
 
     <!-- HỘP ĐỐI TƯỢNG VÀ CÂU HỎI TRUNG TÂM -->
-    <div style="width: 100%; background: #f8fafc; border: 1.5px solid #0284c7; border-radius: 6px; padding: 12px 18px; text-align: left; margin: 15px 0; font-family: 'Segoe UI', sans-serif;">
-        <div style="font-size: 11pt; font-weight: bold; color: #0f172a; margin-bottom: 4px; text-transform: uppercase;">
+    <div style="width: 100%; background: #ffffff; border: 1.5px solid #000000; border-radius: 4px; padding: 12px 18px; text-align: left; margin: 15px 0; font-family: 'Times New Roman', serif;">
+        <div style="font-size: 11pt; font-weight: bold; color: #000000; margin-bottom: 4px; text-transform: uppercase;">
             &bull; ĐỐI TƯỢNG BÁO CÁO & CÂU HỎI TRUNG TÂM (EXECUTIVE SCOPE)
         </div>
-        <div style="font-size: 10pt; color: #334155; line-height: 1.5;">
+        <div style="font-size: 10.5pt; color: #111111; line-height: 1.5;">
             <strong>Đối tượng phục vụ chính:</strong> Ban Giám Đốc (CEO, CMO, CTO), Trưởng bộ phận Tăng trưởng (Head of Growth) và Trưởng phòng Chăm sóc khách hàng (Head of Customer Service).<br>
             <strong>Câu hỏi chiến lược giải quyết:</strong> <em>"Làm thế nào để doanh nghiệp bán lẻ/E-Commerce phát hiện chính xác khách hàng sắp rời bỏ trước 30–60 ngày, tối ưu hóa ngân sách tiếp thị giữ chân (Retention Marketing) và tối đa hóa Giá trị Trọn đời của Khách hàng (LTV) với độ chính xác đạt trên 94%?"</em>
         </div>
@@ -75,7 +75,7 @@
 <div class="academic-section">
     <h1 class="chapter-title">TÓM TẮT ĐIỀU HÀNH (EXECUTIVE SUMMARY)</h1>
     
-    <div class="callout callout-success" style="font-size: 11pt; line-height: 1.6;">
+    <div class="callout" style="font-size: 11pt; line-height: 1.6;">
         <strong>THÔNG ĐIỆP CỐT LÕI DÀNH CHO BAN LÃNH ĐẠO (C-LEVEL TAKEAWAYS):</strong>
         <ol style="margin: 6px 0 0 0; padding-left: 20px;">
             <li><strong>Thực trạng:</strong> Chi phí thu hút khách hàng mới (CAC) ngày càng đắt đỏ (gấp 5 – 7 lần chi phí giữ chân). Việc phát khuyến mãi đại trà vừa làm suy giảm biên lợi nhuận ròng, vừa tạo ra nhóm khách hàng "săn voucher" không có lòng trung thành.</li>
@@ -279,7 +279,7 @@
         Hệ thống <strong>Boomerang Radar AI</strong> được thiết kế theo tiêu chuẩn phần mềm công nghiệp phục vụ môi trường bán lẻ đa kênh, hướng tới hai nhóm người dùng chính: Đội ngũ Marketing/CSKH thao tác trực tiếp trên Dashboard và Hệ thống máy chủ bán hàng (ERP/CRM) tích hợp thông qua REST API.
     </p>
 
-    <h3 style="color: #0f172a; font-size: 13pt; margin-top: 14px;">a. Yêu cầu chức năng (Functional Requirements - FR)</h3>
+    <h3 style="color: #000000; font-size: 12pt; margin-top: 14px;">a. Yêu cầu chức năng (Functional Requirements - FR)</h3>
     <ul>
         <li><strong>FR-01: Dự đoán thời gian thực cho một khách hàng (Single-Customer Inference):</strong> Tiếp nhận 8 chỉ số qua form web, tự động sinh 4 đặc trưng tương tác phi tuyến, tính toán xác suất quay lại và phân tầng rủi ro trong thời gian dưới 50ms.</li>
         <li><strong>FR-02: Xử lý theo lô từ tệp tin CSV (Batch CSV Processing):</strong> Hỗ trợ tải lên tệp tin CSV chứa hàng nghìn hồ sơ khách hàng, tự động suy luận hàng loạt và cung cấp tính năng xuất file kết quả (Export CSV) có gắn nhãn và xác suất dự đoán.</li>
@@ -289,7 +289,7 @@
         <li><strong>FR-06: Sinh phân tích hành vi và khuyến nghị nghiệp vụ (Natural Language Synthesis):</strong> Tự động ghép nối các thuộc tính hành vi thành câu văn giải thích dễ hiểu và đề xuất hành động Marketing cụ thể cho nhân viên kinh doanh.</li>
     </ul>
 
-    <h3 style="color: #0f172a; font-size: 13pt; margin-top: 14px;">b. Tiêu chuẩn phi chức năng (Non-Functional Requirements - NFR)</h3>
+    <h3 style="color: #000000; font-size: 12pt; margin-top: 14px;">b. Tiêu chuẩn phi chức năng (Non-Functional Requirements - NFR)</h3>
     <ul>
         <li><strong>NFR-01: Độ chính xác và khả năng cân bằng (High Metric Target):</strong> Đạt $F_1\text{-score} \ge 92\%$, $\text{Accuracy} \ge 90\%$, $\text{ROC-AUC} \ge 0.90$ trên tập kiểm thử độc lập (Held-out Test Set).</li>
         <li><strong>NFR-02: Độ trễ phản hồi thấp (Low Latency):</strong> Phản hồi yêu cầu đơn lẻ qua REST API $\le 50\text{ms}$; xử lý tệp 10.000 dòng $\le 3\text{ giây}$.</li>
@@ -378,7 +378,7 @@
         Khi hoàn tất suy luận, hệ thống xuất kết quả dạng JSON chuẩn hóa tích hợp đầy đủ các trường số học định lượng và ngữ nghĩa định tính:
     </p>
 
-    <div class="formula-box" style="font-size: 10.5pt; line-height: 1.45;">
+    <div class="formula-box" style="font-size: 10pt; line-height: 1.45;">
 {<br>
 &nbsp;&nbsp;"probability_return": 0.9423,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Xác suất quay lại mua sắm (0.0000 -> 1.0000)<br>
 &nbsp;&nbsp;"probability_return_pct": 94.2,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Tỷ lệ phần trăm quay lại<br>
@@ -391,7 +391,7 @@
 }
     </div>
 
-    <h3 style="color: #0f172a; font-size: 13pt; margin-top: 14px;">Ma trận phân tầng rủi ro và Kịch bản hành động nghiệp vụ</h3>
+    <h3 style="color: #000000; font-size: 12pt; margin-top: 14px;">Ma trận phân tầng rủi ro và Kịch bản hành động nghiệp vụ</h3>
     <table>
         <thead>
             <tr>
@@ -403,28 +403,28 @@
             </tr>
         </thead>
         <tbody>
-            <tr style="background-color: #ecfdf5;">
+            <tr>
                 <td><strong>1. Rất Thấp (Safe)</strong></td>
                 <td>$P > 80\%$</td>
                 <td>$P_{\text{churn}} < 20\%$</td>
                 <td>Khách hàng trung thành, AOV cao, mới mua gần đây, CSAT 4-5 sao.</td>
                 <td>Không phát voucher giảm sâu (tránh lãng phí). Gửi thiệp cảm ơn, tích điểm VIP 15%, mời tham gia chương trình khách hàng thân thiết ưu tiên.</td>
             </tr>
-            <tr style="background-color: #f0fdf4;">
+            <tr>
                 <td><strong>2. Trung Bình (Attention)</strong></td>
                 <td>$50\% \le P \le 80\%$</td>
                 <td>$20\% \le P_{\text{churn}} \le 50\%$</td>
                 <td>Khách vẫn có ý định mua nhưng khoảng cách ngày mua đang dài ra; có tâm lý chờ giảm giá.</td>
                 <td>Gửi thông báo đẩy (Push notification) nhắc nhở giỏ hàng, tặng voucher trợ giá 10% có thời hạn kích hoạt trong vòng 48 giờ.</td>
             </tr>
-            <tr style="background-color: #fffbeb;">
+            <tr>
                 <td><strong>3. Cao (Warning)</strong></td>
                 <td>$20\% \le P < 50\%$</td>
                 <td>$50\% < P_{\text{churn}} \le 80\%$</td>
                 <td>Bắt đầu phai nhạt tương tác (> 60 ngày chưa mua), điểm hài lòng 3 sao hoặc mua ít đơn.</td>
                 <td>Kích hoạt chiến dịch "We Miss You" qua Zalo ZNS/Email: tặng voucher giảm 20% kèm miễn phí giao hàng cho đơn kế tiếp.</td>
             </tr>
-            <tr style="background-color: #fef2f2;">
+            <tr>
                 <td><strong>4. Rất Cao (Critical)</strong></td>
                 <td>$P < 20\%$</td>
                 <td>$P_{\text{churn}} > 80\%$</td>
@@ -1242,13 +1242,13 @@ df['voucher_low_value'] = ((df['used_voucher'] == 1) & (df['avg_order_value'] &l
         Để đánh giá khách quan và toàn diện năng lực của các mô hình học máy trên tập kiểm thử độc lập (Held-out Test Set gồm 1.126 khách hàng), hệ thống sử dụng một khung chỉ số đo lường chuẩn mực theo tiêu chuẩn quốc tế:
     </p>
 
-    <h3 style="color: #0f172a; font-size: 14px;">1. Độ chính xác tổng thể (Accuracy)</h3>
+    <h3 style="color: #000000; font-size: 12pt; margin-top: 14px;">1. Độ chính xác tổng thể (Accuracy)</h3>
     <div class="formula-box">
         \text{Accuracy} = \frac{TP + TN}{TP + TN + FP + FN}
     </div>
     <p>Đo lường tỷ lệ các dự đoán đúng (cả khách quay lại và khách rời bỏ) trên tổng số mẫu kiểm thử.</p>
 
-    <h3 style="color: #0f172a; font-size: 14px;">2. Độ chuẩn xác (Precision)</h3>
+    <h3 style="color: #000000; font-size: 12pt; margin-top: 14px;">2. Độ chuẩn xác (Precision)</h3>
     <div class="formula-box">
         \text{Precision} = \frac{TP}{TP + FP}
     </div>
@@ -1256,7 +1256,7 @@ df['voucher_low_value'] = ((df['used_voucher'] == 1) & (df['avg_order_value'] &l
         Trong số các khách hàng mà mô hình dự đoán là <em>"Sẽ quay lại"</em>, có bao nhiêu phần trăm thực sự quay lại mua sắm. Precision cao đồng nghĩa với việc hạn chế việc đưa ra dự báo lạc quan sai lầm.
     </p>
 
-    <h3 style="color: #0f172a; font-size: 14px;">3. Độ nhạy / Thu hồi (Recall / Sensitivity)</h3>
+    <h3 style="color: #000000; font-size: 12pt; margin-top: 14px;">3. Độ nhạy / Thu hồi (Recall / Sensitivity)</h3>
     <div class="formula-box">
         \text{Recall} = \frac{TP}{TP + FN}
     </div>
@@ -1264,7 +1264,7 @@ df['voucher_low_value'] = ((df['used_voucher'] == 1) & (df['avg_order_value'] &l
         Trong toàn bộ số khách hàng thực tế quay lại, mô hình đã "bắt trúng" được bao nhiêu phần trăm. Recall càng cao nghĩa là số lượng khách hàng trung thành bị bỏ sót (FN) càng nhỏ.
     </p>
 
-    <h3 style="color: #0f172a; font-size: 14px;">4. Điểm F1 (F1-Score - Trung bình điều hòa)</h3>
+    <h3 style="color: #000000; font-size: 12pt; margin-top: 14px;">4. Điểm F1 (F1-Score - Trung bình điều hòa)</h3>
     <div class="formula-box">
         F_1 = 2 \times \frac{\text{Precision} \times \text{Recall}}{\text{Precision} + \text{Recall}} = \frac{2TP}{2TP + FP + FN}
     </div>
@@ -1272,7 +1272,7 @@ df['voucher_low_value'] = ((df['used_voucher'] == 1) & (df['avg_order_value'] &l
         Là thước đo quan trọng nhất đối với bài toán mất cân bằng nhãn, đảm bảo mô hình không thể "gian lận" bằng cách hy sinh Precision để đổi lấy Recall hoặc ngược lại.
     </p>
 
-    <h3 style="color: #0f172a; font-size: 14px;">5. Diện tích dưới đường cong ROC (Area Under the ROC Curve - ROC-AUC)</h3>
+    <h3 style="color: #000000; font-size: 12pt; margin-top: 14px;">5. Diện tích dưới đường cong ROC (Area Under the ROC Curve - ROC-AUC)</h3>
     <div class="formula-box">
         \text{ROC-AUC} = \int_{0}^{1} \text{TPR}(\text{FPR}^{-1}(t)) \, dt
     </div>
@@ -1329,20 +1329,20 @@ df['voucher_low_value'] = ((df['used_voucher'] == 1) & (df['avg_order_value'] &l
                 <td>0.9575</td>
                 <td>Đạt chỉ tiêu</td>
             </tr>
-            <tr class="highlight-row">
+            <tr>
                 <td>4</td>
-                <td><strong>Gradient Boosting</strong></td>
+                <td><strong>Gradient Boosting (Champion)</strong></td>
                 <td><strong>94.23%</strong></td>
                 <td><strong>0.9570</strong></td>
                 <td><strong>0.9744</strong></td>
                 <td><strong>0.9656</strong></td>
                 <td><strong>0.9695</strong></td>
-                <td><strong>&starf; VÔ ĐỊCH (Champion)</strong></td>
+                <td><strong>Mô hình tối ưu nhất</strong></td>
             </tr>
         </tbody>
     </table>
 
-    <div class="callout callout-success">
+    <div class="callout">
         <strong>Phân tích khoa học lý giải sự vượt trội của Gradient Boosting:</strong><br>
         1. <strong>So với Logistic Regression (+25.76% Accuracy):</strong> Không gian ranh giới quyết định giữa khách quay lại và rời bỏ có tính phi tuyến cao. Mô hình tuyến tính hoàn toàn bất lực trong việc nắm bắt các quy tắc điều kiện lồng nhau.<br>
         2. <strong>So với Decision Tree (+19.27% Accuracy):</strong> Cây quyết định đơn lẻ có phương sai rất lớn và dễ bị mắc kẹt tại các cực tiểu cục bộ.<br>
@@ -1361,25 +1361,25 @@ df['voucher_low_value'] = ((df['used_voucher'] == 1) & (df['avg_order_value'] &l
                 <th colspan="2" style="text-align: center;">Dự đoán của mô hình AI (Predicted)</th>
             </tr>
             <tr>
-                <th style="text-align: center; background: #334155;">Dự đoán Churn ($y=0$)</th>
-                <th style="text-align: center; background: #334155;">Dự đoán Quay lại ($y=1$)</th>
+                <th style="text-align: center;">Dự đoán Churn ($y=0$)</th>
+                <th style="text-align: center;">Dự đoán Quay lại ($y=1$)</th>
             </tr>
         </thead>
         <tbody>
             <tr>
-                <td style="font-weight: bold; background: #f8fafc;">Khách Churn thực tế ($y=0$)</td>
-                <td style="text-align: center; font-weight: bold; color: #0284c7;">TN = 149</td>
-                <td style="text-align: center; font-weight: bold; color: #ef4444;">FP = 41</td>
+                <td style="font-weight: bold;">Khách Churn thực tế ($y=0$)</td>
+                <td style="text-align: center; font-weight: bold;">TN = 149</td>
+                <td style="text-align: center;">FP = 41</td>
             </tr>
             <tr>
-                <td style="font-weight: bold; background: #f8fafc;">Khách Quay lại thực tế ($y=1$)</td>
-                <td style="text-align: center; font-weight: bold; color: #ef4444;">FN = 24</td>
-                <td style="text-align: center; font-weight: bold; color: #10b981;">TP = 912</td>
+                <td style="font-weight: bold;">Khách Quay lại thực tế ($y=1$)</td>
+                <td style="text-align: center;">FN = 24</td>
+                <td style="text-align: center; font-weight: bold;">TP = 912</td>
             </tr>
         </tbody>
     </table>
 
-    <h3 style="color: #0f172a; font-size: 14px;">Phân tích tác động kinh tế học của hai loại sai lầm</h3>
+    <h3 style="color: #000000; font-size: 12pt; margin-top: 14px;">Phân tích tác động kinh tế học của hai loại sai lầm</h3>
     <ul>
         <li>
             <strong>Sai lầm loại 2 - Âm tính giả (False Negative - FN = 24):</strong><br>
@@ -1423,21 +1423,21 @@ df['voucher_low_value'] = ((df['used_voucher'] == 1) & (df['avg_order_value'] &l
                 <td>Đặc trưng gốc</td>
                 <td>Độ tuổi tương quan chặt chẽ với thói quen mua sắm và độ trung thành nhãn hàng.</td>
             </tr>
-            <tr class="highlight-row">
+            <tr>
                 <td>3</td>
                 <td><code>ltv_score</code></td>
                 <td><strong>20.61%</strong></td>
                 <td><strong>Kỹ thuật đặc trưng (FE)</strong></td>
                 <td>Tổng đóng góp doanh thu tích lũy khẳng định nhóm khách hàng VIP luôn có xác suất quay lại cao nhất.</td>
             </tr>
-            <tr class="highlight-row">
+            <tr>
                 <td>4</td>
                 <td><code>satisfaction_recency</code></td>
                 <td><strong>9.90%</strong></td>
                 <td><strong>Kỹ thuật đặc trưng (FE)</strong></td>
                 <td>Sự suy giảm điểm hài lòng theo thời gian cảnh báo chính xác thời điểm khách hàng chuẩn bị chuyển đổi.</td>
             </tr>
-            <tr class="highlight-row">
+            <tr>
                 <td>5</td>
                 <td><code>purchase_intensity</code></td>
                 <td><strong>6.57%</strong></td>
@@ -1489,7 +1489,7 @@ df['voucher_low_value'] = ((df['used_voucher'] == 1) & (df['avg_order_value'] &l
         </tbody>
     </table>
 
-    <div class="callout callout-success">
+    <div class="callout">
         <strong>Tổng kết then chốt:</strong> Tổng tỷ trọng đóng góp của 4 biến sinh ra từ Feature Engineering (<code>ltv_score</code>, <code>satisfaction_recency</code>, <code>purchase_intensity</code>, <code>voucher_low_value</code>) chiếm tới <strong>37.08%</strong> tổng năng lực phân loại của mô hình. Điều này chứng minh luận điểm khoa học: <em>Kỹ thuật đặc trưng tương tác kết hợp tri thức kinh doanh sâu sắc chính là nhân tố cốt lõi giúp hệ thống AI bứt phá từ mức khá (91%) lên mức xuất sắc (94.23%)</em>.
     </div>
 </div>
@@ -1507,7 +1507,7 @@ df['voucher_low_value'] = ((df['used_voucher'] == 1) & (df['avg_order_value'] &l
         Để đưa hệ thống <strong>Boomerang Radar AI</strong> từ môi trường nghiên cứu vào vận hành thực tế tạo ra giá trị doanh thu thặng dư, chúng tôi xây dựng kế hoạch triển khai chi tiết gồm: Ma trận phân công trách nhiệm (RACI Matrix), Lộ trình triển khai 12 tuần (Gantt Roadmap) và Dự toán ngân sách kèm phân tích hoàn vốn đầu tư (ROI).
     </p>
 
-    <h3 style="color: #0f172a; font-size: 13pt; margin-top: 14px;">a. Ma trận phân công trách nhiệm nghiệp vụ (RACI Matrix)</h3>
+    <h3 style="color: #000000; font-size: 12pt; margin-top: 14px;">a. Ma trận phân công trách nhiệm nghiệp vụ (RACI Matrix)</h3>
     <p>
         Quy định rõ ràng vai trò của từng bộ phận: <strong>R</strong> (Responsible - Người thực hiện), <strong>A</strong> (Accountable - Người chịu trách nhiệm phê duyệt), <strong>C</strong> (Consulted - Người được tham vấn), <strong>I</strong> (Informed - Người được thông báo kết quả).
     </p>
@@ -1526,7 +1526,7 @@ df['voucher_low_value'] = ((df['used_voucher'] == 1) & (df['avg_order_value'] &l
         <tbody>
             <tr>
                 <td>1. Phê duyệt ngân sách & KPI mục tiêu</td>
-                <td style="text-align: center; font-weight: bold; color: #0284c7;">A</td>
+                <td style="text-align: center; font-weight: bold;">A</td>
                 <td style="text-align: center;">C</td>
                 <td style="text-align: center;">I</td>
                 <td style="text-align: center;">C</td>
@@ -1535,8 +1535,8 @@ df['voucher_low_value'] = ((df['used_voucher'] == 1) & (df['avg_order_value'] &l
             <tr>
                 <td>2. Đóng gói & Triển khai Docker, REST API</td>
                 <td style="text-align: center;">I</td>
-                <td style="text-align: center; font-weight: bold; color: #0284c7;">R</td>
-                <td style="text-align: center; font-weight: bold; color: #0f172a;">A / R</td>
+                <td style="text-align: center; font-weight: bold;">R</td>
+                <td style="text-align: center; font-weight: bold;">A / R</td>
                 <td style="text-align: center;">I</td>
                 <td style="text-align: center;">I</td>
             </tr>
@@ -1544,8 +1544,8 @@ df['voucher_low_value'] = ((df['used_voucher'] == 1) & (df['avg_order_value'] &l
                 <td>3. Tích hợp Webhook CRM & Cổng Zalo/SMS</td>
                 <td style="text-align: center;">I</td>
                 <td style="text-align: center;">C</td>
-                <td style="text-align: center; font-weight: bold; color: #0284c7;">R</td>
-                <td style="text-align: center; font-weight: bold; color: #0f172a;">A</td>
+                <td style="text-align: center; font-weight: bold;">R</td>
+                <td style="text-align: center; font-weight: bold;">A</td>
                 <td style="text-align: center;">C</td>
             </tr>
             <tr>
@@ -1553,7 +1553,7 @@ df['voucher_low_value'] = ((df['used_voucher'] == 1) & (df['avg_order_value'] &l
                 <td style="text-align: center;">C</td>
                 <td style="text-align: center;">I</td>
                 <td style="text-align: center;">I</td>
-                <td style="text-align: center; font-weight: bold; color: #0284c7;">A / R</td>
+                <td style="text-align: center; font-weight: bold;">A / R</td>
                 <td style="text-align: center;">C</td>
             </tr>
             <tr>
@@ -1562,12 +1562,12 @@ df['voucher_low_value'] = ((df['used_voucher'] == 1) & (df['avg_order_value'] &l
                 <td style="text-align: center;">I</td>
                 <td style="text-align: center;">I</td>
                 <td style="text-align: center;">C</td>
-                <td style="text-align: center; font-weight: bold; color: #0284c7;">A / R</td>
+                <td style="text-align: center; font-weight: bold;">A / R</td>
             </tr>
             <tr>
                 <td>6. Đánh giá kiểm định A/B Testing & Tái huấn luyện</td>
                 <td style="text-align: center;">I</td>
-                <td style="text-align: center; font-weight: bold; color: #0284c7;">A / R</td>
+                <td style="text-align: center; font-weight: bold;">A / R</td>
                 <td style="text-align: center;">C</td>
                 <td style="text-align: center;">R</td>
                 <td style="text-align: center;">I</td>
@@ -1575,7 +1575,7 @@ df['voucher_low_value'] = ((df['used_voucher'] == 1) & (df['avg_order_value'] &l
         </tbody>
     </table>
 
-    <h3 style="color: #0f172a; font-size: 13pt; margin-top: 14px;">b. Lộ trình triển khai thực tế 12 tuần (Gantt Timeline)</h3>
+    <h3 style="color: #000000; font-size: 12pt; margin-top: 14px;">b. Lộ trình triển khai thực tế 12 tuần (Gantt Timeline)</h3>
     <table>
         <thead>
             <tr>
@@ -1613,7 +1613,7 @@ df['voucher_low_value'] = ((df['used_voucher'] == 1) & (df['avg_order_value'] &l
         </tbody>
     </table>
 
-    <h3 style="color: #0f172a; font-size: 13pt; margin-top: 14px;">c. Dự toán ngân sách và Phân tích hiệu quả kinh tế (ROI Forecast)</h3>
+    <h3 style="color: #000000; font-size: 12pt; margin-top: 14px;">c. Dự toán ngân sách và Phân tích hiệu quả kinh tế (ROI Forecast)</h3>
     <p>
         Giả định áp dụng trên quy mô doanh nghiệp bán lẻ có <strong>50.000 khách hàng hoạt động</strong> với doanh thu trung bình 1.500.000 đ/khách/năm:
     </p>
@@ -1647,17 +1647,17 @@ df['voucher_low_value'] = ((df['used_voucher'] == 1) & (df['avg_order_value'] &l
                 <td><strong>260.000.000 VNĐ</strong></td>
                 <td>Toàn bộ ngân sách cần phê duyệt để đưa hệ thống vào vận hành 1 năm.</td>
             </tr>
-            <tr class="highlight-row">
+            <tr>
                 <td><strong>DOANH THU CỨU VÃN KỲ VỌNG (SAVED REVENUE)</strong></td>
                 <td><strong>1.050.000.000 VNĐ</strong></td>
                 <td>Giữ chân thành công 700 khách hàng tiềm năng &times; LTV tối thiểu 1.500.000 đ/năm.</td>
             </tr>
-            <tr class="highlight-row">
+            <tr>
                 <td><strong>LỢI NHUẬN RÒNG GIA TĂNG (NET PROFIT)</strong></td>
                 <td><strong>790.000.000 VNĐ</strong></td>
                 <td>Doanh thu cứu vãn trừ đi toàn bộ chi phí vận hành và chiết khấu.</td>
             </tr>
-            <tr class="highlight-row">
+            <tr>
                 <td><strong>TỶ SUẤT HOÀN VỐN (ROI)</strong></td>
                 <td><strong>303.8%</strong></td>
                 <td>$\text{ROI} = \frac{790.000.000}{260.000.000} \approx 303.8\%$ (Thu hồi vốn hoàn toàn sau 4 tháng).</td>
@@ -1712,7 +1712,7 @@ df['voucher_low_value'] = ((df['used_voucher'] == 1) & (df['avg_order_value'] &l
 
     <!-- TÀI LIỆU THAM KHẢO CHUẨN APA -->
     <h1 class="chapter-title">TÀI LIỆU THAM KHẢO (REFERENCES - CHUẨN APA)</h1>
-    <ol class="ref-list" style="font-size: 11.5pt; line-height: 1.65;">
+    <ol class="ref-list" style="font-size: 11pt; line-height: 1.6;">
         <li>Arik, S. Ö., & Pfister, T. (2021). <em>TabNet: Attentive interpretable tabular learning</em>. Proceedings of the AAAI Conference on Artificial Intelligence, 35(8), 6679-6687.</li>
         <li>Breiman, L. (2001). <em>Random forests</em>. Machine Learning, 45(1), 5-32. https://doi.org/10.1023/A:1010933404324</li>
         <li>Chen, T., & Guestrin, C. (2016). <em>XGBoost: A scalable tree boosting system</em>. Proceedings of the 22nd ACM SIGKDD International Conference on Knowledge Discovery and Data Mining, 785-794.</li>

@@ -6,7 +6,7 @@ import subprocess
 if hasattr(sys.stdout, 'reconfigure'):
     sys.stdout.reconfigure(encoding='utf-8')
 
-print("=== BIÊN TẬP BÁO CÁO TOÀN DIỆN THEO CHUẨN KHOA HỌC & THỊ GIÁC ===")
+print("=== BIÊN TẬP BÁO CÁO TOÀN DIỆN: CHUẨN ĐƠN SẮC QUỐC TẾ (MONOCHROME BOOKTABS) ===")
 
 section_files = [
     "docs_sections/part_01_cover_and_problem.md",
@@ -35,32 +35,28 @@ with open(master_md_path, "w", encoding="utf-8") as f:
     f.write("\n\n<div class='page-break'></div>\n\n".join(all_sections_content))
 print(f"  -> File Markdown tổng hợp: {master_md_path}")
 
-# Template HTML tuân thủ nghiêm ngặt 4 tiêu chuẩn:
-# 1. Tối đa 2 font chữ (Segoe UI cho Tiêu đề, Times New Roman cho Thân bài).
-# 2. Tối đa 3 màu chủ đạo: Deep Navy (#0f172a), Tech Blue (#0284c7), Emerald Green (#059669).
-# 3. Kích thước 11.5pt, khoảng cách dòng 1.45, tỷ lệ khoảng trắng cân đối, căn lề chuẩn in ấn.
-# 4. Ngắt trang thông minh tránh mồ côi tiêu đề.
-
+# Template HTML: 100% Monochrome (Đen - Trắng chuẩn sách xuất bản quốc tế)
 html_template = f"""<!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <title>Báo cáo toàn diện hệ thống Boomerang Radar AI</title>
+    <title>Báo cáo toàn diện hệ thống Boomerang Radar AI (Chuẩn Đơn sắc Quốc tế)</title>
     <style>
         @page {{
             size: A4;
-            margin: 20mm 15mm 20mm 20mm;
+            margin: 22mm 18mm 22mm 22mm;
             @top-right {{
-                content: "Boomerang Radar AI &bull; Báo cáo Nghiên cứu & Triển khai";
-                font-family: 'Segoe UI', sans-serif;
-                font-size: 8pt;
-                color: #64748b;
+                content: "Boomerang Radar AI &bull; Báo cáo Kỹ thuật & Khoa học Dữ liệu";
+                font-family: 'Times New Roman', serif;
+                font-size: 8.5pt;
+                color: #333333;
+                font-style: italic;
             }}
             @bottom-right {{
                 content: "Trang " counter(page);
-                font-family: 'Segoe UI', sans-serif;
-                font-size: 8.5pt;
-                color: #334155;
+                font-family: 'Times New Roman', serif;
+                font-size: 9pt;
+                color: #000000;
                 font-weight: bold;
             }}
         }}
@@ -73,7 +69,7 @@ html_template = f"""<!DOCTYPE html>
         
         body {{
             font-family: 'Times New Roman', Times, serif;
-            color: #0f172a;
+            color: #000000;
             line-height: 1.45;
             font-size: 11.5pt;
             margin: 0;
@@ -81,76 +77,76 @@ html_template = f"""<!DOCTYPE html>
             background: #ffffff;
         }}
         
-        /* 1. TRANG BÌA ĐIỀU HÀNH */
+        /* 1. TRANG BÌA CHUẨN ĐƠN SẮC QUỐC TẾ */
         .cover-page {{
             height: 96vh;
-            border: 2.5px solid #0f172a;
-            padding: 30px 22px;
+            border: 2px solid #000000;
+            padding: 35px 25px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             align-items: center;
             text-align: center;
             page-break-after: always;
-            border-radius: 4px;
+            background: #ffffff;
         }}
         .institution {{
-            font-family: 'Segoe UI', sans-serif;
+            font-family: 'Segoe UI', Arial, sans-serif;
             font-size: 10.5pt;
             font-weight: 700;
             letter-spacing: 0.8px;
-            color: #0f172a;
+            color: #000000;
             text-transform: uppercase;
         }}
         .faculty {{
-            font-family: 'Segoe UI', sans-serif;
+            font-family: 'Segoe UI', Arial, sans-serif;
             font-size: 10pt;
             font-weight: 600;
-            color: #475569;
-            margin-top: 3px;
-            border-bottom: 1.5px solid #cbd5e1;
-            padding-bottom: 6px;
+            color: #222222;
+            margin-top: 4px;
+            border-bottom: 1px solid #000000;
+            padding-bottom: 8px;
             width: 85%;
         }}
         .cover-badge {{
             display: inline-block;
-            background: #0284c7;
-            color: white;
-            font-size: 9.5pt;
+            border: 1.5px solid #000000;
+            background: #ffffff;
+            color: #000000;
+            font-size: 9pt;
             font-weight: 700;
-            padding: 4px 16px;
-            border-radius: 16px;
+            padding: 4px 18px;
+            border-radius: 4px;
             letter-spacing: 1px;
-            margin-bottom: 12px;
-            font-family: 'Segoe UI', sans-serif;
+            margin-bottom: 14px;
+            font-family: 'Segoe UI', Arial, sans-serif;
             text-transform: uppercase;
         }}
         .main-title {{
-            font-size: 26pt;
+            font-size: 27pt;
             font-weight: 900;
-            color: #0f172a;
+            color: #000000;
             margin: 0 0 8px 0;
             letter-spacing: 0.5px;
-            font-family: 'Segoe UI', sans-serif;
+            font-family: 'Segoe UI', Arial, sans-serif;
         }}
         .sub-title-cover {{
             font-size: 12pt;
-            color: #334155;
+            color: #111111;
             line-height: 1.45;
             font-weight: 600;
-            font-family: 'Segoe UI', sans-serif;
+            font-family: 'Segoe UI', Arial, sans-serif;
         }}
         .cover-metrics-box {{
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 10px;
             width: 100%;
-            margin: 16px 0;
+            margin: 18px 0;
         }}
         .metric-item {{
-            border: 1px solid #cbd5e1;
-            background: #f8fafc;
-            border-radius: 4px;
+            border: 1.2px solid #000000;
+            background: #ffffff;
             padding: 8px 4px;
             text-align: center;
         }}
@@ -158,15 +154,15 @@ html_template = f"""<!DOCTYPE html>
             display: block;
             font-size: 16pt;
             font-weight: 800;
-            color: #0284c7;
-            font-family: 'Segoe UI', sans-serif;
+            color: #000000;
+            font-family: 'Segoe UI', Arial, sans-serif;
         }}
         .m-lbl {{
             font-size: 7.5pt;
-            color: #64748b;
-            font-weight: 600;
+            color: #333333;
+            font-weight: 700;
             text-transform: uppercase;
-            font-family: 'Segoe UI', sans-serif;
+            font-family: 'Segoe UI', Arial, sans-serif;
         }}
         .cover-meta-info {{
             width: 95%;
@@ -177,43 +173,44 @@ html_template = f"""<!DOCTYPE html>
             width: 100%;
             border-collapse: collapse;
             font-size: 10.5pt;
-            font-family: 'Segoe UI', sans-serif;
+            font-family: 'Times New Roman', serif;
         }}
         .meta-table td {{
             padding: 4px 6px;
             border: none;
-            color: #334155;
+            color: #000000;
         }}
 
         /* 2. TIÊU ĐỀ & CHỈ MỤC THỐNG NHẤT */
         .chapter-title {{
-            font-size: 16pt;
+            font-size: 15.5pt;
             font-weight: 800;
-            color: #0f172a;
-            border-bottom: 2px solid #0284c7;
-            padding-bottom: 5px;
+            color: #000000;
+            border-bottom: 1.5px solid #000000;
+            padding-bottom: 4px;
             margin-top: 24px;
             margin-bottom: 12px;
             text-transform: uppercase;
             letter-spacing: 0.5px;
-            font-family: 'Segoe UI', sans-serif;
+            font-family: 'Segoe UI', Arial, sans-serif;
             page-break-after: avoid;
         }}
         .sub-title {{
-            font-size: 13pt;
+            font-size: 12.5pt;
             font-weight: 700;
-            color: #0284c7;
+            color: #000000;
             margin-top: 16px;
-            margin-bottom: 8px;
-            font-family: 'Segoe UI', sans-serif;
+            margin-bottom: 6px;
+            font-family: 'Segoe UI', Arial, sans-serif;
             page-break-after: avoid;
         }}
         
         /* 3. THÂN BÀI & ĐOẠN VĂN */
         p {{
             text-align: justify;
-            margin: 0 0 9px 0;
+            margin: 0 0 8px 0;
             text-indent: 1.25cm;
+            color: #000000;
         }}
         
         ul, ol {{
@@ -223,94 +220,89 @@ html_template = f"""<!DOCTYPE html>
         li {{
             margin-bottom: 4px;
             text-align: justify;
+            color: #000000;
         }}
         strong {{
-            color: #0f172a;
+            color: #000000;
         }}
         
-        /* 4. BẢNG BIỂU DỮ LIỆU CHUẨN MỰC */
+        /* 4. BẢNG BIỂU CHUẨN BOOKTABS HỌC THUẬT */
         table {{
             width: 100%;
             border-collapse: collapse;
-            margin: 10px 0 14px 0;
+            margin: 12px 0 14px 0;
             font-size: 10pt;
             page-break-inside: avoid;
+            border-top: 1.8px solid #000000;
+            border-bottom: 1.8px solid #000000;
         }}
         table th {{
-            background: #0f172a;
-            color: #ffffff;
+            background: #ffffff;
+            color: #000000;
             padding: 7px 8px;
-            font-weight: 600;
-            border: 1px solid #0f172a;
-            font-family: 'Segoe UI', sans-serif;
+            font-weight: 700;
+            border-top: none;
+            border-bottom: 1.2px solid #000000;
+            border-left: none;
+            border-right: none;
+            font-family: 'Segoe UI', Arial, sans-serif;
             text-align: left;
         }}
         table td {{
             padding: 6px 8px;
-            border: 1px solid #cbd5e1;
-            color: #334155;
+            border-top: none;
+            border-bottom: 0.5px solid #d4d4d4;
+            border-left: none;
+            border-right: none;
+            color: #000000;
             vertical-align: middle;
         }}
-        table tr:nth-child(even) {{
-            background: #f8fafc;
-        }}
-        .highlight-row {{
-            background: #ecfdf5 !important;
-            font-weight: bold;
+        table tr:last-child td {{
+            border-bottom: none;
         }}
 
-        /* 5. KHỐI CÔNG THỨC & CODE */
+        /* 5. KHỐI CÔNG THỨC TOÁN HỌC */
         .formula-box {{
-            background: #f8fafc;
-            border-left: 3.5px solid #0284c7;
-            border-radius: 3px;
+            background: #fafafa;
+            border: 1px solid #000000;
+            border-radius: 2px;
             padding: 8px 12px;
             margin: 8px 0 12px 0;
             font-family: 'Consolas', 'Courier New', monospace;
             font-size: 10pt;
-            color: #0f172a;
+            color: #000000;
             line-height: 1.45;
             page-break-inside: avoid;
         }}
         
-        /* 6. CALLOUT HỘP THÔNG ĐIỆP */
+        /* 6. CALLOUT HỘP THÔNG ĐIỆP ĐƠN SẮC */
         .callout {{
-            border-left: 3.5px solid #0284c7;
-            background: #f0f9ff;
+            border-left: 3px solid #000000;
+            background: #fafafa;
             padding: 8px 12px;
-            border-radius: 0 4px 4px 0;
             margin: 10px 0;
             font-size: 10.5pt;
-            font-family: 'Segoe UI', sans-serif;
+            color: #000000;
             page-break-inside: avoid;
         }}
-        .callout-success {{
-            border-left-color: #059669;
-            background: #ecfdf5;
-        }}
-        .callout-warning {{
-            border-left-color: #d97706;
-            background: #fffbeb;
-        }}
         
-        /* 7. SƠ ĐỒ KHỐI TRỰC QUAN */
+        /* 7. SƠ ĐỒ KHỐI KIẾN TRÚC ĐƠN SẮC */
         .arch-container {{
             display: flex;
             flex-direction: column;
             gap: 8px;
             margin: 12px 0;
-            font-family: 'Segoe UI', sans-serif;
+            font-family: 'Segoe UI', Arial, sans-serif;
             page-break-inside: avoid;
         }}
         .arch-layer {{
-            border: 1.2px solid #cbd5e1;
-            border-radius: 4px;
+            border: 1.2px solid #000000;
             padding: 6px 10px;
-            background: #f8fafc;
+            background: #ffffff;
         }}
         .arch-layer-header {{
             font-weight: bold;
-            color: #0f172a;
+            color: #000000;
             font-size: 10.5pt;
             margin-bottom: 5px;
             display: flex;
@@ -318,11 +310,11 @@ html_template = f"""<!DOCTYPE html>
             gap: 6px;
         }}
         .arch-layer-badge {{
-            background: #0284c7;
-            color: white;
+            background: #000000;
+            color: #ffffff;
             padding: 1px 7px;
-            border-radius: 8px;
             font-size: 8pt;
+            font-weight: bold;
         }}
         .arch-items {{
             display: grid;
@@ -330,16 +322,15 @@ html_template = f"""<!DOCTYPE html>
             gap: 6px;
         }}
         .arch-card {{
-            background: white;
-            border: 1px solid #e2e8f0;
-            border-radius: 3px;
+            background: #ffffff;
+            border: 0.8px solid #555555;
             padding: 5px 6px;
             font-size: 8.5pt;
-            color: #475569;
+            color: #000000;
         }}
         .arch-card-title {{
             font-weight: bold;
-            color: #0f172a;
+            color: #000000;
             margin-bottom: 2px;
         }}
 
@@ -348,26 +339,29 @@ html_template = f"""<!DOCTYPE html>
             width: 100%;
             border-collapse: collapse;
             font-size: 10.5pt;
-            font-family: 'Segoe UI', sans-serif;
+            font-family: 'Times New Roman', serif;
+            border-top: 1.5px solid #000000;
+            border-bottom: 1.5px solid #000000;
         }}
         .toc-table td {{
             border: none;
-            padding: 5px 2px;
-            border-bottom: 1px dotted #cbd5e1;
+            padding: 4px 2px;
+            border-bottom: 1px dotted #888888;
+            color: #000000;
         }}
         .toc-chap {{
-            color: #0f172a;
+            color: #000000;
             font-weight: bold;
         }}
         .toc-sub {{
             padding-left: 18px !important;
-            color: #475569;
+            color: #222222;
         }}
         .toc-head th {{
-            background: #f1f5f9;
-            color: #0f172a;
+            background: #ffffff;
+            color: #000000;
             border: none;
-            border-bottom: 2px solid #0f172a;
+            border-bottom: 1.5px solid #000000;
             padding: 6px 4px;
         }}
 
@@ -390,7 +384,7 @@ html_template = f"""<!DOCTYPE html>
 html_master_path = "BAO_CAO_TOAN_DIEN_30_TRANG.html"
 with open(html_master_path, "w", encoding="utf-8") as f:
     f.write(html_template)
-print(f"  -> File HTML in ấn chuẩn hóa: {html_master_path}")
+print(f"  -> File HTML in ấn chuẩn hóa đơn sắc: {html_master_path}")
 
 # Biên dịch ra file PDF hoàn chỉnh qua Microsoft Edge Headless
 pdf_master_path = "BAO_CAO_TOAN_DIEN_BOOMERANG_RADAR_AI_30_TRANG.pdf"
@@ -413,7 +407,7 @@ if os.path.exists(pdf_master_path) and os.path.getsize(pdf_master_path) > 0:
     import fitz
     doc = fitz.open(pdf_master_path)
     print(f"\n=======================================================")
-    print(f"XUẤT BẢN PDF TOÀN DIỆN THÀNH CÔNG RỰC RỠ!")
+    print(f"XUẤT BẢN PDF ĐƠN SẮC CHUẨN THẾ GIỚI THÀNH CÔNG RỰC RỠ!")
     print(f"  + Tệp tin: {pdf_master_path}")
     print(f"  + Dung lượng: {sz:,} bytes (~{sz/1024/1024:.2f} MB)")
     print(f"  + TỔNG SỐ TRANG IN THỰC TẾ: {len(doc)} TRANG")
