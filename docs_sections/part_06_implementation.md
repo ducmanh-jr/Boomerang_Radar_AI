@@ -1,7 +1,7 @@
 <!-- CHƯƠNG 6: CÀI ĐẶT HỆ THỐNG VÀ XÂY DỰNG ỨNG DỤNG -->
 
 <div class="academic-section">
-    <h1 class="chapter-title">CHƯƠNG 6: CÀI ĐẶT HỆ THỐNG VÀ XÂY DỰNG ỨNG DỤNG</h1>
+    <h1 class="chapter-title">6. CÀI ĐẶT HỆ THỐNG VÀ XÂY DỰNG ỨNG DỤNG</h1>
     
     <h2 class="sub-title">6.1. Môi trường công nghệ và Cấu trúc mã nguồn</h2>
     <p>

@@ -1,7 +1,7 @@
 <!-- CHƯƠNG 5: MÔ TẢ DỮ LIỆU & QUY TRÌNH TIỀN XỬ LÝ CHỐNG RÒ RỈ -->
 
 <div class="academic-section">
-    <h1 class="chapter-title">CHƯƠNG 5: MÔ TẢ DỮ LIỆU & QUY TRÌNH TIỀN XỬ LÝ CHỐNG RÒ RỈ</h1>
+    <h1 class="chapter-title">5. MÔ TẢ DỮ LIỆU & QUY TRÌNH TIỀN XỬ LÝ CHỐNG RÒ RỈ</h1>
     
     <h2 class="sub-title">5.1. Nguồn gốc dữ liệu & Phân tích khám phá (EDA)</h2>
     <p>

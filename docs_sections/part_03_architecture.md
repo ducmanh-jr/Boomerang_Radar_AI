@@ -1,7 +1,7 @@
 <!-- CHƯƠNG 3: THIẾT KẾ SƠ ĐỒ KHỐI VÀ KIẾN TRÚC HỆ THỐNG -->
 
 <div class="academic-section">
-    <h1 class="chapter-title">CHƯƠNG 3: THIẾT KẾ SƠ ĐỒ KHỐI VÀ KIẾN TRÚC HỆ THỐNG</h1>
+    <h1 class="chapter-title">3. THIẾT KẾ SƠ ĐỒ KHỐI VÀ KIẾN TRÚC HỆ THỐNG</h1>
     
     <h2 class="sub-title">3.1. Kiến trúc phân tầng tổng thể (6-Layer Architecture)</h2>
     <p>

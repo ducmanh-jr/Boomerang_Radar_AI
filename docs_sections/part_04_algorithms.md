@@ -1,7 +1,7 @@
-<!-- CHƯƠNG 4: MÔ TẢ THUẬT TOÁN & CƠ SỞ TOÁN HỌC -->
+<!-- CHƯƠNG 4: MÔ TẢ THUẬT TOÁN & NỀN TẢNG TOÁN HỌC -->
 
 <div class="academic-section">
-    <h1 class="chapter-title">CHƯƠNG 4: MÔ TẢ THUẬT TOÁN & CƠ SỞ TOÁN HỌC</h1>
+    <h1 class="chapter-title">4. MÔ TẢ THUẬT TOÁN & NỀN TẢNG TOÁN HỌC</h1>
     
     <p>
         Chương này đi sâu vào cơ sở lý thuyết toán học, các phương trình vi tích phân, đại số tuyến tính và cơ chế tối ưu hóa đằng sau toàn bộ quy trình xây dựng đặc trưng và 4 mô hình học máy được triển khai trong hệ thống <strong>Boomerang Radar AI</strong>.

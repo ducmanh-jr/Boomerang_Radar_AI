@@ -1,104 +1,228 @@
-<!-- CHƯƠNG 8: HƯỚNG PHÁT TRIỂN, KẾT LUẬN & TÀI LIỆU THAM KHẢO -->
+<!-- CHƯƠNG 8: KẾ HOẠCH TRIỂN KHAI HÀNH ĐỘNG, HƯỚNG PHÁT TRIỂN & KẾT LUẬN -->
 
 <div class="academic-section">
-    <h1 class="chapter-title">CHƯƠNG 8: HƯỚNG PHÁT TRIỂN & KẾT LUẬN</h1>
+    <h1 class="chapter-title">8. KẾ HOẠCH TRIỂN KHAI ACTIONABLE, HƯỚNG PHÁT TRIỂN & KẾT LUẬN</h1>
     
-    <h2 class="sub-title">8.1. Ứng dụng Trí tuệ Nhân tạo có thể giải thích (Explainable AI - XAI)</h2>
+    <h2 class="sub-title">8.1. Kế hoạch triển khai hành động trong doanh nghiệp (Actionable Implementation Plan)</h2>
     <p>
-        Trong giai đoạn phát triển tiếp theo, việc chuyển đổi từ mô hình "hộp đen" (Black-Box Model) sang mô hình có khả năng minh bạch hóa quyết định (Transparent & Explainable AI) là mục tiêu trọng tâm nhằm gia tăng mức độ tin tưởng của người sử dụng và ban lãnh đạo doanh nghiệp.
+        Để đưa hệ thống <strong>Boomerang Radar AI</strong> từ môi trường nghiên cứu vào vận hành thực tế tạo ra giá trị doanh thu thặng dư, chúng tôi xây dựng kế hoạch triển khai chi tiết gồm: Ma trận phân công trách nhiệm (RACI Matrix), Lộ trình triển khai 12 tuần (Gantt Roadmap) và Dự toán ngân sách kèm phân tích hoàn vốn đầu tư (ROI).
     </p>
 
-    <h3 style="color: #0f172a; font-size: 14px;">Cơ sở toán học của Giá trị Shapley (Shapley Additive exPlanations - SHAP)</h3>
+    <h3 style="color: #0f172a; font-size: 13pt; margin-top: 14px;">a. Ma trận phân công trách nhiệm nghiệp vụ (RACI Matrix)</h3>
     <p>
-        Hệ thống dự kiến tích hợp thuật toán <strong>TreeSHAP</strong> (Lundberg & Lee, 2017) dựa trên lý thuyết trò chơi hợp tác (Cooperative Game Theory) của nhà kinh tế học đoạt giải Nobel <em>Lloyd Shapley (1953)</em>. Giá trị Shapley $\phi_i$ phân bổ mức độ đóng góp công bằng của thuộc tính thứ $i$ vào độ lệch giữa xác suất dự đoán $f(\mathbf{x})$ và xác suất kỳ vọng nền $\mathbb{E}[f(X)]$:
+        Quy định rõ ràng vai trò của từng bộ phận: <strong>R</strong> (Responsible - Người thực hiện), <strong>A</strong> (Accountable - Người chịu trách nhiệm phê duyệt), <strong>C</strong> (Consulted - Người được tham vấn), <strong>I</strong> (Informed - Người được thông báo kết quả).
+    </p>
+
+    <table>
+        <thead>
+            <tr>
+                <th style="width: 32%;">Hạng mục công việc / Giai đoạn</th>
+                <th style="width: 13%; text-align: center;">Ban Giám Đốc (C-Level)</th>
+                <th style="width: 14%; text-align: center;">Đội ngũ Data / AI</th>
+                <th style="width: 14%; text-align: center;">Kỹ thuật Backend / IT</th>
+                <th style="width: 14%; text-align: center;">Đội ngũ Marketing / Growth</th>
+                <th style="width: 13%; text-align: center;">Bộ phận CSKH</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1. Phê duyệt ngân sách & KPI mục tiêu</td>
+                <td style="text-align: center; font-weight: bold; color: #0284c7;">A</td>
+                <td style="text-align: center;">C</td>
+                <td style="text-align: center;">I</td>
+                <td style="text-align: center;">C</td>
+                <td style="text-align: center;">I</td>
+            </tr>
+            <tr>
+                <td>2. Đóng gói & Triển khai Docker, REST API</td>
+                <td style="text-align: center;">I</td>
+                <td style="text-align: center; font-weight: bold; color: #0284c7;">R</td>
+                <td style="text-align: center; font-weight: bold; color: #0f172a;">A / R</td>
+                <td style="text-align: center;">I</td>
+                <td style="text-align: center;">I</td>
+            </tr>
+            <tr>
+                <td>3. Tích hợp Webhook CRM & Cổng Zalo/SMS</td>
+                <td style="text-align: center;">I</td>
+                <td style="text-align: center;">C</td>
+                <td style="text-align: center; font-weight: bold; color: #0284c7;">R</td>
+                <td style="text-align: center; font-weight: bold; color: #0f172a;">A</td>
+                <td style="text-align: center;">C</td>
+            </tr>
+            <tr>
+                <td>4. Thiết kế chính sách Voucher & Thông điệp</td>
+                <td style="text-align: center;">C</td>
+                <td style="text-align: center;">I</td>
+                <td style="text-align: center;">I</td>
+                <td style="text-align: center; font-weight: bold; color: #0284c7;">A / R</td>
+                <td style="text-align: center;">C</td>
+            </tr>
+            <tr>
+                <td>5. Vận hành gọi điện chăm sóc khách nguy cơ</td>
+                <td style="text-align: center;">I</td>
+                <td style="text-align: center;">I</td>
+                <td style="text-align: center;">I</td>
+                <td style="text-align: center;">C</td>
+                <td style="text-align: center; font-weight: bold; color: #0284c7;">A / R</td>
+            </tr>
+            <tr>
+                <td>6. Đánh giá kiểm định A/B Testing & Tái huấn luyện</td>
+                <td style="text-align: center;">I</td>
+                <td style="text-align: center; font-weight: bold; color: #0284c7;">A / R</td>
+                <td style="text-align: center;">C</td>
+                <td style="text-align: center;">R</td>
+                <td style="text-align: center;">I</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3 style="color: #0f172a; font-size: 13pt; margin-top: 14px;">b. Lộ trình triển khai thực tế 12 tuần (Gantt Timeline)</h3>
+    <table>
+        <thead>
+            <tr>
+                <th style="width: 15%;">Giai đoạn</th>
+                <th style="width: 18%;">Mốc thời gian</th>
+                <th style="width: 42%;">Mục tiêu & Công việc trọng tâm</th>
+                <th style="width: 25%;">Sản phẩm bàn giao (Deliverables)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Giai đoạn 1</strong></td>
+                <td>Tuần 1 &ndash; Tuần 3</td>
+                <td>Hoàn tất hạ tầng Cloud (AWS/GCP), đóng gói Docker container, thiết lập CI/CD pipeline tự động hóa kiểm thử mã nguồn.</td>
+                <td>Docker Image chuẩn, API Endpoint nội bộ sẵn sàng.</td>
+            </tr>
+            <tr>
+                <td><strong>Giai đoạn 2</strong></td>
+                <td>Tuần 4 &ndash; Tuần 6</td>
+                <td>Tích hợp kết nối 2 chiều giữa Boomerang Radar AI với hệ thống CRM (HubSpot/Salesforce) và hệ thống gửi tin Zalo ZNS / SMS.</td>
+                <td>Webhook tự động kích hoạt chiến dịch theo phân tầng rủi ro.</td>
+            </tr>
+            <tr>
+                <td><strong>Giai đoạn 3</strong></td>
+                <td>Tuần 7 &ndash; Tuần 9</td>
+                <td>Thực hiện thử nghiệm A/B Testing trên 20% tệp khách hàng có nguy cơ rời bỏ: Nhóm A (Can thiệp theo đề xuất của AI) vs Nhóm B (CSKH truyền thống).</td>
+                <td>Báo cáo hiệu quả tỷ lệ chuyển đổi và tỷ lệ giữ chân thực tế.</td>
+            </tr>
+            <tr>
+                <td><strong>Giai đoạn 4</strong></td>
+                <td>Tuần 10 &ndash; Tuần 12</td>
+                <td>Triển khai diện rộng 100% tệp khách hàng toàn sàn, bàn giao tài liệu hướng dẫn vận hành và kích hoạt cơ chế tự động tái huấn luyện định kỳ.</td>
+                <td>Hệ thống vận hành chính thức (Go-live toàn diện).</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3 style="color: #0f172a; font-size: 13pt; margin-top: 14px;">c. Dự toán ngân sách và Phân tích hiệu quả kinh tế (ROI Forecast)</h3>
+    <p>
+        Giả định áp dụng trên quy mô doanh nghiệp bán lẻ có <strong>50.000 khách hàng hoạt động</strong> với doanh thu trung bình 1.500.000 đ/khách/năm:
+    </p>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Hạng mục chi phí / Lợi ích</th>
+                <th>Dự toán năm đầu tiên</th>
+                <th>Cơ sở tính toán & Ý nghĩa tài chính</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Chi phí máy chủ Cloud & Hạ tầng</td>
+                <td>45.000.000 VNĐ</td>
+                <td>Máy chủ AWS EC2 c5.large + CloudWatch monitoring ($150/tháng &times; 12 tháng).</td>
+            </tr>
+            <tr>
+                <td>Chi phí tích hợp Webhook & Zalo ZNS</td>
+                <td>35.000.000 VNĐ</td>
+                <td>Chi phí gửi 70.000 tin nhắn Zalo ZNS tương tác mục tiêu (500 đ/tin).</td>
+            </tr>
+            <tr>
+                <td>Ngân sách Voucher kích hoạt cứu vãn</td>
+                <td>180.000.000 VNĐ</td>
+                <td>Phát 3.000 voucher giảm giá (trung bình 60.000 đ/voucher) cho nhóm rủi ro cao.</td>
+            </tr>
+            <tr>
+                <td><strong>TỔNG CHI PHÍ ĐẦU TƯ (CAPEX + OPEX)</strong></td>
+                <td><strong>260.000.000 VNĐ</strong></td>
+                <td>Toàn bộ ngân sách cần phê duyệt để đưa hệ thống vào vận hành 1 năm.</td>
+            </tr>
+            <tr class="highlight-row">
+                <td><strong>DOANH THU CỨU VÃN KỲ VỌNG (SAVED REVENUE)</strong></td>
+                <td><strong>1.050.000.000 VNĐ</strong></td>
+                <td>Giữ chân thành công 700 khách hàng tiềm năng &times; LTV tối thiểu 1.500.000 đ/năm.</td>
+            </tr>
+            <tr class="highlight-row">
+                <td><strong>LỢI NHUẬN RÒNG GIA TĂNG (NET PROFIT)</strong></td>
+                <td><strong>790.000.000 VNĐ</strong></td>
+                <td>Doanh thu cứu vãn trừ đi toàn bộ chi phí vận hành và chiết khấu.</td>
+            </tr>
+            <tr class="highlight-row">
+                <td><strong>TỶ SUẤT HOÀN VỐN (ROI)</strong></td>
+                <td><strong>303.8%</strong></td>
+                <td>$\text{ROI} = \frac{790.000.000}{260.000.000} \approx 303.8\%$ (Thu hồi vốn hoàn toàn sau 4 tháng).</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2 class="sub-title">8.2. Ứng dụng Trí tuệ Nhân tạo có thể giải thích (Explainable AI với SHAP)</h2>
+    <p>
+        Để chuyển đổi từ mô hình "hộp đen" (Black-Box) sang "hộp kính" (Glass-Box) phục vụ kiểm toán quyết định, hệ thống tích hợp thuật toán <strong>TreeSHAP</strong> (Lundberg & Lee, 2017). Dựa trên lý thuyết giá trị Shapley trong Lý thuyết trò chơi hợp tác của nhà kinh tế học đoạt giải Nobel <em>Lloyd Shapley (1953)</em>:
     </p>
     <div class="formula-box">
         \phi_i(v) = \sum_{S \subseteq N \setminus \{i\}} \frac{|S|! \, (|N| - |S| - 1)!}{|N|!} \left[ v(S \cup \{i\}) - v(S) \right]
     </div>
     <p>
-        Trong đó:
+        Khi tích hợp SHAP vào Dashboard, nhân viên CSKH có thể xem <strong>Biểu đồ thác nước (Waterfall Plot)</strong> của từng khách hàng cá nhân. Ví dụ: Khách hàng Nguyễn Văn A bị cảnh báo Churn $85\%$ do số ngày chưa mua đạt $120$ ngày (kéo tụt $-35\%$ xác suất) và điểm hài lòng đạt $2$ sao (kéo tụt thêm $-25\%$). Điều này giúp nhân viên nắm đúng lý do cốt lõi để đưa ra lời xin lỗi và mã đền bù thỏa đáng.
     </p>
+
+    <h2 class="sub-title">8.3. Mở rộng kiến trúc thuật toán chuyên sâu (LightGBM, CatBoost, TabNet)</h2>
+    <p>Khi quy mô dữ liệu mở rộng từ hàng chục nghìn lên hàng triệu bản ghi, hệ thống sẽ mở rộng nghiên cứu sang 3 kiến trúc chuyên biệt:</p>
     <ul>
-        <li>$N$ là tập hợp toàn bộ $d$ thuộc tính đầu vào của khách hàng.</li>
-        <li>$S$ là một liên minh tập con các thuộc tính không chứa thuộc tính $i$.</li>
-        <li>$v(S)$ là giá trị kỳ vọng dự đoán của mô hình khi chỉ có thông tin từ tập con $S$.</li>
-        <li>$\frac{|S|! (|N| - |S| - 1)!}{|N|!}$ là xác suất xuất hiện của tập con $S$ theo phân phối hoán vị ngẫu nhiên.</li>
+        <li><strong>LightGBM (Microsoft):</strong> Cơ chế phân nhánh theo lá (Leaf-wise) kết hợp gom cụm dữ liệu theo biểu đồ tần suất (Histogram-based), giúp tăng tốc độ huấn luyện lên 7 lần và giảm 75% RAM.</li>
+        <li><strong>CatBoost (Yandex):</strong> Tối ưu số 1 cho các biến danh mục phức tạp (như danh mục sản phẩm, kênh quảng cáo) nhờ kỹ thuật Ordered Target Statistics chống rò rỉ mục tiêu.</li>
+        <li><strong>TabNet (Google Cloud AI):</strong> Mạng nơ-ron học sâu sử dụng cơ chế chú ý tuần tự (Sequential Attention) dành riêng cho dữ liệu bảng, tự động học biểu diễn đặc trưng mà không cần tiền xử lý thủ công.</li>
     </ul>
-    <p>
-        <strong>Ứng dụng trên Dashboard:</strong> Khi một khách hàng bị cảnh báo rủi ro rời bỏ ở cấp độ "Rất Cao", hệ thống sẽ tự động vẽ một <strong>Biểu đồ thác nước (Waterfall Plot)</strong>. Biểu đồ này chỉ rõ thuộc tính nào đang kéo tụt điểm số (ví dụ: <code>days_since_last_purchase = 120</code> đóng góp $\phi = -0.35$, <code>satisfaction_score = 1</code> đóng góp $\phi = -0.22$), giúp nhân viên CSKH biết chính xác "nỗi đau" của khách hàng để có cách tiếp cận phù hợp nhất.
-    </p>
 
-    <h2 class="sub-title">8.2. Mở rộng kiến trúc thuật toán chuyên biệt cho dữ liệu bảng</h2>
-    <p>Khi quy mô dữ liệu doanh nghiệp mở rộng từ hàng nghìn lên hàng triệu bản ghi, hệ thống sẽ mở rộng nghiên cứu sang 3 kiến trúc tiên tiến:</p>
-    <ol>
-        <li>
-            <strong>LightGBM (Light Gradient Boosting Machine - Microsoft):</strong><br>
-            Sử dụng cơ chế gom cụm đặc trưng theo biểu đồ tần suất (Histogram-based) và chiến lược phân nhánh theo lá sâu nhất (Leaf-wise split with depth limit) thay vì theo tầng (Level-wise). Giúp tăng tốc độ huấn luyện lên từ 5 đến 10 lần và giảm 70% mức sử dụng bộ nhớ RAM.
-        </li>
-        <li>
-            <strong>CatBoost (Yandex):</strong><br>
-            Thuật toán GBDT tối ưu hàng đầu thế giới cho các thuộc tính phân loại (Categorical Features) nhờ kỹ thuật Ordered Target Statistics và Oblivious Decision Trees, giúp xử lý biến danh mục (như danh mục sản phẩm, kênh tiếp thị) mà không làm bùng nổ chiều dữ liệu (Curse of Dimensionality).
-        </li>
-        <li>
-            <strong>Mạng học sâu TabNet (Google Cloud AI):</strong><br>
-            Kiến trúc mạng nơ-ron sâu dành riêng cho dữ liệu bảng sử dụng cơ chế chú ý tuần tự (Sequential Attention Mechanism) tại mỗi bước quyết định để chọn lọc đặc trưng có thể giải thích nội tại mà không cần đến các phương pháp hậu kiểm như SHAP.
-        </li>
-    </ol>
-
-    <h2 class="sub-title">8.3. Thiết kế hệ thống MLOps và Tự động hóa tiếp thị đa kênh (Omnichannel Automation)</h2>
-    
-    <h3 style="color: #0f172a; font-size: 14px;">1. Kiến trúc MLOps giám sát độ trôi dữ liệu (Data Drift & Concept Drift)</h3>
-    <p>
-        Trong thương mại điện tử, hành vi mua sắm của người tiêu dùng liên tục biến động theo mùa vụ (ví dụ: Black Friday, Tết Nguyên Đán). Một mô hình huấn luyện vào mùa hè có thể suy giảm độ chính xác vào mùa đông do có sự trôi dạt phân phối dữ liệu (Data Drift).<br>
-        Hệ thống đề xuất tích hợp công cụ kiểm định thống kê:
-    </p>
+    <h2 class="sub-title">8.4. Thiết lập hệ thống MLOps và Tự động hóa tiếp thị đa kênh</h2>
     <ul>
         <li>
-            <strong>Chỉ số ổn định quần thể (Population Stability Index - PSI):</strong>
+            <strong>Giám sát trôi dữ liệu (Data Drift Monitoring):</strong> Đo lường chỉ số ổn định quần thể (Population Stability Index - PSI) hàng tuần:
             $$\text{PSI} = \sum_{k=1}^K \left( \text{Actual}_k - \text{Expected}_k \right) \times \ln\left( \frac{\text{Actual}_k}{\text{Expected}_k} \right)$$
-            Nếu $\text{PSI} > 0.25$, hệ thống tự động kích hoạt Webhook cảnh báo dữ liệu đã trôi dạt nghiêm trọng và gọi pipeline <code>src/train.py</code> để tự động huấn luyện lại (Auto-Retraining) trên dữ liệu 30 ngày gần nhất.
+            Nếu $\text{PSI} > 0.25$, hệ thống tự động gửi cảnh báo Slack/Email và kích hoạt quy trình huấn luyện lại (Auto-Retraining Pipeline).
         </li>
         <li>
-            <strong>Container hóa & CI/CD:</strong> Đóng gói mã nguồn và môi trường vào Docker Image, triển khai qua GitHub Actions lên hạ tầng Kubernetes (KubeFlow hoặc AWS EKS).
+            <strong>Tự động hóa đa kênh (Omnichannel Retention):</strong> Kết nối trực tiếp API của hệ thống với hệ sinh thái tiếp thị tự động (Zalo ZNS, Twilio SMS, SendGrid Email). Khách hàng có nguy cơ rời bỏ sẽ nhận được thông điệp cứu vãn ngay trong "thời điểm vàng" mà không cần sự can thiệp thủ công từ con người.
         </li>
     </ul>
 
-    <h3 style="color: #0f172a; font-size: 14px;">2. Tự động hóa tiếp thị đa kênh (Omnichannel Retention Automation)</h3>
+    <h2 class="sub-title">8.5. Kết luận tổng quan đề tài</h2>
     <p>
-        Kết nối hệ thống Boomerang Radar AI với các nền tảng CRM và cổng liên lạc khách hàng (Customer Data Platform - CDP):
-    </p>
-    <ul>
-        <li><strong>Kết nối Webhook CRM:</strong> Đồng bộ dữ liệu 2 chiều với HubSpot, Salesforce và Lark Suite.</li>
-        <li><strong>Tự động gửi Zalo ZNS / SMS Brandname:</strong> Ngay khi một khách hàng phát sinh nguy cơ Churn $\ge 80\%$, hệ thống tự động bắn một tin nhắn chăm sóc cá nhân hóa kèm mã giảm giá độc quyền 25% vào tài khoản Zalo của khách hàng.</li>
-        <li><strong>Tự động tạo Task CSKH:</strong> Đối với các khách hàng VIP (hạng Kim Cương hoặc có $LTV > 50$ triệu đồng), hệ thống tự động tạo một công việc ưu tiên cao trên bảng điều khiển của Trưởng phòng CSKH để thực hiện cuộc gọi thăm hỏi trực tiếp trong vòng 2 giờ làm việc.</li>
-    </ul>
-
-    <h2 class="sub-title">8.4. Kết luận toàn diện đề tài</h2>
-    <p>
-        Dự án <strong>Boomerang Radar AI</strong> đã hoàn thành xuất sắc toàn bộ các mục tiêu nghiên cứu và phát triển được đặt ra:
+        Dự án <strong>Boomerang Radar AI</strong> đã hoàn thành xuất sắc toàn bộ mục tiêu đề ra:
     </p>
     <ol>
-        <li>Xây dựng thành công cơ sở lý thuyết toán học vững chắc kết hợp kinh tế học hành vi và phân tích RFM+ mở rộng.</li>
-        <li>Đề xuất và chứng minh tính hiệu quả vượt trội của 4 đặc trưng tương tác phi tuyến, đóng góp tới <strong>37.08%</strong> năng lực dự đoán của toàn bộ hệ thống.</li>
-        <li>Thiết lập pipeline tiền xử lý dữ liệu chuẩn mực, tuân thủ nguyên tắc chống rò rỉ dữ liệu (Anti-Data Leakage) tuyệt đối.</li>
-        <li>Huấn luyện và đối chuẩn thành công 4 thuật toán học máy, trong đó mô hình <strong>Gradient Boosting Classifier</strong> đã xuất sắc vượt qua các tiêu chuẩn kiểm thử khắt khe, đạt độ chính xác <strong>94.23%</strong>, $F_1\text{-score}$ đạt <strong>96.56%</strong> và chỉ số $\text{ROC-AUC}$ đạt <strong>96.95%</strong>.</li>
-        <li>Đóng gói và vận hành hoàn chỉnh ứng dụng Web Dashboard đa năng với giao diện trực quan, REST API độ trễ cực thấp (< 50ms) cùng các kịch bản hành động thông minh tạo nên "hiệu ứng Boomerang" giữ chân khách hàng bền vững.</li>
+        <li>Xây dựng cơ sở lý thuyết kinh tế học hành vi kết hợp giải tích toán học của mô hình RFM+ mở rộng.</li>
+        <li>Chứng minh tính đột phá của 4 đặc trưng tương tác phi tuyến, đóng góp tới <strong>37.08%</strong> sức mạnh của mô hình.</li>
+        <li>Thiết lập pipeline tiền xử lý dữ liệu chuẩn công nghiệp, tuân thủ tuyệt đối quy chuẩn chống rò rỉ dữ liệu (Anti-Data Leakage).</li>
+        <li>Huấn luyện và đối chuẩn thành công 4 thuật toán học máy, khẳng định mô hình <strong>Gradient Boosting Classifier</strong> vượt trội với độ chính xác <strong>94.23%</strong>, $F_1\text{-score}$ đạt <strong>96.56%</strong> và $\text{ROC-AUC}$ đạt <strong>96.95%</strong>.</li>
+        <li>Cung cấp kế hoạch triển khai hành động rõ ràng với Ma trận RACI, Lộ trình Gantt 12 tuần và tỷ suất hoàn vốn đầu tư kỳ vọng đạt <strong>303.8%</strong>, đưa giải pháp sẵn sàng đi vào thực tiễn kinh doanh.</li>
     </ol>
 
     <div class="page-break"></div>
 
-    <!-- TÀI LIỆU THAM KHẢO (REFERENCES) -->
-    <h1 class="chapter-title">TÀI LIỆU THAM KHẢO (REFERENCES)</h1>
-    <ol class="ref-list" style="font-size: 12px; line-height: 1.6;">
-        <li>Friedman, J. H. (2001). <em>Greedy function approximation: a gradient boosting machine</em>. Annals of statistics, 1189-1232.</li>
-        <li>Breiman, L. (2001). <em>Random forests</em>. Machine learning, 45(1), 5-32.</li>
-        <li>Reichheld, F. F., & Sasser, W. E. (1990). <em>Zero defections: Quality comes to services</em>. Harvard Business Review, 68(5), 105-111.</li>
-        <li>Lundberg, S. M., & Lee, S. I. (2017). <em>A unified approach to interpreting model predictions</em>. Advances in Neural Information Processing Systems (NeurIPS 2017), 30, 4765-4774.</li>
-        <li>Fader, P. S., Hardie, B. G., & Lee, K. L. (2005). <em>"Counting your customers" the easy way: An alternative to the Pareto/NBD model</em>. Marketing Science, 24(2), 275-284.</li>
-        <li>Pedregosa, F., Varoquaux, G., Gramfort, A., Michel, V., Thirion, B., Grisel, O., ... & Duchesnay, É. (2011). <em>Scikit-learn: Machine learning in Python</em>. Journal of machine learning research, 12(Oct), 2825-2830.</li>
-        <li>Chen, T., & Guestrin, C. (2016). <em>XGBoost: A scalable tree boosting system</em>. Proceedings of the 22nd ACM SIGKDD International Conference on Knowledge Discovery and Data Mining, 785-794.</li>
-        <li>Prokhorenkova, L., Gusev, G., Vorobev, A., Dorogush, A. V., & Gulin, A. (2018). <em>CatBoost: unbiased boosting with categorical features</em>. Advances in Neural Information Processing Systems (NeurIPS 2018), 31.</li>
+    <!-- TÀI LIỆU THAM KHẢO CHUẨN APA -->
+    <h1 class="chapter-title">TÀI LIỆU THAM KHẢO (REFERENCES - CHUẨN APA)</h1>
+    <ol class="ref-list" style="font-size: 11.5pt; line-height: 1.65;">
         <li>Arik, S. Ö., & Pfister, T. (2021). <em>TabNet: Attentive interpretable tabular learning</em>. Proceedings of the AAAI Conference on Artificial Intelligence, 35(8), 6679-6687.</li>
-        <li>Hughes, A. M. (2005). <em>Strategic database marketing: The masterplan for starting and managing a profitable, customer-based marketing program</em>. McGraw-Hill Companies.</li>
+        <li>Breiman, L. (2001). <em>Random forests</em>. Machine Learning, 45(1), 5-32. https://doi.org/10.1023/A:1010933404324</li>
+        <li>Chen, T., & Guestrin, C. (2016). <em>XGBoost: A scalable tree boosting system</em>. Proceedings of the 22nd ACM SIGKDD International Conference on Knowledge Discovery and Data Mining, 785-794.</li>
+        <li>Fader, P. S., Hardie, B. G., & Lee, K. L. (2005). <em>"Counting your customers" the easy way: An alternative to the Pareto/NBD model</em>. Marketing Science, 24(2), 275-284.</li>
+        <li>Friedman, J. H. (2001). <em>Greedy function approximation: A gradient boosting machine</em>. Annals of Statistics, 29(5), 1189-1232. https://doi.org/10.1214/aos/1013203451</li>
+        <li>Hughes, A. M. (2005). <em>Strategic database marketing: The masterplan for starting and managing a profitable, customer-based marketing program</em> (3rd ed.). McGraw-Hill Companies.</li>
+        <li>Lundberg, S. M., & Lee, S. I. (2017). <em>A unified approach to interpreting model predictions</em>. Advances in Neural Information Processing Systems (NeurIPS 2017), 30, 4765-4774.</li>
+        <li>Pedregosa, F., Varoquaux, G., Gramfort, A., Michel, V., Thirion, B., Grisel, O., ... & Duchesnay, É. (2011). <em>Scikit-learn: Machine learning in Python</em>. Journal of Machine Learning Research, 12, 2825-2830.</li>
+        <li>Prokhorenkova, L., Gusev, G., Vorobev, A., Dorogush, A. V., & Gulin, A. (2018). <em>CatBoost: Unbiased boosting with categorical features</em>. Advances in Neural Information Processing Systems (NeurIPS 2018), 31, 6638-6648.</li>
+        <li>Reichheld, F. F., & Sasser, W. E. (1990). <em>Zero defections: Quality comes to services</em>. Harvard Business Review, 68(5), 105-111.</li>
     </ol>
 </div>

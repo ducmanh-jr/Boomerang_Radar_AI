@@ -1,7 +1,7 @@
 <!-- CHƯƠNG 7: ĐÁNH GIÁ KẾT QUẢ THỰC NGHIỆM -->
 
 <div class="academic-section">
-    <h1 class="chapter-title">CHƯƠNG 7: ĐÁNH GIÁ KẾT QUẢ THỰC NGHIỆM</h1>
+    <h1 class="chapter-title">7. ĐÁNH GIÁ KẾT QUẢ THỰC NGHIỆM</h1>
     
     <h2 class="sub-title">7.1. Hệ thống chỉ số đánh giá thực nghiệm (Evaluation Metrics Framework)</h2>
     <p>
