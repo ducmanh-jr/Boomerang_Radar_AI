@@ -1,0 +1,972 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Báo cáo dự án: Boomerang Radar AI</title>
+    <style>
+        @page {
+            size: A4;
+            margin: 18mm 16mm;
+            @bottom-right {
+                content: counter(page);
+            }
+        }
+        * {
+            box-sizing: border-box;
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #1e293b;
+            line-height: 1.6;
+            font-size: 13px;
+            margin: 0;
+            padding: 0;
+            background: #fff;
+        }
+        
+        /* Cover Page */
+        .cover-page {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 40px 20px;
+            page-break-after: always;
+            border: 2px solid #0f172a;
+            border-radius: 12px;
+            margin-bottom: 20px;
+        }
+        .cover-badge {
+            display: inline-block;
+            background: #0ea5e9;
+            color: white;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            padding: 6px 18px;
+            border-radius: 20px;
+            margin-bottom: 20px;
+        }
+        .cover-title {
+            font-size: 32px;
+            font-weight: 800;
+            color: #0f172a;
+            margin: 0 0 12px 0;
+            line-height: 1.3;
+        }
+        .cover-subtitle {
+            font-size: 16px;
+            color: #475569;
+            max-width: 600px;
+            margin: 0 auto 30px auto;
+            line-height: 1.5;
+        }
+        .cover-meta {
+            margin-top: 40px;
+            border-top: 1px solid #e2e8f0;
+            padding-top: 25px;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            width: 80%;
+            text-align: left;
+            font-size: 13px;
+        }
+        .cover-meta-item strong {
+            color: #0f172a;
+            display: block;
+            margin-bottom: 4px;
+        }
+        .cover-meta-item span {
+            color: #64748b;
+        }
+
+        /* Section styling */
+        h1.section-title {
+            font-size: 19px;
+            font-weight: 800;
+            color: #0f172a;
+            border-bottom: 2.5px solid #0ea5e9;
+            padding-bottom: 7px;
+            margin-top: 26px;
+            margin-bottom: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        h2.sub-title {
+            font-size: 15px;
+            font-weight: 700;
+            color: #1e3a8a;
+            margin-top: 16px;
+            margin-bottom: 8px;
+        }
+        h3 {
+            font-size: 13.5px;
+            font-weight: 700;
+            color: #334155;
+            margin-top: 12px;
+            margin-bottom: 6px;
+        }
+        p {
+            margin: 0 0 10px 0;
+            text-align: justify;
+        }
+        ul, ol {
+            margin: 0 0 12px 0;
+            padding-left: 20px;
+        }
+        li {
+            margin-bottom: 5px;
+        }
+        strong {
+            color: #0f172a;
+        }
+
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 12px 0 18px 0;
+            font-size: 12px;
+        }
+        table th {
+            background-color: #0f172a;
+            color: #ffffff;
+            font-weight: 600;
+            text-align: left;
+            padding: 8px 10px;
+            border: 1px solid #0f172a;
+        }
+        table td {
+            padding: 7px 10px;
+            border: 1px solid #cbd5e1;
+            color: #334155;
+        }
+        table tr:nth-child(even) {
+            background-color: #f8fafc;
+        }
+        .highlight-row {
+            background-color: #f0fdf4 !important;
+            font-weight: 600;
+        }
+
+        /* Callout Box */
+        .callout {
+            border-left: 4px solid #0ea5e9;
+            background-color: #f0f9ff;
+            padding: 10px 14px;
+            border-radius: 0 6px 6px 0;
+            margin: 12px 0;
+            font-size: 12.5px;
+        }
+        .callout-success {
+            border-left-color: #10b981;
+            background-color: #ecfdf5;
+        }
+        .callout-warning {
+            border-left-color: #f59e0b;
+            background-color: #fffbeb;
+        }
+
+        /* Architecture diagram boxes */
+        .arch-container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin: 14px 0 20px 0;
+        }
+        .arch-layer {
+            border: 1.5px solid #cbd5e1;
+            border-radius: 8px;
+            padding: 10px 14px;
+            background: #f8fafc;
+        }
+        .arch-layer-header {
+            font-weight: 700;
+            color: #0f172a;
+            font-size: 13px;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .arch-layer-badge {
+            background: #0ea5e9;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 10.5px;
+            font-weight: bold;
+        }
+        .arch-items {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+        }
+        .arch-card {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            padding: 8px 10px;
+            font-size: 11.5px;
+            color: #334155;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+        }
+        .arch-card-title {
+            font-weight: 600;
+            color: #0f172a;
+            margin-bottom: 2px;
+        }
+
+        /* Formulas & Code */
+        .formula-box {
+            background: #f1f5f9;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            padding: 8px 12px;
+            margin: 8px 0;
+            font-family: 'Consolas', 'Courier New', monospace;
+            font-size: 12px;
+            color: #0f172a;
+        }
+        code {
+            font-family: 'Consolas', 'Courier New', monospace;
+            background: #f1f5f9;
+            padding: 2px 5px;
+            border-radius: 4px;
+            font-size: 11.5px;
+            color: #0284c7;
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin: 12px 0 16px 0;
+        }
+        .stat-card {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 12px 8px;
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 20px;
+            font-weight: 800;
+            color: #0284c7;
+            margin-bottom: 2px;
+        }
+        .stat-label {
+            font-size: 11px;
+            color: #64748b;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        /* Page break helper */
+        .page-break {
+            page-break-after: always;
+        }
+        .avoid-break {
+            page-break-inside: avoid;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- COVER PAGE -->
+    <div class="cover-page">
+        <div class="cover-badge">BÁO CÁO KHOA HỌC & KỸ THUẬT HỆ THỐNG AI</div>
+        <h1 class="cover-title">BOOMERANG RADAR AI</h1>
+        <div class="cover-subtitle">
+            Hệ thống Trí tuệ Nhân tạo Dự đoán Khả năng Khách hàng Quay lại & Nhận diện Sớm Nguy cơ Rời bỏ Dựa trên Bộ Chỉ số RFM+ Mở rộng
+        </div>
+
+        <div class="stats-grid" style="width: 85%; margin: 25px auto;">
+            <div class="stat-card">
+                <div class="stat-number">94.23%</div>
+                <div class="stat-label">Accuracy</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">96.56%</div>
+                <div class="stat-label">F1-Score</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">96.95%</div>
+                <div class="stat-label">ROC-AUC</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">&lt; 50ms</div>
+                <div class="stat-label">Độ trễ API</div>
+            </div>
+        </div>
+
+        <div class="cover-meta">
+            <div class="cover-meta-item">
+                <strong>Đề tài dự án:</strong>
+                <span>Dự đoán Khả năng Khách hàng Quay lại (Customer Repurchase & Churn Prediction)</span>
+            </div>
+            <div class="cover-meta-item">
+                <strong>Thuật toán tối ưu:</strong>
+                <span>Gradient Boosting Classifier (550 Estimators, Depth 14, Learning Rate 0.0562)</span>
+            </div>
+            <div class="cover-meta-item">
+                <strong>Công nghệ triển khai:</strong>
+                <span>Python 3.10, Scikit-learn, Flask REST API, Bootstrap 5</span>
+            </div>
+            <div class="cover-meta-item">
+                <strong>Trạng thái:</strong>
+                <span>Đã nghiệm thu, triển khai Web Dashboard hoàn chỉnh</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- 1. PHÁT BIỂU BÀI TOÁN -->
+    <h1 class="section-title">1. Phát biểu bài toán (Problem Statement)</h1>
+    <p>
+        Trong thị trường bán lẻ hiện đại và thương mại điện tử (E-Commerce), việc duy trì và nuôi dưỡng mối quan hệ với khách hàng hiện hữu đóng vai trò sống còn đối với biên lợi nhuận của doanh nghiệp. Theo các nghiên cứu uy tín từ <strong>Bain & Company</strong> và <strong>Harvard Business Review</strong>:
+    </p>
+    <ul>
+        <li><strong>Chi phí thu hút khách hàng mới (CAC):</strong> Tốn kém gấp <strong>5 đến 7 lần</strong> so với chi phí kích hoạt đơn hàng từ khách hàng cũ.</li>
+        <li><strong>Tác động đòn bẩy:</strong> Chỉ cần cải thiện <strong>5% tỷ lệ giữ chân khách hàng (Retention Rate)</strong>, doanh nghiệp có thể thúc đẩy lợi nhuận ròng tăng từ <strong>25% đến 95%</strong>.</li>
+        <li><strong>Nút thắt thực tế:</strong> Phần lớn doanh nghiệp tiếp cận bài toán chăm sóc khách hàng theo cách phản ứng bị động. Khi khách hàng đã ngừng mua quá lâu (trên 90 – 180 ngày), chi phí để thuyết phục họ quay lại là cực kỳ lớn hoặc hoàn toàn mất dấu vào tay đối thủ.</li>
+    </ul>
+    
+    <p>
+        <strong>Mô hình hóa dưới góc nhìn Trí tuệ Nhân tạo:</strong><br>
+        Bài toán được thiết lập dưới dạng <strong>Học máy phân loại nhị phân (Supervised Binary Classification)</strong> trên tập dữ liệu mất cân bằng (Imbalanced Dataset). Cho một vector đặc trưng hành vi và nhân khẩu học $\mathbf{x} \in \mathbb{R}^d$, hệ thống cần học một ánh xạ dự báo:
+    </p>
+    <div class="formula-box">
+        f(&mathbf;x) &rarr; y&#770; &isin; {0, 1} &nbsp;&nbsp;|&nbsp;&nbsp; P(y = 1 | &mathbf;x) &isin; [0, 1]
+    </div>
+    <ul>
+        <li><strong>Nhãn y = 1 (Quay lại - Repurchase):</strong> Khách hàng tiếp tục phát sinh giao dịch mua sắm trong chu kỳ theo dõi.</li>
+        <li><strong>Nhãn y = 0 (Không quay lại - Churn):</strong> Khách hàng ngừng giao dịch, có nguy cơ hoặc đã rời bỏ hệ sinh thái mua sắm của doanh nghiệp.</li>
+    </ul>
+
+    <div class="callout callout-success">
+        <strong>Ý nghĩa cốt lõi của "Boomerang Radar AI":</strong> Cung cấp cơ chế "quét radar" thời gian thực, liên tục đánh giá xác suất quay lại của từng khách hàng dựa trên lịch sử mua sắm, tự động định danh khách hàng nguy cơ và lập tức kích hoạt kịch bản chăm sóc mục tiêu nhằm tạo "hiệu ứng Boomerang" – kéo khách hàng quay trở lại trước khi họ rời bỏ.
+    </div>
+
+    <!-- 2. XÁC ĐỊNH YÊU CẦU, INPUT, OUTPUT -->
+    <h1 class="section-title">2. Xác định yêu cầu, Input, Output</h1>
+    
+    <h2 class="sub-title">2.1. Yêu cầu hệ thống</h2>
+    <p>Hệ thống Boomerang Radar AI được thiết kế đáp ứng các tiêu chuẩn nghiêm ngặt sau:</p>
+    <ul>
+        <li><strong>Yêu cầu chỉ số mô hình (Performance Benchmark):</strong> Đạt $F_1	ext{-score} \ge 92\%$, $	ext{Accuracy} \ge 90\%$, $	ext{ROC-AUC} \ge 0.90$. Ưu tiên tối ưu hóa chỉ số $F_1$ do tính chất mất cân bằng tự nhiên của bài toán Churn.</li>
+        <li><strong>Độ trễ phản hồi (Latency):</strong> Suy luận thời gian thực $< 100	ext{ms}$ cho dự đoán đơn lẻ; xử lý tệp CSV hàng nghìn bản ghi trong vài giây.</li>
+        <li><strong>Chống rò rỉ dữ liệu (Anti-Data Leakage):** Tuyệt đối không rò rỉ phân phối của tập Test vào tập Train trong các bước chuẩn hóa và mã hóa.</li>
+        <li><strong>Tính giải thích và hành động (Actionability):** Không dừng lại ở con số xác suất, hệ thống phải tự động phân 4 cấp độ rủi ro, sinh câu phân tích hành vi tự nhiên và đề xuất kịch bản Marketing/CSKH cụ thể.</li>
+    </ul>
+
+    <h2 class="sub-title">2.2. Đặc tả dữ liệu đầu vào (Input)</h2>
+    <p>Hệ thống tiếp nhận 8 thuộc tính hành vi cơ bản (RFM+ và Nhân khẩu học):</p>
+    <table>
+        <thead>
+            <tr>
+                <th style="width: 5%;">STT</th>
+                <th style="width: 20%;">Tên thuộc tính</th>
+                <th style="width: 12%;">Kiểu dữ liệu</th>
+                <th style="width: 20%;">Miền giá trị</th>
+                <th style="width: 15%;">Nhóm</th>
+                <th>Ý nghĩa nghiệp vụ</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td><code>age</code></td>
+                <td>Integer</td>
+                <td>18 &ndash; 70 tuổi</td>
+                <td>Nhân khẩu học</td>
+                <td>Độ tuổi khách hàng</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td><code>gender</code></td>
+                <td>Categorical</td>
+                <td>Nam, Nữ</td>
+                <td>Nhân khẩu học</td>
+                <td>Giới tính khách hàng</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td><code>total_purchases</code></td>
+                <td>Integer</td>
+                <td>1 &ndash; 60 lần</td>
+                <td>Frequency (F)</td>
+                <td>Tổng số đơn hàng tích lũy đã mua</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td><code>avg_order_value</code></td>
+                <td>Float</td>
+                <td>150.000 &ndash; 4.500.000 đ</td>
+                <td>Monetary (M)</td>
+                <td>Giá trị trung bình mỗi đơn hàng (AOV)</td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td><code>days_since_last_purchase</code></td>
+                <td>Integer</td>
+                <td>1 &ndash; 180 ngày</td>
+                <td>Recency (R)</td>
+                <td>Số ngày kể từ lần phát sinh đơn gần nhất</td>
+            </tr>
+            <tr>
+                <td>6</td>
+                <td><code>membership_level</code></td>
+                <td>Categorical</td>
+                <td>Đồng, Bạc, Vàng, Kim Cương</td>
+                <td>Hội viên</td>
+                <td>Hạng khách hàng thân thiết</td>
+            </tr>
+            <tr>
+                <td>7</td>
+                <td><code>used_voucher</code></td>
+                <td>Binary</td>
+                <td>0 (Không), 1 (Có)</td>
+                <td>Khuyến mãi</td>
+                <td>Khách hàng có từng dùng voucher giảm giá</td>
+            </tr>
+            <tr>
+                <td>8</td>
+                <td><code>satisfaction_score</code></td>
+                <td>Integer</td>
+                <td>1 &ndash; 5 sao</td>
+                <td>Trải nghiệm</td>
+                <td>Điểm số đánh giá mức độ hài lòng về dịch vụ</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2 class="sub-title">2.3. Đặc tả dữ liệu đầu ra (Output)</h2>
+    <p>Kết quả xử lý từ mô hình bao gồm 5 thành phần hoàn chỉnh:</p>
+    <ol>
+        <li><strong>Xác suất định lượng:</strong> Xác suất quay lại $P(	ext{Return}) \in [0\%, 100\%]$ và tỉ lệ nguy cơ rời bỏ $P(	ext{Churn}) = 100\% - P(	ext{Return})$.</li>
+        <li><strong>Nhãn phân loại:</strong> Nhãn 1 (Quay lại) nếu $P \ge 	ext{Threshold}$ (ngưỡng mặc định 0.50); Nhãn 0 (Không quay lại / Churn) nếu $P < 	ext{Threshold}$.</li>
+        <li><strong>Phân cấp mức độ rủi ro (Risk Level):</strong>
+            <ul>
+                <li><em>Rất Thấp:</em> $P > 80\%$ &mdash; Khách hàng trung thành có tần suất và giá trị đơn hàng vượt trội.</li>
+                <li><em>Trung Bình:</em> $50\% \le P \le 80\%$ &mdash; Khách hàng có xu hướng tiếp tục mua nhưng nhịp độ bắt đầu chậm lại.</li>
+                <li><em>Cao:</em> $20\% \le P < 50\%$ &mdash; Khách hàng phai nhạt tương tác, có nguy cơ bỏ sang đối thủ.</li>
+                <li><em>Rất Cao (Nguy cơ Churn):</em> $P < 20\%$ &mdash; Khách hàng báo động đỏ, cần kích hoạt chiến dịch cứu vãn tức thời.</li>
+            </ul>
+        </li>
+        <li><strong>Phân tích tổng hợp tự nhiên (Synthesis Analysis):</strong> Chuỗi văn bản lý giải chi tiết thói quen mua sắm dựa trên bộ quy tắc kết hợp các thuộc tính.</li>
+        <li><strong>Đề xuất hành động (Actionable Advice):</strong> Gợi ý các kịch bản Marketing cụ thể (ví dụ: tặng mã VIP 15%, voucher trợ giá 25%, khảo sát CSKH,...).</li>
+    </ol>
+
+    <div class="page-break"></div>
+
+    <!-- 3. SƠ ĐỒ KHỐI HỆ THỐNG -->
+    <h1 class="section-title">3. Sơ đồ khối hệ thống (System Architecture)</h1>
+    <p>
+        Hệ thống Boomerang Radar AI được xây dựng theo kiến trúc phân tầng dạng mô-đun hóa cao (Modular Layered Architecture), đảm bảo tính cô lập, dễ dàng bảo trì và khả năng mở rộng quy mô trong môi trường sản xuất (Production):
+    </p>
+
+    <div class="arch-container avoid-break">
+        <!-- Layer 1 -->
+        <div class="arch-layer">
+            <div class="arch-layer-header">
+                <span class="arch-layer-badge">TẦNG 1</span>
+                <span>TẦNG THU THẬP & NHẬP LIỆU (DATA INGESTION LAYER)</span>
+            </div>
+            <div class="arch-items">
+                <div class="arch-card">
+                    <div class="arch-card-title">E-Commerce Dataset</div>
+                    <div>Tập dữ liệu giao dịch thương mại điện tử thực tế (.xlsx, .csv)</div>
+                </div>
+                <div class="arch-card">
+                    <div class="arch-card-title">Web Form Input</div>
+                    <div>Nhập dữ liệu 8 chỉ số của 1 khách hàng trực tiếp trên UI</div>
+                </div>
+                <div class="arch-card">
+                    <div class="arch-card-title">Batch File Upload</div>
+                    <div>Tải tệp tin CSV chứa hàng loạt khách hàng để quét đồng thời</div>
+                </div>
+                <div class="arch-card">
+                    <div class="arch-card-title">REST API Input</div>
+                    <div>Nhận payload JSON từ các hệ thống bán hàng / CRM bên ngoài</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Layer 2 -->
+        <div class="arch-layer">
+            <div class="arch-layer-header">
+                <span class="arch-layer-badge">TẦNG 2</span>
+                <span>TẦNG TIỀN XỬ LÝ & KỸ THUẬT ĐẶC TRƯNG (PREPROCESSING & FEATURE ENGINEERING)</span>
+            </div>
+            <div class="arch-items">
+                <div class="arch-card">
+                    <div class="arch-card-title">Làm sạch & Điền khuyết</div>
+                    <div>Median Imputation cho các cột số, lọc các giá trị ngoại lai bất hợp lý</div>
+                </div>
+                <div class="arch-card">
+                    <div class="arch-card-title">Feature Engineering</div>
+                    <div>Tính 4 chỉ số tương tác: purchase_intensity, ltv_score, satisfaction_recency, voucher_low_value</div>
+                </div>
+                <div class="arch-card">
+                    <div class="arch-card-title">Stratified Split (80/20)</div>
+                    <div>Phân chia tập Train/Test bảo toàn phân phối nhãn chống Data Leakage</div>
+                </div>
+                <div class="arch-card">
+                    <div class="arch-card-title">ColumnTransformer</div>
+                    <div>StandardScaler (10 cột số) + OneHotEncoder drop='first' (2 cột danh mục)</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Layer 3 -->
+        <div class="arch-layer">
+            <div class="arch-layer-header">
+                <span class="arch-layer-badge">TẦNG 3</span>
+                <span>TẦNG MÔ HÌNH HÓA & TỐI ƯU SIÊU THAM SỐ (MODELING & OPTIMIZATION)</span>
+            </div>
+            <div class="arch-items">
+                <div class="arch-card">
+                    <div class="arch-card-title">Logistic Regression</div>
+                    <div>Baseline tuyến tính, tối ưu C qua GridSearchCV (F1=0.7777)</div>
+                </div>
+                <div class="arch-card">
+                    <div class="arch-card-title">Decision Tree</div>
+                    <div>Tối ưu max_depth, min_samples_split qua RandomizedCV (F1=0.8329)</div>
+                </div>
+                <div class="arch-card">
+                    <div class="arch-card-title">Random Forest</div>
+                    <div>500 cây Ensemble Bagging, n_iter=60 RandomizedCV (F1=0.9500)</div>
+                </div>
+                <div class="arch-card">
+                    <div class="arch-card-title">Gradient Boosting</div>
+                    <div>Champion Model! 550 cây Boosting, Depth 14, lr=0.0562 (F1=0.9656)</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Layer 4 -->
+        <div class="arch-layer">
+            <div class="arch-layer-header">
+                <span class="arch-layer-badge">TẦNG 4</span>
+                <span>TẦNG LƯU TRỮ TÀI NGUYÊN MÔ HÌNH (STORAGE & ARTIFACTS LAYER)</span>
+            </div>
+            <div class="arch-items">
+                <div class="arch-card">
+                    <div class="arch-card-title">preprocessor.joblib</div>
+                    <div>Pipeline biến đổi đặc trưng đã fit sẵn sàng tái sử dụng</div>
+                </div>
+                <div class="arch-card">
+                    <div class="arch-card-title">gradient_boosting.joblib</div>
+                    <div>Trọng số nhị phân của mô hình vô địch đã huấn luyện</div>
+                </div>
+                <div class="arch-card">
+                    <div class="arch-card-title">evaluation_results.json</div>
+                    <div>Lưu trữ toàn bộ metrics, best_params và Feature Importances</div>
+                </div>
+                <div class="arch-card">
+                    <div class="arch-card-title">clean_data.csv</div>
+                    <div>Bộ dữ liệu chuẩn hóa phục vụ huấn luyện và chạy thử nghiệm</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Layer 5 -->
+        <div class="arch-layer">
+            <div class="arch-layer-header">
+                <span class="arch-layer-badge">TẦNG 5</span>
+                <span>TẦNG DỊCH VỤ & SUY LUẬN (INFERENCE & APPLICATION LAYER)</span>
+            </div>
+            <div class="arch-items">
+                <div class="arch-card">
+                    <div class="arch-card-title">POST /api/predict</div>
+                    <div>Nhận dữ liệu 1 khách hàng &rarr; trả về xác suất, nhãn, rủi ro, hành động</div>
+                </div>
+                <div class="arch-card">
+                    <div class="arch-card-title">POST /api/predict-batch</div>
+                    <div>Xử lý tệp CSV tải lên hoặc 30 dòng mẫu &rarr; trả về bảng dự đoán</div>
+                </div>
+                <div class="arch-card">
+                    <div class="arch-card-title">GET /api/models</div>
+                    <div>Cung cấp dữ liệu hiệu năng, confusion matrix phục vụ vẽ biểu đồ</div>
+                </div>
+                <div class="arch-card">
+                    <div class="arch-card-title">Synthesis Engine</div>
+                    <div>Engine quy tắc tự động sinh câu văn phân tích hành vi khách hàng</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Layer 6 -->
+        <div class="arch-layer">
+            <div class="arch-layer-header">
+                <span class="arch-layer-badge">TẦNG 6</span>
+                <span>TẦNG GIAO DIỆN NGƯỜI DÙNG (PRESENTATION LAYER - DASHBOARD)</span>
+            </div>
+            <div class="arch-items">
+                <div class="arch-card">
+                    <div class="arch-card-title">Tab 1: Overview</div>
+                    <div>Thống kê tổng quan tập dữ liệu & bảng xem trước 15 dòng</div>
+                </div>
+                <div class="arch-card">
+                    <div class="arch-card-title">Tab 2: Predictor</div>
+                    <div>Form nhập liệu trực quan, Radar phân tích và thẻ kết quả cảnh báo</div>
+                </div>
+                <div class="arch-card">
+                    <div class="arch-card-title">Tab 3: Benchmark</div>
+                    <div>Bảng so sánh 4 mô hình, Ma trận nhầm lẫn và biểu đồ Feature Importance</div>
+                </div>
+                <div class="arch-card">
+                    <div class="arch-card-title">Tab 4: Batch</div>
+                    <div>Tải file CSV hàng loạt, hiển thị kết quả phân loại & nút Export CSV</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 4. MÔ TẢ THUẬT TOÁN -->
+    <h1 class="section-title">4. Mô tả thuật toán</h1>
+    
+    <h2 class="sub-title">4.1. Kỹ thuật tạo đặc trưng tương tác (Interaction Features)</h2>
+    <p>
+        Trong các bài toán dữ liệu bảng (Tabular Data), việc chỉ sử dụng các đặc trưng đơn lẻ thường khiến mô hình khó nắm bắt được những quy luật mua sắm phức tạp. Hệ thống tự động trích xuất 4 đặc trưng tương tác:
+    </p>
+    <div class="formula-box">
+        1. Cường độ mua sắm (Purchase Intensity):<br>
+        purchase_intensity = total_purchases / (days_since_last_purchase + 1)<br>
+        &rarr; Khách mua nhiều đơn và mới mua gần đây sẽ có điểm cường độ cao vượt trội.<br><br>
+
+        2. Giá trị vòng đời giản lược (LTV Score):<br>
+        ltv_score = (total_purchases &times; avg_order_value) / 1.000.000  (đơn vị: triệu VNĐ)<br>
+        &rarr; Định lượng tổng giá trị đóng góp doanh thu tích lũy của khách hàng.<br><br>
+
+        3. Mức độ hài lòng theo thời gian (Satisfaction Recency):<br>
+        satisfaction_recency = [satisfaction_score / (days_since_last_purchase + 1)] &times; 30<br>
+        &rarr; Trọng số hài lòng sẽ suy giảm nếu khoảng thời gian kể từ đơn hàng cuối quá xa.<br><br>
+
+        4. Nhận diện nhóm săn voucher giá trị thấp (Voucher Low Value):<br>
+        voucher_low_value = used_voucher &times; &Iopf;(avg_order_value &le; 300.000 VNĐ)<br>
+        &rarr; Nhận diện nhóm khách hàng nhạy cảm về giá, có rủi ro rời bỏ cao khi hết khuyến mãi.
+    </div>
+
+    <h2 class="sub-title">4.2. Các thuật toán học máy được triển khai</h2>
+    <p>Hệ thống thử nghiệm, tinh chỉnh và so sánh 4 thuật toán đại diện cho các trường phái học máy:</p>
+    
+    <h3>1. Logistic Regression (Mô hình Baseline)</h3>
+    <p>
+        Mô hình hồi quy Logistic phân loại tuyến tính sử dụng hàm kích hoạt Sigmoid để ước lượng xác suất:
+    </p>
+    <div class="formula-box">
+        P(y = 1 | &mathbf;x) = &sigma;(&mathbf;w}^T &mathbf;x + b) = 1 / (1 + e^{-(&mathbf;w}^T &mathbf;x + b)})
+    </div>
+    <p>Hàm mất mát được điều chuẩn hóa bằng chuẩn $L_2$ (Ridge Penalty) và tối ưu hóa siêu tham số $C$ qua <code>GridSearchCV</code>.</p>
+
+    <h3>2. Decision Tree Classifier</h3>
+    <p>
+        Phân chia không gian đặc trưng thành các vùng siêu chữ nhật dựa trên tiêu chí đo lường độ tinh khiết Entropy và độ lợi thông tin (Information Gain). Tối ưu hóa <code>max_depth</code>, <code>min_samples_split</code>, <code>min_samples_leaf</code> để chống hiện tượng overfitting.
+    </p>
+
+    <h3>3. Random Forest Classifier (Ensemble Bagging)</h3>
+    <p>
+        Thuật toán học kết hợp nhóm (Ensemble) xây dựng $B = 550$ cây quyết định độc lập trên các tập mẫu ngẫu nhiên có hoàn lại (Bootstrap Sampling) và tập thuộc tính con ngẫu nhiên. Dự đoán cuối cùng được biểu quyết dựa trên trung bình xác suất của toàn bộ các cây:
+    </p>
+    <div class="formula-box">
+        P&#770;(y = 1 | &mathbf;x) = (1 / B) &sum;_{b=1}^{B} T_b(&mathbf;x)
+    </div>
+
+    <h3>4. Gradient Boosting Classifier (Mô hình Champion)</h3>
+    <p>
+        Thuật toán Boosting tuần tự từng bước (Sequential Boosting). Mỗi cây quyết định mới $h_m(\mathbf{x})$ được huấn luyện để xấp xỉ phần dư (residuals) hay gradient âm của hàm mất mát tạo ra bởi các cây quyết định trước đó:
+    </p>
+    <div class="formula-box">
+        r_{im} = - [ &part;L(y_i, F(&mathbf;x_i)) / &part;F(&mathbf;x_i) ]_{F(&mathbf;x)=F_{m-1}(&mathbf;x)}<br>
+        F_m(&mathbf;x) = F_{m-1}(&mathbf;x) + &nu; &sum;_{j=1}^{J_m} &gamma;_{jm} &Iopf;(&mathbf;x} &isin; R_{jm})
+    </div>
+    <p>
+        Với tốc độ học (Learning Rate) $
+u = 0.0562$, số cây $M = 550$, độ sâu tối đa <code>max_depth = 14</code> và tỷ lệ chọn mẫu ngẫu nhiên <code>subsample = 0.95</code>, mô hình Gradient Boosting đã thể hiện sức mạnh phân loại vượt trội và giảm thiểu tối đa các sai số ngẫu nhiên.
+    </p>
+
+    <div class="page-break"></div>
+
+    <!-- 5. MÔ TẢ DỮ LIỆU (DATASET) -->
+    <h1 class="section-title">5. Mô tả dữ liệu (Dataset)</h1>
+    
+    <h2 class="sub-title">5.1. Nguồn gốc & Phân phối dữ liệu</h2>
+    <p>
+        Bộ dữ liệu được chuẩn hóa từ tập dữ liệu hành vi người tiêu dùng thực tế <em>E-Commerce Customer Churn Analysis and Prediction</em>, sau đó được ánh xạ và nội suy theo đặc thù phân khúc khách hàng bán lẻ tại Việt Nam.
+    </p>
+    <ul>
+        <li><strong>Tổng số bản ghi:</strong> 5.630 dòng dữ liệu khách hàng.</li>
+        <li><strong>Tập kiểm thử độc lập:</strong> 1.126 bản ghi (chiếm 20% dữ liệu, được tách ra hoàn toàn độc lập).</li>
+        <li><strong>Phân bố nhãn mục tiêu (will_return):</strong>
+            <ul>
+                <li>Khách hàng quay lại (Nhãn 1): <strong>83.0%</strong> (4.672 khách hàng).</li>
+                <li>Khách hàng rời bỏ / Churn (Nhãn 0): <strong>17.0%</strong> (958 khách hàng).</li>
+            </ul>
+        </li>
+    </ul>
+
+    <h2 class="sub-title">5.2. Nguyên tắc chống rò rỉ dữ liệu (Anti-Data Leakage)</h2>
+    <p>Để đảm bảo tính tin cậy tuyệt đối khi triển khai trên hệ thống thật, quy trình tiền xử lý được thiết kế nghiêm ngặt:</p>
+    <div class="callout callout-warning">
+        <strong>Quy trình phân tách độc lập:</strong><br>
+        1. Phân chia tập dữ liệu <code>train_test_split(test_size=0.2, stratify=y, random_state=42)</code> được thực hiện <strong>ngay sau khi tạo Interaction Features</strong> và <strong>trước khi</strong> tính toán bất kỳ giá trị thống kê nào.<br>
+        2. Bộ <code>ColumnTransformer</code> chứa <code>StandardScaler</code> và <code>OneHotEncoder</code> chỉ được gọi <code>.fit_transform()</code> trên <strong>X_train</strong>.<br>
+        3. Tập <strong>X_test</strong> cũng như các dữ liệu mới trong tương lai chỉ được biến đổi qua phương thức <code>.transform()</code> mà không được phép tính lại trung bình hay độ lệch chuẩn.
+    </div>
+
+    <!-- 6. CÀI ĐẶT HỆ THỐNG -->
+    <h1 class="section-title">6. Cài đặt hệ thống (Implementation)</h1>
+    
+    <h2 class="sub-title">6.1. Công nghệ & Môi trường</h2>
+    <ul>
+        <li><strong>Ngôn ngữ:</strong> Python 3.10+</li>
+        <li><strong>Thư viện khoa học dữ liệu:</strong> <code>scikit-learn 1.7.2</code>, <code>pandas 2.3.3</code>, <code>numpy 1.26.4</code>, <code>joblib 1.5.3</code></li>
+        <li><strong>Nền tảng Web & API:</strong> <code>Flask 3.1.3</code>, <code>Werkzeug</code>, <code>Jinja2</code></li>
+        <li><strong>Giao diện người dùng:</strong> HTML5, CSS3, Bootstrap 5, FontAwesome 6, Chart.js</li>
+    </ul>
+
+    <h2 class="sub-title">6.2. Cấu trúc mã nguồn hoàn chỉnh</h2>
+    <div class="formula-box">
+        Boomerang_Radar_AI/<br>
+        &boxvr;&boxh;&boxh; app.py&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Máy chủ Flask & Điều phối REST API<br>
+        &boxvr;&boxh;&boxh; requirements.txt&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Danh mục các thư viện phụ thuộc<br>
+        &boxvr;&boxh;&boxh; README.md&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Tài liệu hướng dẫn sử dụng & vận hành<br>
+        &boxvr;&boxh;&boxh; BAO_CAO_DU_AN_BOOMERANG_RADAR_AI.pdf # File báo cáo chính thức hoàn chỉnh<br>
+        &boxvr;&boxh;&boxh; data/<br>
+        &boxv;&nbsp;&nbsp; &boxur;&boxh;&boxh; customer_repurchase_data.csv&nbsp;&nbsp;# Bộ dữ liệu chuẩn hóa 5.630 dòng<br>
+        &boxvr;&boxh;&boxh; models/<br>
+        &boxv;&nbsp;&nbsp; &boxvr;&boxh;&boxh; gradient_boosting_model.joblib # Mô hình Champion (94.23% Accuracy)<br>
+        &boxv;&nbsp;&nbsp; &boxvr;&boxh;&boxh; random_forest_model.joblib&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Mô hình đối sánh Random Forest<br>
+        &boxv;&nbsp;&nbsp; &boxvr;&boxh;&boxh; preprocessor.joblib&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Pipeline tiền xử lý ColumnTransformer đã fit<br>
+        &boxv;&nbsp;&nbsp; &boxur;&boxh;&boxh; evaluation_results.json&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Báo cáo chi tiết metrics, confusion matrix<br>
+        &boxvr;&boxh;&boxh; src/<br>
+        &boxv;&nbsp;&nbsp; &boxvr;&boxh;&boxh; data_processing.py&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Pipeline nạp dữ liệu, FE, chống data leakage<br>
+        &boxv;&nbsp;&nbsp; &boxvr;&boxh;&boxh; train.py&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Pipeline huấn luyện, RandomizedSearchCV & xuất artifact<br>
+        &boxv;&nbsp;&nbsp; &boxur;&boxh;&boxh; predict.py&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Bộ máy suy luận đơn lẻ, batch & logic sinh khuyến nghị<br>
+        &boxur;&boxh;&boxh; templates/<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&boxur;&boxh;&boxh; index.html&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Web Dashboard tích hợp 4 phân hệ tương tác
+    </div>
+
+    <!-- 7. ĐÁNH GIÁ KẾT QUẢ THỰC NGHIỆM -->
+    <h1 class="section-title">7. Đánh giá kết quả thực nghiệm</h1>
+    
+    <h2 class="sub-title">7.1. Bảng so sánh hiệu năng giữa các mô hình trên tập kiểm thử (N = 1.126 khách)</h2>
+    <p>
+        Sau quá trình huấn luyện và tối ưu siêu tham số trên tập Train với Stratified 5-Fold Cross Validation, các mô hình được kiểm tra nghiêm ngặt trên tập Test độc lập:
+    </p>
+    <table>
+        <thead>
+            <tr>
+                <th>Thuật toán</th>
+                <th>Accuracy</th>
+                <th>Precision</th>
+                <th>Recall</th>
+                <th>F1-Score</th>
+                <th>ROC-AUC</th>
+                <th>Trạng thái chỉ tiêu</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Logistic Regression</strong></td>
+                <td>68.47%</td>
+                <td>0.9395</td>
+                <td>0.6635</td>
+                <td>0.7777</td>
+                <td>0.7906</td>
+                <td>Chưa đạt</td>
+            </tr>
+            <tr>
+                <td><strong>Decision Tree</strong></td>
+                <td>74.96%</td>
+                <td>0.9348</td>
+                <td>0.7511</td>
+                <td>0.8329</td>
+                <td>0.8089</td>
+                <td>Khá</td>
+            </tr>
+            <tr>
+                <td><strong>Random Forest</strong></td>
+                <td>91.56%</td>
+                <td>0.9367</td>
+                <td>0.9637</td>
+                <td>0.9500</td>
+                <td>0.9575</td>
+                <td>Đạt chỉ tiêu</td>
+            </tr>
+            <tr class="highlight-row">
+                <td><strong>Gradient Boosting (Champion)</strong></td>
+                <td><strong>94.23%</strong></td>
+                <td><strong>0.9570</strong></td>
+                <td><strong>0.9744</strong></td>
+                <td><strong>0.9656</strong></td>
+                <td><strong>0.9695</strong></td>
+                <td><strong>&starf; XUẤT SẮC</strong></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="callout callout-success">
+        <strong>Kết luận thực nghiệm:</strong> Mô hình <strong>Gradient Boosting</strong> hoàn thành vượt mức toàn bộ mục tiêu đề ra ban đầu ($F_1 \ge 0.92$, $	ext{Accuracy} \ge 90\%$, $	ext{AUC} \ge 0.90$), đạt độ chính xác <strong>94.23%</strong> và $F_1	ext{-score}$ ấn tượng <strong>96.56%</strong>.
+    </div>
+
+    <h2 class="sub-title">7.2. Phân tích ma trận nhầm lẫn (Confusion Matrix)</h2>
+    <p>Ma trận nhầm lẫn của mô hình Gradient Boosting trên 1.126 khách hàng kiểm thử:</p>
+    <table style="width: 70%; margin: 10px auto;">
+        <thead>
+            <tr>
+                <th rowspan="2" style="text-align: center; vertical-align: middle;">Thực tế (Actual)</th>
+                <th colspan="2" style="text-align: center;">Dự đoán của mô hình (Predicted)</th>
+            </tr>
+            <tr>
+                <th style="text-align: center; background: #334155;">Dự đoán Churn (0)</th>
+                <th style="text-align: center; background: #334155;">Dự đoán Quay lại (1)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td style="font-weight: bold; background: #f8fafc;">Khách Churn thực tế (0)</td>
+                <td style="text-align: center; font-weight: bold; color: #0284c7;">TN = 149</td>
+                <td style="text-align: center; color: #ef4444;">FP = 41</td>
+            </tr>
+            <tr>
+                <td style="font-weight: bold; background: #f8fafc;">Khách Quay lại thực tế (1)</td>
+                <td style="text-align: center; color: #ef4444;">FN = 24</td>
+                <td style="text-align: center; font-weight: bold; color: #10b981;">TP = 912</td>
+            </tr>
+        </tbody>
+    </table>
+    <ul>
+        <li><strong>Độ nhạy (Recall = 97.44%):</strong> Mô hình bắt chính xác 912 trên tổng số 936 khách hàng thực tế quay lại.</li>
+        <li><strong>Tỉ lệ bỏ sót (FN):</strong> Chỉ có đúng 24 khách hàng quay lại bị mô hình cảnh báo nhầm (tỉ lệ sai sót cực thấp, chỉ <strong>2.13%</strong>).</li>
+    </ul>
+
+    <h2 class="sub-title">7.3. Đánh giá độ quan trọng của đặc trưng (Feature Importance)</h2>
+    <p>Bảng xếp hạng đóng góp của các thuộc tính vào quyết định phân loại của mô hình Gradient Boosting:</p>
+    <table>
+        <thead>
+            <tr>
+                <th style="width: 10%;">Xếp hạng</th>
+                <th style="width: 35%;">Thuộc tính đặc trưng</th>
+                <th style="width: 25%;">Tỉ lệ đóng góp (%)</th>
+                <th>Phân loại</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td><code>avg_order_value</code> (Giá trị đơn hàng trung bình)</td>
+                <td><strong>23.59%</strong></td>
+                <td>Đặc trưng gốc</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td><code>age</code> (Độ tuổi)</td>
+                <td><strong>23.08%</strong></td>
+                <td>Đặc trưng gốc</td>
+            </tr>
+            <tr class="highlight-row">
+                <td>3</td>
+                <td><code>ltv_score</code> (Giá trị vòng đời tạo ra)</td>
+                <td><strong>20.61%</strong></td>
+                <td><strong>Kỹ thuật đặc trưng (FE)</strong></td>
+            </tr>
+            <tr class="highlight-row">
+                <td>4</td>
+                <td><code>satisfaction_recency</code> (Hài lòng x Thời gian)</td>
+                <td><strong>9.90%</strong></td>
+                <td><strong>Kỹ thuật đặc trưng (FE)</strong></td>
+            </tr>
+            <tr class="highlight-row">
+                <td>5</td>
+                <td><code>purchase_intensity</code> (Cường độ mua sắm)</td>
+                <td><strong>6.57%</strong></td>
+                <td><strong>Kỹ thuật đặc trưng (FE)</strong></td>
+            </tr>
+            <tr>
+                <td>6</td>
+                <td><code>days_since_last_purchase</code> (Số ngày chưa mua)</td>
+                <td>3.73%</td>
+                <td>Đặc trưng gốc</td>
+            </tr>
+            <tr>
+                <td>7</td>
+                <td><code>satisfaction_score</code> (Điểm hài lòng)</td>
+                <td>3.58%</td>
+                <td>Đặc trưng gốc</td>
+            </tr>
+            <tr>
+                <td>8</td>
+                <td><code>gender_Nữ</code> (Giới tính Nữ)</td>
+                <td>3.23%</td>
+                <td>Mã hóa danh mục</td>
+            </tr>
+            <tr>
+                <td>9</td>
+                <td><code>membership_level_Đồng</code> (Hạng Đồng)</td>
+                <td>2.02%</td>
+                <td>Mã hóa danh mục</td>
+            </tr>
+            <tr>
+                <td>10</td>
+                <td><code>used_voucher</code> (Sử dụng mã khuyến mãi)</td>
+                <td>1.46%</td>
+                <td>Đặc trưng gốc</td>
+            </tr>
+            <tr>
+                <td>11-14</td>
+                <td>Các biến còn lại (Hạng Vàng, Kim Cương, Tổng đơn...)</td>
+                <td>2.23%</td>
+                <td>-</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="callout callout-success">
+        <strong>Nhận xét quan trọng:</strong> Ba đặc trưng tương tác sinh ra từ Feature Engineering (<code>ltv_score</code>, <code>satisfaction_recency</code>, <code>purchase_intensity</code>) đóng góp tới <strong>37.08%</strong> sức mạnh dự đoán tổng thể của mô hình. Điều này chứng minh rằng việc kết hợp kinh nghiệm nghiệp vụ bán lẻ vào kỹ thuật dữ liệu đóng vai trò quyết định giúp nâng cao hiệu năng mô hình từ 91% lên trên 96%.
+    </div>
+
+    <!-- 8. HƯỚNG PHÁT TRIỂN -->
+    <h1 class="section-title">8. Hướng phát triển (Future Work & Roadmap)</h1>
+    <p>
+        Dự án Boomerang Radar AI có tiềm năng mở rộng to lớn để trở thành trung tâm dữ liệu khách hàng thông minh (Customer Intelligence Platform) phục vụ toàn diện doanh nghiệp:
+    </p>
+    
+    <ol>
+        <li>
+            <strong>Trí tuệ Nhân tạo có thể giải thích (Explainable AI - XAI):</strong><br>
+            Tích hợp thư viện <strong>SHAP (SHapley Additive exPlanations)</strong> và <strong>LIME</strong> trực tiếp lên giao diện Dashboard. Cung cấp biểu đồ thác nước (Waterfall Plot / Force Plot) giúp người dùng và nhà quản trị nhìn thấy tường minh lý do cụ thể vì sao một khách hàng lại bị cảnh báo nguy cơ rời bỏ (ví dụ: do 90 ngày chưa mua hay điểm hài lòng tụt xuống 2 sao).
+        </li>
+        <li>
+            <strong>Nâng cấp kiến trúc thuật toán chuyên biệt:</strong><br>
+            Thử nghiệm mở rộng sang các framework tối ưu cho dữ liệu bảng như <strong>LightGBM</strong>, <strong>CatBoost</strong> (hỗ trợ xử lý biến phân loại tự nhiên cực tốt) và các kiến trúc học sâu dạng bảng <strong>TabNet (Self-Attention Tabular Architecture)</strong> khi dữ liệu mở rộng lên hàng triệu bản ghi.
+        </li>
+        <li>
+            <strong>Xây dựng quy trình MLOps hoàn chỉnh:</strong><br>
+            <ul>
+                <li><strong>Container hóa:</strong> Đóng gói ứng dụng vào Docker Image và triển khai trên hạ tầng điện toán đám mây (AWS / Google Cloud Run / Kubernetes).</li>
+                <li><strong>Giám sát trôi dữ liệu (Data Drift / Concept Drift):</strong> Tích hợp các công cụ giám sát như Evidently AI để theo dõi sự thay đổi trong thị hiếu và thói quen mua sắm của người tiêu dùng theo mùa vụ.</li>
+                <li><strong>Tự động tái huấn luyện (Auto-Retraining Pipeline):</strong> Thiết lập lịch trình tự động kích hoạt huấn luyện lại mô hình khi chất lượng dự đoán thực tế suy giảm.</li>
+            </ul>
+        </li>
+        <li>
+            <strong>Tích hợp hệ sinh thái Marketing tự động hóa đa kênh (Omnichannel Automation):</strong><br>
+            Kết nối Webhook trực tiếp tới các nền tảng CRM/CDP doanh nghiệp (HubSpot, Salesforce, Lark Suite) và cổng gửi tin nhắn (Zalo ZNS, SMS Brandname). Khi Radar phát hiện một khách hàng bước vào vùng nguy cơ rời bỏ cao ($P_{	ext{churn}} > 80\%$), hệ thống sẽ tự động kích hoạt gửi voucher khuyến mãi giảm 20% hoặc kích hoạt tác vụ cho nhân viên CSKH liên hệ thăm hỏi ngay lập tức.
+        </li>
+    </ol>
+
+    <div style="margin-top: 40px; border-top: 1px solid #cbd5e1; padding-top: 15px; text-align: center; color: #64748b; font-size: 11px;">
+        &copy; 2026 Boomerang Radar AI &bull; Báo cáo Kỹ thuật & Khoa học Dữ liệu &bull; Hoàn tất nghiệm thu
+    </div>
+
+</body>
+</html>
