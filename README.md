@@ -12,11 +12,12 @@
 
 ---
 
-## 📄 Báo cáo dự án chi tiết (12 trang chuẩn in ấn)
-* **Báo cáo PDF:** [BAO_CAO_DU_AN_BOOMERANG_RADAR_AI.pdf](BAO_CAO_DU_AN_BOOMERANG_RADAR_AI.pdf)
-* **Báo cáo Markdown:** [BAO_CAO_DU_AN_BOOMERANG_RADAR_AI.md](BAO_CAO_DU_AN_BOOMERANG_RADAR_AI.md)
-* **Báo cáo Web HTML:** [report.html](report.html)
-* **Kịch bản tự động xuất PDF:** [generate_pdf.py](generate_pdf.py)
+## 📄 Báo cáo dự án chuyên sâu (Luận văn cấp cao)
+* 📕 **Báo cáo toàn diện 39 trang (PDF):** [BAO_CAO_TOAN_DIEN_BOOMERANG_RADAR_AI_30_TRANG.pdf](BAO_CAO_TOAN_DIEN_BOOMERANG_RADAR_AI_30_TRANG.pdf)
+* 📝 **Bản Markdown toàn diện:** [BAO_CAO_TOAN_DIEN_30_TRANG_BOOMERANG_RADAR_AI.md](BAO_CAO_TOAN_DIEN_30_TRANG_BOOMERANG_RADAR_AI.md)
+* 📑 **Báo cáo tóm tắt 12 trang (PDF):** [BAO_CAO_DU_AN_BOOMERANG_RADAR_AI.pdf](BAO_CAO_DU_AN_BOOMERANG_RADAR_AI.pdf)
+* 📂 **Thư mục các chương chi tiết:** [docs_sections/](docs_sections/)
+* ⚙️ **Kịch bản tự động biên tập và xuất PDF:** [build_full_report.py](build_full_report.py)
 
 ---
 
