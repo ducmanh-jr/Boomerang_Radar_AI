@@ -12,6 +12,14 @@
 
 ---
 
+## 📄 Báo cáo dự án chi tiết (12 trang chuẩn in ấn)
+* **Báo cáo PDF:** [BAO_CAO_DU_AN_BOOMERANG_RADAR_AI.pdf](BAO_CAO_DU_AN_BOOMERANG_RADAR_AI.pdf)
+* **Báo cáo Markdown:** [BAO_CAO_DU_AN_BOOMERANG_RADAR_AI.md](BAO_CAO_DU_AN_BOOMERANG_RADAR_AI.md)
+* **Báo cáo Web HTML:** [report.html](report.html)
+* **Kịch bản tự động xuất PDF:** [generate_pdf.py](generate_pdf.py)
+
+---
+
 ## 📊 Kết quả kiểm thử thực nghiệm
 
 | Mô hình | Accuracy | Precision | Recall | F1-Score | ROC-AUC | Xếp hạng |
@@ -54,4 +62,5 @@ Mở trình duyệt và truy cập: **`http://localhost:5000`**
 * `src/train.py`: Pipeline huấn luyện và tối ưu siêu tham số.
 * `src/predict.py`: Bộ máy suy luận và phân tích tự nhiên.
 * `templates/index.html`: Giao diện Dashboard 4 tab (Overview, Predictor, Benchmark, Batch).
+* `BAO_CAO_DU_AN_BOOMERANG_RADAR_AI.pdf`: File báo cáo PDF 12 trang hoàn chỉnh.
 * `BAO_CAO_DU_AN_BOOMERANG_RADAR_AI.md`: Báo cáo chi tiết kỹ thuật 8 phần theo đúng đề cương.
