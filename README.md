@@ -13,11 +13,11 @@
 ---
 
 ## 📄 Báo cáo dự án chuyên sâu (Luận văn cấp cao)
-* 📕 **Báo cáo toàn diện 39 trang (PDF):** [BAO_CAO_TOAN_DIEN_BOOMERANG_RADAR_AI_30_TRANG.pdf](BAO_CAO_TOAN_DIEN_BOOMERANG_RADAR_AI_30_TRANG.pdf)
+* 📘 **Bản báo cáo hoàn chỉnh định dạng Word (DOCX):** [BAO_CAO_BOOMERANG_RADAR_AI.docx](BAO_CAO_BOOMERANG_RADAR_AI.docx) *(Bỏ trống bìa, công thức sạch, mục lục đầy đủ, không lỗi hiển thị)*
+* 📕 **Báo cáo toàn diện PDF:** [BAO_CAO_TOAN_DIEN_BOOMERANG_RADAR_AI_30_TRANG.pdf](BAO_CAO_TOAN_DIEN_BOOMERANG_RADAR_AI_30_TRANG.pdf)
 * 📝 **Bản Markdown toàn diện:** [BAO_CAO_TOAN_DIEN_30_TRANG_BOOMERANG_RADAR_AI.md](BAO_CAO_TOAN_DIEN_30_TRANG_BOOMERANG_RADAR_AI.md)
-* 📑 **Báo cáo tóm tắt 12 trang (PDF):** [BAO_CAO_DU_AN_BOOMERANG_RADAR_AI.pdf](BAO_CAO_DU_AN_BOOMERANG_RADAR_AI.pdf)
 * 📂 **Thư mục các chương chi tiết:** [docs_sections/](docs_sections/)
-* ⚙️ **Kịch bản tự động biên tập và xuất PDF:** [build_full_report.py](build_full_report.py)
+* ⚙️ **Kịch bản tự động xuất file DOCX:** [build_word_doc.py](build_word_doc.py)
 
 ---
 
